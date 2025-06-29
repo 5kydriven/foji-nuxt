@@ -17,12 +17,15 @@
 		"@supabase/supabase-js": "^2.50.2",
 		"eslint": "^9.30.0",
 		"nuxt": "^3.17.5",
-		"vue": "^3.5.17",
+		"vue": "latest",
 		"vue-router": "^4.5.1"
 	},
+	"overrides": {
+		"vue": "latest"
+	},
 	"devDependencies": {
-		"@iconify-json/lucide": "^1.2.53",
 		"typescript": "^5.8.3",
-		"vue-tsc": "^2.2.10"
+		"vue-tsc": "^2.2.10",
+		"@iconify-json/lucide": "^1.2.53"
 	}
 }
