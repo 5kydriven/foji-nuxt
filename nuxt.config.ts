@@ -4,7 +4,6 @@ export default defineNuxtConfig({
 	pages: {
 		pattern: ['**/*.vue', '!**/components/**'],
 	},
-
 	components: [
 		'~/components',
 		{
