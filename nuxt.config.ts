@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: ['@nuxt/ui', '@nuxt/eslint'],
+	ssr: false,
 	pages: {
 		pattern: ['**/*.vue', '!**/components/**'],
 	},
@@ -14,7 +15,7 @@ export default defineNuxtConfig({
 	imports: {
 		scan: false,
 	},
-	devtools: { enabled: true },
+	devtools: { enabled: false },
 	css: ['~/assets/css/main.css'],
 	runtimeConfig: {
 		public: {
