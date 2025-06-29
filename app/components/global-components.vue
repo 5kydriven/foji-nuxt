@@ -1,3 +1,3 @@
 <template>
-	<div>Global Components</div>
+  <div>Global components</div>
 </template>
