@@ -16,6 +16,7 @@
 		"@nuxt/ui": "^3.2.0",
 		"@supabase/supabase-js": "^2.50.2",
 		"eslint": "^9.30.0",
+		"motion-v": "^1.3.1",
 		"nuxt": "^3.17.5",
 		"vue": "latest",
 		"vue-router": "^4.5.1"
@@ -24,8 +25,8 @@
 		"vue": "latest"
 	},
 	"devDependencies": {
+		"@iconify-json/lucide": "^1.2.53",
 		"typescript": "^5.8.3",
-		"vue-tsc": "^2.2.10",
-		"@iconify-json/lucide": "^1.2.53"
+		"vue-tsc": "^2.2.10"
 	}
 }
