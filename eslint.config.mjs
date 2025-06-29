@@ -12,6 +12,8 @@ export default withNuxt(
 			'vue/no-multiple-template-root': 'off',
 			'@stylistic/semi': 'off',
 			'@stylistic/indent': 'off',
+			'vue/attribute-hyphenation': 'off',
+			'vue/v-on-event-hyphenation': 'off',
 		},
 	},
 );

@@ -63,3 +63,12 @@
 		</div>
 	</UContainer>
 </template>
+
+<style>
+	.box {
+		width: 100px;
+		height: 100px;
+		background-color: #0d63f8;
+		border-radius: 10px;
+	}
+</style>
