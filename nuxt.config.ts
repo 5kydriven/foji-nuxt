@@ -1,12 +1,31 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	compatibilityDate: '2025-05-15',
-	modules: ['@nuxt/ui', '@nuxt/eslint', '@nuxtjs/supabase'],
+	modules: ['@nuxt/ui', '@nuxt/eslint'],
+	pages: {
+		pattern: ['**/*.vue', '!**/components/**'],
+	},
+	components: [
+		{
+			path: '~/pages',
+			pattern: '**/components/**',
+			pathPrefix: false,
+		},
+	],
+	imports: {
+		scan: false,
+	},
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.css'],
+	runtimeConfig: {
+		public: {
+			supabaseUrl: process.env.SUPABASE_URL,
+			supabaseKey: process.env.SUPABASE_KEY,
+		},
+	},
 	future: {
 		compatibilityVersion: 4,
 	},
+	compatibilityDate: '2025-05-15',
 	typescript: {
 		typeCheck: true,
 		strict: true,
@@ -14,12 +33,6 @@ export default defineNuxtConfig({
 	eslint: {
 		config: {
 			stylistic: true,
-		},
-	},
-	runtimeConfig: {
-		public: {
-			supabaseUrl: process.env.SUPABASE_URL,
-			supabaseKey: process.env.SUPABASE_KEY,
 		},
 	},
 });

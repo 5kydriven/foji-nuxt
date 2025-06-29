@@ -10,6 +10,8 @@ export default withNuxt(
 			'@stylistic/no-tabs': 'off',
 			'vue/html-indent': 'off',
 			'vue/no-multiple-template-root': 'off',
+			'@stylistic/semi': 'off',
+			'@stylistic/indent': 'off',
 		},
 	},
 );
