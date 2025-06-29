@@ -14,6 +14,7 @@ export default withNuxt(
 			'@stylistic/indent': 'off',
 			'vue/attribute-hyphenation': 'off',
 			'vue/v-on-event-hyphenation': 'off',
+			'@stylistic/member-delimiter-style': 'off',
 		},
 	},
 );

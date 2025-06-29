@@ -1,19 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	modules: ['@nuxt/ui', '@nuxt/eslint', 'motion-v/nuxt'],
+	modules: ['@nuxt/ui', '@nuxt/eslint', 'motion-v/nuxt', '@nuxtjs/supabase'],
 	pages: {
 		pattern: ['**/*.vue', '!**/components/**'],
 	},
+
 	components: [
+		'~/components',
 		{
 			path: '~/pages',
 			pattern: '**/components/**',
 			pathPrefix: false,
 		},
 	],
-	imports: {
-		scan: false,
-	},
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.css'],
 	runtimeConfig: {
@@ -34,5 +33,8 @@ export default defineNuxtConfig({
 		config: {
 			stylistic: true,
 		},
+	},
+	supabase: {
+		redirect: false,
 	},
 });
