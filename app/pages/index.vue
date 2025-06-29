@@ -8,5 +8,6 @@
 	<UButton
 		label="click me"
 		icon="i-lucide-sun"
-		@click="onClick" />
+		@click="onClick"
+	/>
 </template>
