@@ -62,7 +62,7 @@ import OrderModal from './components/modals/order-modal.vue'
 				auto-scroll
 				:items="items"
 				:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/4' }"
-				class="w-full max-2-2xl"
+				class="w-full "
 			>
 				<img
 					:src="item"
@@ -71,7 +71,7 @@ import OrderModal from './components/modals/order-modal.vue'
 			</UCarousel>
 		</div>
 		<div
-			class="w-full min-h-[60vh]  flex flex-col items-center justify-center gap-8 my-5 p-3 md:p-5 bg-gray-100 rounded-md"
+			class="w-full min-h-[60vh] md:h-screen  flex flex-col items-center  gap-8 my-5 p-3 md:p-5 bg-gray-100 rounded-md"
 		>
 			<h1 class="font-bold text-2xl md:text-3xl">Slow Cooker Comfort Food</h1>
 			<div class="flex justify-center w-full">
