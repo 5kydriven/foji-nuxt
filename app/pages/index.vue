@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useAnimationFrame, animate, scroll	 } from "motion-v"
+import OrderModal from './components/modals/order-modal.vue'
+
 	const items = [
 		'https://picsum.photos/468/468?random=1',
 		'https://picsum.photos/468/468?random=2',
@@ -7,6 +10,16 @@
 		'https://picsum.photos/468/468?random=5',
 		'https://picsum.photos/468/468?random=6',
 	];
+
+	const cubeRef = ref<HTMLElement | null>(null)
+
+	useAnimationFrame((t) => {
+			if (!cubeRef.value) return
+
+			const rotate = Math.sin(t / 10000) * 200
+			const y = (1 + Math.sin(t / 1000)) * -50
+			cubeRef.value.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`
+	})
 </script>
 
 <template>
@@ -24,19 +37,20 @@
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
 					nostrum. Necessitatibus rem natus distinctio blanditiis quibusdam
 					repellat ullam a maxime.
-				</p>
-				<UButton
-					class="mt-4"
-					color="neutral"
-				>
-					Order Now
-				</UButton>
+				</p><br>
+				<OrderModal class="hidden md:block"/>
 			</div>
-			<div class="flex justify-center">
-				<img
-					src="https://picsum.photos/468/468?random=6"
-					class="w-48 h-48 md:w-72 md:h-72 object-cover rounded-lg"
-				/>
+			<div>
+				<div class="flex justify-center py-10 md:py-0" ref="cubeRef">
+					<img
+						src="https://picsum.photos/468/468?random=6"
+						class="w-48 h-48 md:w-72 md:h-72 object-cover rounded-lg"
+					/>
+					
+				</div>
+				<div class="flex justify-center">
+					<OrderModal class="block md:hidden"/>
+				</div>
 			</div>
 		</div>
 		<div class="py-5">
