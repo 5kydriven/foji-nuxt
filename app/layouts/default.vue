@@ -1,7 +1,20 @@
-<template>
-	<div>Header</div>
+<script setup lang="ts">
+	import UserHeader from '~/components/user-header.vue';
+	import UserFooter from '~/components/user-footer.vue';
+</script>
 
-	<div>
+<template>
+	<UCard variant="soft">
+		<template #header>
+			<UserHeader />
+		</template>
+
 		<slot />
-	</div>
+
+		<template #footer>
+			<div classt="pt-5">
+				<UserFooter />
+			</div>
+		</template>
+	</UCard>
 </template>

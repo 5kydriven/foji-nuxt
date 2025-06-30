@@ -10,6 +10,13 @@ export default withNuxt(
 			'@stylistic/no-tabs': 'off',
 			'vue/html-indent': 'off',
 			'vue/no-multiple-template-root': 'off',
+			'@stylistic/semi': 'off',
+			'@stylistic/indent': 'off',
+			'vue/attribute-hyphenation': 'off',
+			'vue/v-on-event-hyphenation': 'off',
+			'@stylistic/member-delimiter-style': 'off',
+			'vue/html-self-closing': 'off',
+			'vue/singleline-html-element-content-newline': 'off',
 		},
 	},
 );

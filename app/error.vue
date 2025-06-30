@@ -19,6 +19,6 @@
 
 <template>
 	<UApp>
-		<UError :error="error" />
+		{{ error }}
 	</UApp>
 </template>

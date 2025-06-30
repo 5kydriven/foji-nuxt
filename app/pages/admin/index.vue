@@ -1,3 +1,5 @@
 <template>
-	<div>admin</div>
+	<MyComponent />
+	<GlobalComponents />
+	<UButton />
 </template>

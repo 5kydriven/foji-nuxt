@@ -15,6 +15,7 @@
 	"editor.formatOnSave": true,
 	"prettier.singleQuote": true,
 	"prettier.trailingComma": "all",
+	"prettier.bracketSameLine": false,
 	"prettier.useTabs": true,
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
