@@ -15,6 +15,8 @@ export default withNuxt(
 			'vue/attribute-hyphenation': 'off',
 			'vue/v-on-event-hyphenation': 'off',
 			'@stylistic/member-delimiter-style': 'off',
+			'vue/html-self-closing': 'off',
+			'vue/singleline-html-element-content-newline': 'off',
 		},
 	},
 );
