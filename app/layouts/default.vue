@@ -4,7 +4,7 @@
 </script>
 
 <template>
-	<UCard variant="soft" >
+	<UCard >
 		<template #header>
 			<UserHeader />
 		</template>

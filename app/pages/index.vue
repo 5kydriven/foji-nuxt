@@ -28,17 +28,17 @@ import OrderModal from './components/modals/order-modal.vue'
 			class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-5 min-h-[60vh] md:min-h-screen"
 		>
 			<div>
-				<h1 class="font-bold text-3xl md:text-5xl">
+				<h1 class="font-bold text-3xl md:text-5xl text-dark">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
 					corrupti!
 				</h1>
 				<br />
-				<p>
+				<p class="text-slate-500">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
 					nostrum. Necessitatibus rem natus distinctio blanditiis quibusdam
 					repellat ullam a maxime.
 				</p><br>
-				<OrderModal class="hidden md:block"/>
+				<OrderModal color="error" class="hidden md:block"/>
 			</div>
 			<div>
 				<div class="flex justify-center py-10 md:py-0" ref="cubeRef">
@@ -49,11 +49,11 @@ import OrderModal from './components/modals/order-modal.vue'
 					
 				</div>
 				<div class="flex justify-center">
-					<OrderModal class="block md:hidden"/>
+					<OrderModal color="error" class="block md:hidden"/>
 				</div>
 			</div>
 		</div>
-		<div class="py-5">
+		<div >
 			<UCarousel
 				v-slot="{ item }"
 				loop
@@ -61,8 +61,8 @@ import OrderModal from './components/modals/order-modal.vue'
 				arrows
 				auto-scroll
 				:items="items"
-				:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/3' }"
-				class="w-full"
+				:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/4' }"
+				class="w-full max-2-2xl"
 			>
 				<img
 					:src="item"
@@ -71,7 +71,7 @@ import OrderModal from './components/modals/order-modal.vue'
 			</UCarousel>
 		</div>
 		<div
-			class="w-full min-h-[60vh] md:h-screen flex flex-col items-center justify-center gap-8 py-5"
+			class="w-full min-h-[60vh]  flex flex-col items-center justify-center gap-8 my-5 p-3 md:p-5 bg-gray-100 rounded-md"
 		>
 			<h1 class="font-bold text-2xl md:text-3xl">Slow Cooker Comfort Food</h1>
 			<div class="flex justify-center w-full">
@@ -81,9 +81,9 @@ import OrderModal from './components/modals/order-modal.vue'
 					arrows
 					:items="items"
 					:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/3' }"
-					class="w-full max-w-2xl mx-auto"
+					class="w-full mx-auto "
 				>
-					<div>
+					<div class="bg-white rounded-md">
 						<img
 							:src="item"
 							class="rounded-lg w-full h-40 sm:h-52 md:h-60 object-cover"
@@ -94,7 +94,7 @@ import OrderModal from './components/modals/order-modal.vue'
 								<span>₱ 100.00</span>
 							</div>
 							<div
-								class="flex items-center justify-center rounded-full h-10 w-10 bg-gray-800 text-white"
+								class="flex items-center justify-center rounded-full h-10 w-10 bg-red-600 text-white"
 							>
 								<UIcon
 									name="heroicons:arrow-up-right-16-solid"
@@ -115,7 +115,7 @@ import OrderModal from './components/modals/order-modal.vue'
 			>
 				<button
 					type="button"
-					class="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800"
+					class="text-red-700 hover:text-white border border-red-600 bg-white hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-500 dark:bg-gray-900 dark:focus:ring-red-800"
 				>
 					All categories
 				</button>
@@ -188,6 +188,7 @@ import OrderModal from './components/modals/order-modal.vue'
 					/>
 				</div>
 			</div>
+			<UButton label="View all" class="mt-5" color="error" />
 		</div>
 	</div>
 </template>

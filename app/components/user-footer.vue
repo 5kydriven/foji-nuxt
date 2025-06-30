@@ -15,7 +15,7 @@
 						<span
 							class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
 						>
-							Brand
+							FORI
 						</span>
 					</a>
 				</div>
@@ -101,7 +101,7 @@
 						href="#"
 						class="hover:underline"
 					>
-						Brand
+						Fori
 					</a>
 					. All Rights Reserved.
 				</span>
