@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
+import AuthModal from './modals/auth-modal.vue'
 
 const isOpen = ref(false)
 
 const items = ref<NavigationMenuItem[][]>([
   [
-    { label: 'Home', to: '/', active: true },
-    { label: 'Menu', to: '/maintenance' },
+    { label: 'Home', to: '/' },
+    { label: 'Menu', to: '/menu' },
     { label: 'About', to: '/maintenance' },
     { label: 'Recipe', to: '/maintenance' },
   ],
@@ -14,7 +15,7 @@ const items = ref<NavigationMenuItem[][]>([
 </script>
 
 <template>
-  <div class="flex items-center justify-between md:hidden bg-gray-100 px-2">
+  <div class="flex items-center justify-between md:hidden bg-gray-100 p-2 rounded-md">
     <h1 class="font-semibold text-red-600">FORI</h1>
 
     <UButton
@@ -59,7 +60,7 @@ const items = ref<NavigationMenuItem[][]>([
 			</UNavigationMenu>
 		</div>
 		<div class="flex-1 flex justify-end">
-			<UButton label="Log in" color="error"/>
+			<AuthModal />
 		</div>
   </div>
 </template>

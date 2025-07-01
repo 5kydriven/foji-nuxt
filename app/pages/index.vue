@@ -17,61 +17,89 @@ import OrderModal from './components/modals/order-modal.vue'
 			if (!cubeRef.value) return
 
 			const rotate = Math.sin(t / 10000) * 200
-			const y = (1 + Math.sin(t / 1000)) * -50
-			cubeRef.value.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`
+			const y = (1 + Math.sin(t / 1000)) * 10
+			cubeRef.value.style.transform = `translateY(${y}px) `
 	})
 </script>
 
 <template>
 	<div class="flex flex-col gap-5">
-		<div
-			class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-5 min-h-[60vh] md:min-h-screen"
-		>
-			<div>
-				<h1 class="font-bold text-3xl md:text-5xl text-dark">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
-					corrupti!
-				</h1>
-				<br />
-				<p class="text-slate-500">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
-					nostrum. Necessitatibus rem natus distinctio blanditiis quibusdam
-					repellat ullam a maxime.
-				</p><br>
-				<OrderModal color="error" class="hidden md:block"/>
-			</div>
-			<div>
-				<div class="flex justify-center py-10 md:py-0" ref="cubeRef">
-					<img
-						src="https://picsum.photos/468/468?random=6"
-						class="w-48 h-48 md:w-72 md:h-72 object-cover rounded-lg"
-					/>
-					
-				</div>
-				<div class="flex justify-center">
-					<OrderModal color="error" class="block md:hidden"/>
-				</div>
-			</div>
-		</div>
-		<div >
-			<UCarousel
-				v-slot="{ item }"
-				loop
-				dots
-				arrows
-				auto-scroll
-				:items="items"
-				:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/4' }"
-				class="w-full "
+		<div class="min-h-[60vh] md:h-screen flex flex-col justify-center gap-8">
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-5 "
 			>
-				<img
-					:src="item"
-					class="rounded-lg w-full h-40 sm:h-52 md:h-60 object-cover"
-				/>
-			</UCarousel>
+				<div>
+					<h1 class="font-bold text-3xl md:text-5xl text-dark">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+						corrupti!
+					</h1>
+					<br />
+					<p class="text-slate-500">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+						nostrum. Necessitatibus rem natus distinctio blanditiis quibusdam
+						repellat ullam a maxime.
+					</p><br>
+					<OrderModal color="error" class="hidden md:block"/>
+				</div>
+				<div>
+					<div class="flex justify-center py-10 md:py-0" ref="cubeRef">
+						<img
+							src="https://picsum.photos/468/468?random=6"
+							class="w-48 h-48 md:w-72 md:h-72 object-cover rounded-lg drop-shadow-xl/50"
+						/>
+						
+					</div>
+					<div class="flex justify-center">
+						<OrderModal color="error" class="block md:hidden"/>
+					</div>
+				</div>
+			</div>
+			<div >
+				<div class="grid grid-cols-1 md:grid-cols-3  gap-4 w-full">
+					<div class="p-4 rounded-md bg-gray-100 flex flex-col items-center">
+						<img
+							src="https://picsum.photos/468/468?random=3" width="100"
+							class="rounded-lg max-w-xl max-h-xl object-cover "
+						/>
+						<h1 class="font-semibold">Lorem Epsom</h1>
+						<span>Lorem ipsum dolor sit amet.</span>
+					</div>
+					<div class="p-4 rounded-md bg-gray-100 flex flex-col items-center">
+						<img
+							src="https://picsum.photos/468/468?random=4" width="100"
+							class="rounded-lg max-w-xl max-h-xl object-cover "
+						/>
+						<h1 class="font-semibold">Lorem Epsom</h1>
+						<span>Lorem ipsum dolor sit amet.</span>
+					</div>
+					<div class="p-4 rounded-md bg-gray-100 flex flex-col items-center">
+						<img
+							src="https://picsum.photos/468/468?random=5" width="100"
+							class="rounded-lg max-w-xl max-h-xl object-cover "
+						/>
+						<h1 class="font-semibold">Lorem Epsom</h1>
+						<span>Lorem ipsum dolor sit amet.</span>
+					</div>
+				</div>
+				<!-- <UCarousel
+					v-slot="{ item }"
+					loop
+					dots
+					arrows
+					auto-scroll
+					:items="items"
+					:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/4' }"
+					class="w-full "
+				>
+					<img
+						:src="item"
+						class="rounded-lg w-full h-40 sm:h-52 md:h-60 object-cover"
+					/>
+				</UCarousel> -->
+			</div>
 		</div>
 		<div
-			class="w-full min-h-[60vh] md:h-screen  flex flex-col items-center  gap-8 my-5 p-3 md:p-5 bg-gray-100 rounded-md"
+			class="w-full min-h-[60vh]  flex flex-col items-center  justify-center gap-8 my-5 p-3 md:p-5  rounded-md"
 		>
 			<h1 class="font-bold text-2xl md:text-3xl">Slow Cooker Comfort Food</h1>
 			<div class="flex justify-center w-full">
@@ -83,7 +111,7 @@ import OrderModal from './components/modals/order-modal.vue'
 					:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/3' }"
 					class="w-full mx-auto "
 				>
-					<div class="bg-white rounded-md">
+					<div class="bg-gray-100 p-2 rounded-md">
 						<img
 							:src="item"
 							class="rounded-lg w-full h-40 sm:h-52 md:h-60 object-cover"
@@ -107,7 +135,7 @@ import OrderModal from './components/modals/order-modal.vue'
 			</div>
 		</div>
 		<div
-			class="w-full min-h-[60vh] md:h-screen flex flex-col items-center justify-center gap-8"
+			class="w-full min-h-[60vh]  flex flex-col items-center justify-center gap-8"
 		>
 			<h1 class="font-bold text-2xl md:text-3xl">Shop By Category</h1>
 			<div
