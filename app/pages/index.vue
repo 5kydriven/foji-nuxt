@@ -74,7 +74,7 @@ import OrderModal from './components/modals/order-modal.vue'
 					</div>
 					<br />
 					<motion.div class="text-slate-500"
-					:initial="{ opacity: 0, scale: 0.5 }"
+						:initial="{ opacity: 0, scale: 0.5 }"
 						:animate="{ opacity: 1, scale: 1 }"
 						:transition="{
 								duration: 0.8,
@@ -156,21 +156,6 @@ import OrderModal from './components/modals/order-modal.vue'
 						<span>Lorem ipsum dolor sit amet.</span>
 					</motion.div>
 				</div>
-				<!-- <UCarousel
-					v-slot="{ item }"
-					loop
-					dots
-					arrows
-					auto-scroll
-					:items="items"
-					:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/4' }"
-					class="w-full "
-				>
-					<img
-						:src="item"
-						class="rounded-lg w-full h-40 sm:h-52 md:h-60 object-cover"
-					/>
-				</UCarousel> -->
 			</div>
 		</div>
 		<div
@@ -260,45 +245,10 @@ import OrderModal from './components/modals/order-modal.vue'
 				</button>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl">
-				<div>
+				<div v-for="(item, index) in items" :key="item">
 					<img
 						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
+						:src="item"
 						alt=""
 					/>
 				</div>

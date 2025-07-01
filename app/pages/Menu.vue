@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { motion } from "motion-v"
 
 const items = [
 		'https://picsum.photos/468/468?random=1',
@@ -50,47 +51,22 @@ const items = [
 				</button>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full ">
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-						alt=""
-					/>
-				</div>
-				<div>
-					<img
-						class="h-auto w-full rounded-lg object-cover"
-						src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-						alt=""
-					/>
+				<div v-for="(item, index) in items" :key="item">
+					<motion.div
+						:initial="{ opacity: 0, scale: 0.5 }"
+							:animate="{ opacity: 1, scale: 1 }"
+							:transition="{
+									duration: 0.8,
+									delay: 0.5 + index * 0.2,
+									ease: [0, 0.71, 0.2, 1.01]
+							}"
+							>
+						<img
+							class="h-auto w-full rounded-lg object-cover"
+							:src="item"
+							alt=""
+						/>
+					</motion.div>
 				</div>
 			</div>
 		</div>
