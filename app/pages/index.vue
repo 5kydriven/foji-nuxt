@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAnimationFrame, animate, scroll	 } from "motion-v"
+import { useAnimationFrame, animate, stagger, motion } from "motion-v"
 import OrderModal from './components/modals/order-modal.vue'
 
 	const items = [
@@ -11,6 +11,43 @@ import OrderModal from './components/modals/order-modal.vue'
 		'https://picsum.photos/468/468?random=6',
 	];
 
+	const containerRef = ref<HTMLDivElement | null>(null)
+
+	onMounted(() => {
+			document.fonts.ready.then(() => {
+					if (!containerRef.value) return
+
+					const h1 = containerRef.value.querySelector(".h1")
+					if (!h1) return
+
+					// Hide the container until the fonts are loaded
+					containerRef.value.style.visibility = "visible"
+
+					// Split the text into words manually
+					const text = h1.textContent || ""
+					const words = text.split(" ").map((word, index) => {
+							const span = document.createElement("span")
+							span.textContent = word + " "
+							span.classList.add("inline-block", "whitespace-pre", "will-change-[transform,opacity]")
+							h1.appendChild(span)
+							return span
+					})
+
+					h1.textContent = ""
+					words.forEach((span) => h1.appendChild(span))
+
+					animate(
+							words,
+							{ opacity: [0, 1], y: [10, 0] },
+							{
+									type: "spring",
+									duration: 2,
+									bounce: 0,
+									delay: stagger(0.05),
+							}
+					)
+			})
+	})
 	const cubeRef = ref<HTMLElement | null>(null)
 
 	useAnimationFrame((t) => {
@@ -28,18 +65,35 @@ import OrderModal from './components/modals/order-modal.vue'
 			<div
 				class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-5 "
 			>
-				<div>
-					<h1 class="font-bold text-3xl md:text-5xl text-dark">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
-						corrupti!
-					</h1>
+				<div >
+					<div class="invisible" ref="containerRef">
+						<h1 class="font-bold text-3xl md:text-5xl text-dark h1">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+							corrupti!
+						</h1>
+					</div>
 					<br />
-					<p class="text-slate-500">
+					<motion.div class="text-slate-500"
+					:initial="{ opacity: 0, scale: 0.5 }"
+						:animate="{ opacity: 1, scale: 1 }"
+						:transition="{
+								duration: 0.8,
+								delay: 1,
+								ease: [0, 0.71, 0.2, 1.01]
+						}">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
 						nostrum. Necessitatibus rem natus distinctio blanditiis quibusdam
 						repellat ullam a maxime.
-					</p><br>
-					<OrderModal color="error" class="hidden md:block"/>
+					</motion.div><br>
+					<motion.div :initial="{ opacity: 0, scale: 0.5 }"
+						:animate="{ opacity: 1, scale: 1 }"
+						:transition="{
+								duration: 0.8,
+								delay: 1,
+								ease: [0, 0.71, 0.2, 1.01]
+						}">
+							<OrderModal color="error" class="hidden md:block"/>
+						</motion.div>
 				</div>
 				<div>
 					<div class="flex justify-center py-10 md:py-0" ref="cubeRef">
@@ -56,30 +110,51 @@ import OrderModal from './components/modals/order-modal.vue'
 			</div>
 			<div >
 				<div class="grid grid-cols-1 md:grid-cols-3  gap-4 w-full">
-					<div class="p-4 rounded-md bg-gray-100 flex flex-col items-center">
+					<motion.div class="p-4 rounded-md bg-gray-100 flex flex-col items-center"
+						:initial="{ opacity: 0, scale: 0.5 }"
+						:animate="{ opacity: 1, scale: 1 }"
+						:transition="{
+								duration: 0.8,
+								delay: 1,
+								ease: [0, 0.71, 0.2, 1.01]
+						}">
 						<img
 							src="https://picsum.photos/468/468?random=3" width="100"
 							class="rounded-lg max-w-xl max-h-xl object-cover "
 						/>
 						<h1 class="font-semibold">Lorem Epsom</h1>
 						<span>Lorem ipsum dolor sit amet.</span>
-					</div>
-					<div class="p-4 rounded-md bg-gray-100 flex flex-col items-center">
+					</motion.div>
+					<motion.div class="p-4 rounded-md bg-gray-100 flex flex-col items-center"
+						:initial="{ opacity: 0, scale: 0.5 }"
+						:animate="{ opacity: 1, scale: 1 }"
+						:transition="{
+								duration: 0.8,
+								delay: 0.5,
+								ease: [0, 0.71, 0.2, 1.01]
+						}">
 						<img
 							src="https://picsum.photos/468/468?random=4" width="100"
 							class="rounded-lg max-w-xl max-h-xl object-cover "
 						/>
 						<h1 class="font-semibold">Lorem Epsom</h1>
 						<span>Lorem ipsum dolor sit amet.</span>
-					</div>
-					<div class="p-4 rounded-md bg-gray-100 flex flex-col items-center">
+					</motion.div>
+					<motion.div class="p-4 rounded-md bg-gray-100 flex flex-col items-center"
+						:initial="{ opacity: 0, scale: 0.5 }"
+						:animate="{ opacity: 1, scale: 1 }"
+						:transition="{
+								duration: 0.8,
+								delay: 1,
+								ease: [0, 0.71, 0.2, 1.01]
+						}">
 						<img
 							src="https://picsum.photos/468/468?random=5" width="100"
 							class="rounded-lg max-w-xl max-h-xl object-cover "
 						/>
 						<h1 class="font-semibold">Lorem Epsom</h1>
 						<span>Lorem ipsum dolor sit amet.</span>
-					</div>
+					</motion.div>
 				</div>
 				<!-- <UCarousel
 					v-slot="{ item }"
@@ -121,14 +196,26 @@ import OrderModal from './components/modals/order-modal.vue'
 								<h1 class="text-lg md:text-xl">Lorem</h1>
 								<span>₱ 100.00</span>
 							</div>
-							<div
+							<motion.div
 								class="flex items-center justify-center rounded-full h-10 w-10 bg-red-600 text-white"
+								:whileHover="{
+								scale: [null, 1.1, 1.6],
+								transition: {
+									duration: 0.5,
+									times: [0, 0.6, 1],
+									ease: ['easeInOut', 'easeOut']
+								}
+							}"
+							:transition="{
+								duration: 0.3,
+								ease: 'easeOut'
+							}"
 							>
 								<UIcon
 									name="heroicons:arrow-up-right-16-solid"
 									class="size-7"
 								/>
-							</div>
+							</motion.div>
 						</div>
 					</div>
 				</UCarousel>
