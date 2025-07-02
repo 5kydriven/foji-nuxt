@@ -16,13 +16,12 @@ const items = ref<NavigationMenuItem[][]>([
 
 <template>
   <div class="flex items-center justify-between md:hidden bg-gray-100 p-2 rounded-md">
-		<div>
+		<div class="flex items-center space-x-2 flex-1">
 			<img
 				src="/logo.png"
 				alt="FOJI Logo"
-				class="h-10 w-10 rounded-full"/>
-			<h1 class="font-semibold text-red-600">FOJI</h1>
-
+				class="h-14 w-14"/>
+				<span class="font-bold text-red-600 text-xl">FOJI</span>
 		</div>
 
     <UButton
@@ -56,7 +55,7 @@ const items = ref<NavigationMenuItem[][]>([
 				alt="FOJI Logo"
 				class="h-14 w-14"/>
 					<span class="font-bold text-red-600 text-xl">FOJI</span>
-					<span class="font-bold">Japanese Restaurant</span>
+					<span class="font-bold hidden lg:block">Japanese Restaurant</span>
 		</div>
 
 		<div class="flex-1 flex justify-end">
