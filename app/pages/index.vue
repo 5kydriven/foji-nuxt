@@ -2,15 +2,52 @@
 import { useAnimationFrame, animate, stagger, motion } from "motion-v"
 import OrderModal from './components/modals/order-modal.vue'
 
-	const items = [
-		'/menu.png',
-		'/menu.png',
-		'/menu.png',
-		'/menu.png',
-		'/menu.png',
-		'/menu.png',
+	const menus = [
+		{
+			japaneseName: '鶏肉入り煮卵',
+			name: 'Menu 1',
+			image: '/menu.png',
+			price: 100,
+			description: 'Delicious menu item 1',
+		},
+		{
+			japaneseName: '鶏肉入り煮卵',
+			name: 'Menu 2',
+			image: '/menu.png',
+			price: 150,
+			description: 'Tasty menu item 2',
+		},
+		{
+			japaneseName: '鶏肉入り煮卵',
+			name: 'Menu 3',
+			image: '/menu.png',
+			price: 200,
+			description: 'Yummy menu item 3',
+		},
+		{
+			japaneseName: '鶏肉入り煮卵',
+			name: 'Menu 4',
+			image: '/menu.png',
+			price: 250,
+			description: 'Scrumptious menu item 4',
+		},
+		{
+			japaneseName: '鶏肉入り煮卵',
+			name: 'Menu 5',
+			image: '/menu.png',
+			price: 300,
+			description: 'Savory menu item 5',
+		},
+		{
+			japaneseName: '鶏肉入り煮卵',
+			name: 'Menu 6',
+			image: '/menu.png',
+			price: 350,
+			description: 'Appetizing menu item 6',
+		}
 	];
 
+	const page = ref(1)
 	const containerRef = ref<HTMLDivElement | null>(null)
 
 	onMounted(() => {
@@ -155,173 +192,157 @@ import OrderModal from './components/modals/order-modal.vue'
 				</div>
 			</div>
 		</div>
-		<!-- <div
-			class="w-full min-h-[60vh]  flex flex-col items-center  justify-center gap-8 my-5 p-3 md:p-5  rounded-md"
-		>
-			<h1 class="font-bold text-2xl md:text-3xl">Slow Cooker Comfort Food</h1>
-			<div class="flex justify-center w-full">
-				<UCarousel
-					v-slot="{ item }"
-					loop
-					arrows
-					:items="items"
-					:ui="{ item: 'basis-2/3 sm:basis-1/2 md:basis-1/3' }"
-					class="w-full mx-auto "
-				>
-					<div class=" p-2 rounded-md">
-						<div class="flex justify-center  rounded-md  bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat">
-							<img
-								:src="item"
-								class="rounded-lg h-40 sm:h-52 md:h-60 w-40 sm:w-52 md:w-60 drop-shadow-3xl"
-							/>
-						</div>
-						<div class="flex justify-between items-end p-2">
-							<div>
-								<h1 class="text-lg md:text-xl">Lorem</h1>
-								<span>₱ 100.00</span>
-							</div>
-							<motion.div
-								class="flex items-center justify-center rounded-full h-10 w-10 bg-red-600 text-white"
-								:whileHover="{
-								scale: [null, 1.1, 1.6],
-								transition: {
-									duration: 0.5,
-									times: [0, 0.6, 1],
-									ease: ['easeInOut', 'easeOut']
-								}
-							}"
-							:transition="{
-								duration: 0.3,
-								ease: 'easeOut'
-							}"
-							>
-								<UIcon
-									name="heroicons:arrow-up-right-16-solid"
-									class="size-7"
-								/>
-							</motion.div>
-						</div>
-					</div>
-				</UCarousel>
-			</div>
-		</div> -->
-		<div class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10 bg-gray-50 					dark:bg-gray-900 px-4 py-10">
-			<div class="text-white bg-gradient-to-r from-black/100 to-black/10 w-full p-2 border-y border-orange-400">
+		<div class="space-y-2 w-full min-h-[60vh] bg-gray-50 					 px-4 py-10">
+			<div class=" text-white bg-gradient-to-r from-black/100 to-black/10 w-full p-2 border-y border-orange-400">
 				<span>ご飯セットには味噌汁、前菜、コーヒー／レモンティー／レモンウォーター／緑茶（冷／温）が含まれています。</span><br>
 				<span>Rice set includes Miso Soup, Appetizer, Coffee / Lemon Tea / Lemon Water / Green Tea (Cold / Hot)</span>
 			</div>
-			
-			<!-- <div class="flex flex-wrap justify-center gap-3">
-				<button
-					v-for="category in ['All categories', 'Shoes', 'Bags', 'Electronics', 'Gaming']"
-					:key="category"
-					type="button"
-					:class="[
-						'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border focus:outline-none focus:ring-4',
-						category === 'All categories'
-							? 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600'
-							: 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100 focus:ring-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700'
-					]"
-				>
-					{{ category }}
-				</button>
-			</div> -->
-
-			<div class="grid grid-cols-2  lg:grid-cols-3 gap-2 mg:gap-6 w-full  px-0 md:px-4">
-				<div v-for="(item, index) in items" :key="index" class="rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden bg-white p-2 px-4">
-					<div class="flex flex-col md:flex-row items-start gap-4">
-						<div class="flex justify-center items-center w-full">
-							<img
-								:src="item"
-								alt=""
-								class="h-40 "
-							/>
-							
-						</div>
-						<div>
-								<span class="text-gray-800 dark:text-white font-semibold">鶏肉入り煮卵</span>
-								<p class="text-gray-600 dark:text-gray-400">Stewed Wgg with Chicken set</p>
-								<span class="text-red-600 dark:text-red-500 font-bold">₱ 100.00</span>
-								<div class="flex gap-4 items-center">
-								<motion.div
-									class="flex items-center justify-center rounded-lg  bg-gray-900 px-3 text-lg text-white"
-									:whileHover="{
-										scale: [null, 1.1, 1.6],
-										transition: {
-											duration: 0.5,
-											times: [0, 0.6, 1],
-											ease: ['easeInOut', 'easeOut']
-										}
-									}"
-									:transition="{
-										duration: 0.3,
-										ease: 'easeOut'
-									}"
-								>
-									Details
-								</motion.div>
-								<motion.div
-									class="flex items-center justify-center rounded-full h-10 w-10 bg-red-600 text-white"
-									:whileHover="{
-										scale: [null, 1.1, 1.6],
-										transition: {
-											duration: 0.5,
-											times: [0, 0.6, 1],
-											ease: ['easeInOut', 'easeOut']
-										}
-									}"
-									:transition="{
-										duration: 0.3,
-										ease: 'easeOut'
-									}"
-								>
-									<UIcon name="heroicons:arrow-up-right-16-solid" class="size-7" />
-								</motion.div>
+			<div class="flex flex-col lg:flex-row gap-4 w-full">
+				<div class="flex-1 w-full">
+					<div class="flex justify-between items-center p-4">
+						<h1 class="font-bold text-2xl md:text-3xl text-gray-800 dark:text-white">Menu</h1>
+					</div>
+					<div class="grid grid-cols-2 lg:grid-cols-3 gap-3 w-full  px-0 md:px-4">
+						<div v-for="(menu, index) in menus" :key="index" class="rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden bg-white p-2 px-4">
+							<div class="flex flex-col md:flex-row items-start gap-4">
+								<div class="flex justify-center items-center w-full">
+									<img
+										:src="menu.image"
+										alt=""
+										class="h-40 "
+									/>
+									
+								</div>
+								<div>
+										<span class="text-gray-800 dark:text-white font-semibold">{{ menu.japaneseName }}</span>
+										<p class="text-gray-600 dark:text-gray-400">{{ menu.name }}</p>
+										<span class="text-red-600 dark:text-red-500 font-bold">₱ {{menu.price}}</span>
+										<div class="flex gap-4 items-center">
+										<motion.div
+											class="flex items-center justify-center rounded-lg  bg-gray-900 px-3 text-md text-white"
+											:whileHover="{
+												scale: [null, 1.1, 1.6],
+												transition: {
+													duration: 0.5,
+													times: [0, 0.6, 1],
+													ease: ['easeInOut', 'easeOut']
+												}
+											}"
+											:transition="{
+												duration: 0.3,
+												ease: 'easeOut'
+											}"
+										>
+											Details
+										</motion.div>
+										<motion.div
+											class="flex items-center justify-center rounded-full h-10 w-10 bg-red-600 text-white"
+											:whileHover="{
+												scale: [null, 1.1, 1.6],
+												transition: {
+													duration: 0.5,
+													times: [0, 0.6, 1],
+													ease: ['easeInOut', 'easeOut']
+												}
+											}"
+											:transition="{
+												duration: 0.3,
+												ease: 'easeOut'
+											}"
+										>
+											<UIcon name="heroicons:arrow-up-right-16-solid" class="size-7" />
+										</motion.div>
+									</div>
+								</div>	
 							</div>
-						</div>	
+						</div>
+					</div>
+					<div class="flex justify-center mt-4">
+						<UPagination v-model:page="page" :items-per-page="20" :total="100"  active-color="error"/>
+					</div>
+				</div>
+				<div class="flex flex-col items-start p-4 w-full lg:w-52 bg-white border border-orange-400 rounded-lg">
+					<div class="flex justify-center items-center  bg-orange-950 text-orange-200 w-14 h-14 rounded-full">
+						SOUP
+					</div>
+					<div class="flex flex-wrap justify-between lg:justify-start gap-4 lg:gap-0 lg:flex-col">
+						<div class="flex items-center gap-4 mt-4">
+							<div class="w-10 h-10 rounded-full bg-yellow-900">
+							</div>
+							<div class="text-red-950">
+								<span class=" font-semibold">味噌汁</span>
+								<p >Shoyu</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-4 mt-4">
+							<div class="w-10 h-10 rounded-full bg-purple-700">
+							</div>
+							<div class="text-red-950 flex flex-col items-center">
+								<span class=" font-semibold">味噌汁</span>
+								<p >Pork</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-4 mt-4">
+							<div class="w-10 h-10 rounded-full bg-red-600">
+							</div>
+							<div class="text-red-950 flex flex-col items-center">
+								<span class=" font-semibold">味噌汁</span>
+								<p >Mise</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-4 mt-4">
+							<div class="w-10 h-10 rounded-full bg-orange-700">
+							</div>
+							<div class="text-red-950 flex flex-col items-center">
+								<span class=" font-semibold">味噌汁</span>
+								<p >Ship</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-4 mt-4">
+							<div class="w-10 h-10 rounded-full bg-red-900">
+							</div>
+							<div class="text-red-950 flex flex-col items-center">
+								<span class=" font-semibold">味噌汁</span>
+								<p >Tomato</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-4 mt-4">
+							<div class="w-10 h-10 rounded-full bg-yellow-900">
+							</div>
+							<div class="text-red-950 flex flex-col items-center">
+								<span class=" font-semibold">味噌汁</span>
+								<p >Ship</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<UButton label="View All" class="mt-8" color="error" size="lg" />
 		</div>
-		<div class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10 bg-gray-50 					dark:bg-gray-900 px-4 py-10">
+		<div class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10  					dark:bg-gray-900 px-4 py-10">
 			<h1 class="font-bold text-3xl md:text-4xl text-gray-800 dark:text-white">Feature Foods</h1>
-
-			<!-- <div class="flex flex-wrap justify-center gap-3">
-				<button
-					v-for="category in ['All categories', 'Shoes', 'Bags', 'Electronics', 'Gaming']"
-					:key="category"
-					type="button"
-					:class="[
-						'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border focus:outline-none focus:ring-4',
-						category === 'All categories'
-							? 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600'
-							: 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100 focus:ring-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700'
-					]"
-				>
-					{{ category }}
-				</button>
-			</div> -->
-
-			<div class="grid grid-cols-2  lg:grid-cols-3 gap-2 mg:gap-6 w-full  px-0 md:px-4">
-				<div v-for="(item, index) in items" :key="index" class="rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden bg-white p-2 px-4">
+			<div class=" text-white bg-gradient-to-r from-black/100 to-black/10 w-full p-2 ">
+				<span>おすすめ料理をお楽しみください。</span><br>
+				<span>Enjoy our featured dishes, specially selected for you!</span>
+			</div>
+			<div class="grid grid-cols-2  lg:grid-cols-3 gap-2 md:gap-6 w-full  px-0 md:px-4">
+				<div v-for="(menu, index) in menus" :key="index" class="rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden bg-white p-2 px-4">
 					<div class="flex flex-col md:flex-row items-start gap-4">
 						<div class="flex justify-center items-center w-full">
 							<img
-								:src="item"
+								:src="menu.image"
 								alt=""
 								class="h-40 "
 							/>
 							
 						</div>
 						<div>
-								<span class="text-gray-800 dark:text-white font-semibold">鶏肉入り煮卵</span>
-								<p class="text-gray-600 dark:text-gray-400">Stewed Wgg with Chicken set</p>
-								<span class="text-red-600 dark:text-red-500 font-bold">₱ 100.00</span>
+								<span class="text-gray-800 dark:text-white font-semibold">{{ menu.japaneseName }}</span>
+								<p class="text-gray-600 dark:text-gray-400">{{ menu.name }}</p>
+								<span class="text-red-600 dark:text-red-500 font-bold">₱ {{menu.price}}</span>
 								<div class="flex gap-4 items-center">
 								<motion.div
-									class="flex items-center justify-center rounded-lg  bg-gray-900 px-3 text-lg text-white"
+									class="flex items-center justify-center rounded-lg  bg-gray-900 px-3 text-md text-white"
 									:whileHover="{
 										scale: [null, 1.1, 1.6],
 										transition: {
@@ -360,7 +381,7 @@ import OrderModal from './components/modals/order-modal.vue'
 				</div>
 			</div>
 
-			<UButton label="View All" class="mt-8" color="error" size="lg" />
+			<UPagination v-model:page="page" :items-per-page="20" :total="100" active-color="error"/>
 		</div>
 
 		</div>
