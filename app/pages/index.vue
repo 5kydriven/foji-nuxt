@@ -4,45 +4,45 @@ import OrderModal from './components/modals/order-modal.vue'
 
 	const menus = [
 		{
-			japaneseName: '鶏肉入り煮卵',
-			name: 'Menu 1',
+			japaneseName: '豚肉のカツ丼の煮卵セット',
+			name: 'Stewed Egg with Pork Chop Rice Set',
 			image: '/menu.png',
-			price: 100,
+			price: 300,
 			description: 'Delicious menu item 1',
 		},
 		{
-			japaneseName: '鶏肉入り煮卵',
-			name: 'Menu 2',
-			image: '/menu.png',
-			price: 150,
+			japaneseName: '特製豚生姜ご飯セット',
+			name: 'Special Pork Ginger Rice Set',
+			image: '/menu-2.png',
+			price: 300,
 			description: 'Tasty menu item 2',
 		},
 		{
-			japaneseName: '鶏肉入り煮卵',
-			name: 'Menu 3',
-			image: '/menu.png',
-			price: 200,
+			japaneseName: '豚肉チョップ天心飯セット',
+			name: 'Pork Chop Tenshinhan Set',
+			image: '/menu-3.png',
+			price: 300,
 			description: 'Yummy menu item 3',
 		},
 		{
-			japaneseName: '鶏肉入り煮卵',
-			name: 'Menu 4',
-			image: '/menu.png',
-			price: 250,
+			japaneseName: 'チキンライスオムレツセット / 日本の味',
+			name: 'Chicken Rice Omelet Set / Japanes Taste',
+			image: '/menu-4.png',
+			price: 300,
 			description: 'Scrumptious menu item 4',
 		},
 		{
-			japaneseName: '鶏肉入り煮卵',
-			name: 'Menu 5',
-			image: '/menu.png',
+			japaneseName: 'スチューズエッグとチキンライスセット',
+			name: 'Stewes Egg with Chicken Rice Set',
+			image: '/menu-5.png',
 			price: 300,
 			description: 'Savory menu item 5',
 		},
 		{
-			japaneseName: '鶏肉入り煮卵',
-			name: 'Menu 6',
-			image: '/menu.png',
-			price: 350,
+			japaneseName: '海鮮チャーハンセット / 日本の味',
+			name: 'Sea Food Fried Rice Set / Japanes Taste',
+			image: '/menu-6.png',
+			price: 300,
 			description: 'Appetizing menu item 6',
 		}
 	];
@@ -202,14 +202,14 @@ import OrderModal from './components/modals/order-modal.vue'
 					<div class="flex justify-between items-center p-4">
 						<h1 class="font-bold text-2xl md:text-3xl text-gray-800 dark:text-white">Menu</h1>
 					</div>
-					<div class="grid grid-cols-2 lg:grid-cols-3 gap-3 w-full  px-0 md:px-4">
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full  px-0 md:px-4">
 						<div v-for="(menu, index) in menus" :key="index" class="rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden bg-white p-2 px-4">
 							<div class="flex flex-col md:flex-row items-start gap-4">
-								<div class="flex justify-center items-center w-full">
+								<div class="flex justify-center items-center ">
 									<img
 										:src="menu.image"
 										alt=""
-										class="h-40 "
+										class="w-40 drop-shadow-lg"
 									/>
 									
 								</div>
@@ -325,9 +325,9 @@ import OrderModal from './components/modals/order-modal.vue'
 				<span>おすすめ料理をお楽しみください。</span><br>
 				<span>Enjoy our featured dishes, specially selected for you!</span>
 			</div>
-			<div class="grid grid-cols-2  lg:grid-cols-3 gap-2 md:gap-6 w-full  px-0 md:px-4">
+			<div class="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-2 md:gap-6 w-full  px-0 md:px-4">
 				<div v-for="(menu, index) in menus" :key="index" class="rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden bg-white p-2 px-4">
-					<div class="flex flex-col md:flex-row items-start gap-4">
+					<div class="flex flex-col md:flex-row items-start gap-4" >
 						<div class="flex justify-center items-center w-full">
 							<img
 								:src="menu.image"
