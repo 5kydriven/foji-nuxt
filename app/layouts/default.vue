@@ -4,7 +4,7 @@
 </script>
 
 <template>
-	<UCard :ui="{footer: 'bg-gray-900'}">
+	<UCard :ui="{ footer: 'bg-gray-900' }">
 		<template #header>
 			<UserHeader />
 		</template>

@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	modules: ['@nuxt/ui', '@nuxt/eslint', 'motion-v/nuxt', '@nuxtjs/supabase'],
+	modules: [
+		'@nuxt/ui',
+		'@nuxt/eslint',
+		'motion-v/nuxt',
+		'@nuxtjs/supabase',
+		'@nuxt/image',
+	],
 	pages: {
 		pattern: ['**/*.vue', '!**/components/**'],
 	},
