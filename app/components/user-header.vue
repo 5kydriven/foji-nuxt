@@ -1,73 +1,79 @@
 <script setup lang="ts">
-	import type { NavigationMenuItem } from '@nuxt/ui';
+import type { NavigationMenuItem } from '@nuxt/ui'
+import AuthModal from './modals/auth-modal.vue'
 
-	const items = ref<NavigationMenuItem[][]>([
-		[
-			{
-				label: 'FORI',
-				icon: 'i-simple-icons-github',
-				to: '/',
-			},
-		],
-		[
-			{
-				label: 'Home',
-				icon: 'i-lucide-book-open',
-				to: '/',
-				active: true,
-			},
-			{
-				label: 'Menu',
-				icon: 'i-lucide-database',
-				to: '/maintenance',
-			},
-			{
-				label: 'About',
-				icon: 'i-lucide-box',
-				to: '/maintenance',
-			},
-			{
-				label: 'Recipe',
-				icon: 'i-lucide-box',
-				to: '/maintenance',
-			},
-		],
-	]);
+const isOpen = ref(false)
+
+const items = ref<NavigationMenuItem[][]>([
+  [
+    { label: 'Home', to: '/' },
+    { label: 'Menu', to: '/menu' },
+    { label: 'About', to: '/maintenance' },
+    { label: 'Recipe', to: '/maintenance' },
+  ],
+])
 </script>
 
 <template>
-	<div class="flex items-center justify-between p-4 md:hidden">
-		<h1 class="font-semibold">FORI</h1>
-		<USlideover
-			title="FORI"
-			close-icon="i-lucide-arrow-right"
-		>
-			<UButton
-				icon="heroicons:bars-3-bottom-right-solid"
-				color="neutral"
-				variant="subtle"
-			/>
+  <div class="flex items-center justify-between md:hidden bg-gray-100 p-2 rounded-md">
+		<div class="flex items-center space-x-2 flex-1">
+			<img
+				src="/logo.png"
+				alt="FOJI Logo"
+				class="h-14 w-14"/>
+				<span class="font-bold text-red-600 text-xl">FOJI</span>
+		</div>
 
-			<template #body>
-				<UNavigationMenu
-					orientation="vertical"
-					color="neutral"
-					:items="items"
-					class="w-full"
-				/>
-			</template>
-		</USlideover>
-	</div>
-	<UNavigationMenu
-		color="neutral"
-		:items="items"
-		class="w-full hidden md:flex"
-	>
-		<template #default="{ item }: { item: NavigationMenuItem }">
-			<div class="flex items-center space-x-2">
-				<UIcon :name="item.icon as any" />
-				<span>{{ item.label }}</span>
-			</div>
-		</template>
-	</UNavigationMenu>
+    <UButton
+      icon="heroicons:bars-3-bottom-right-solid"
+      color="neutral"
+      variant="subtle"
+      @click="isOpen = true"
+    />
+
+    <USlideover v-model="isOpen" title="FOJI" close-icon="i-lucide-arrow-right">
+      <template #body>
+				<div>
+					<UNavigationMenu
+						orientation="vertical"
+						color="error"
+						:items="items"
+						class="w-full"
+					/><br>
+					<hr>
+					<UButton label="Log in" color="error"/>
+				</div>
+
+      </template>
+    </USlideover>
+  </div>
+
+  <div class="hidden items-center justify-between md:flex bg-gray-100 px-2 rounded-md">
+    <div class="flex items-center space-x-2 flex-1">
+			<img
+				src="/logo.png"
+				alt="FOJI Logo"
+				class="h-14 w-14"/>
+					<span class="font-bold text-red-600 text-xl">FOJI</span>
+					<span class="font-bold hidden lg:block">Japanese Restaurant</span>
+		</div>
+
+		<div class="flex-1 flex justify-end">
+			<UNavigationMenu
+				color="error"
+				:items="items"
+				class="w-full"
+			>
+				<template #default="{ item }: { item: NavigationMenuItem }">
+					<div class="flex items-center space-x-2" >
+						<UIcon :name="item.icon as any" />
+						<span>{{ item.label }}</span>
+					</div>
+				</template>
+			</UNavigationMenu>
+		</div>
+		<div class="flex-1 flex justify-end">
+			<AuthModal />
+		</div>
+  </div>
 </template>
