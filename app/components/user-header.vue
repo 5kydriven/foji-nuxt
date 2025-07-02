@@ -16,7 +16,14 @@ const items = ref<NavigationMenuItem[][]>([
 
 <template>
   <div class="flex items-center justify-between md:hidden bg-gray-100 p-2 rounded-md">
-    <h1 class="font-semibold text-red-600">FORI</h1>
+		<div>
+			<img
+				src="/logo.png"
+				alt="FOJI Logo"
+				class="h-10 w-10 rounded-full"/>
+			<h1 class="font-semibold text-red-600">FOJI</h1>
+
+		</div>
 
     <UButton
       icon="heroicons:bars-3-bottom-right-solid"
@@ -25,7 +32,7 @@ const items = ref<NavigationMenuItem[][]>([
       @click="isOpen = true"
     />
 
-    <USlideover v-model="isOpen" title="FORI" close-icon="i-lucide-arrow-right">
+    <USlideover v-model="isOpen" title="FOJI" close-icon="i-lucide-arrow-right">
       <template #body>
 				<div>
 					<UNavigationMenu
@@ -43,7 +50,14 @@ const items = ref<NavigationMenuItem[][]>([
   </div>
 
   <div class="hidden items-center justify-between md:flex bg-gray-100 px-2 rounded-md">
-    <h1 class="font-semibold flex-1 text-red-600">FORI</h1>
+    <div class="flex items-center space-x-2 flex-1">
+			<img
+				src="/logo.png"
+				alt="FOJI Logo"
+				class="h-14 w-14"/>
+					<span class="font-bold text-red-600 text-xl">FOJI</span>
+					<span class="font-bold">Japanese Restaurant</span>
+		</div>
 
 		<div class="flex-1 flex justify-end">
 			<UNavigationMenu

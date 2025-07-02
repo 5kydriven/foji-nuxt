@@ -1,5 +1,5 @@
 <template>
-	<footer class="bg-white dark:bg-gray-900">
+	<footer class="bg-gray-900">
 		<div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
 			<div class="md:flex md:justify-between">
 				<div class="mb-6 md:mb-0">
@@ -15,14 +15,14 @@
 						<span
 							class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
 						>
-							FORI
+							FOJI
 						</span>
 					</a>
 				</div>
 				<div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
 					<div>
 						<h2
-							class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+							class="mb-6 text-sm font-semibold text-gray-400 uppercase dark:text-white"
 						>
 							Resources
 						</h2>
@@ -45,7 +45,7 @@
 					</div>
 					<div>
 						<h2
-							class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+							class="mb-6 text-sm font-semibold text-gray-400 uppercase dark:text-white"
 						>
 							Follow us
 						</h2>
@@ -68,7 +68,7 @@
 					</div>
 					<div>
 						<h2
-							class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+							class="mb-6 text-sm font-semibold text-gray-400 uppercase dark:text-white"
 						>
 							Legal
 						</h2>
@@ -101,7 +101,7 @@
 						href="#"
 						class="hover:underline"
 					>
-						Fori
+						FOJI
 					</a>
 					. All Rights Reserved.
 				</span>
