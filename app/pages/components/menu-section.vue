@@ -10,22 +10,22 @@ const page = ref(1);
 
 </script>
 <template>
-	<div class="space-y-2 w-full min-h-[60vh] bg-gray-50 px-4 py-10">
-		<div
-			class="text-white bg-gradient-to-r from-black/100 to-black/10 w-full p-2 border-y border-orange-400"
-		>
-			<span>ご飯セットには味噌汁、前菜、コーヒー／レモンティー／レモンウォーター／緑茶（冷／温）が含まれています。</span><br />
-			<span>Rice set includes Miso Soup, Appetizer, Coffee / Lemon Tea / Lemon
-				Water / Green Tea (Cold / Hot)</span>
-		</div>
-		<div class="flex flex-col lg:flex-row gap-4 w-full">
+	<div class="space-y-2 w-full min-h-[60vh]  px-4 py-10" id="menu">
+		<div class="flex flex-col  lg:flex-row lg:items-start gap-4 w-full">
 			<div class="flex-1 w-full">
-				<div class="flex justify-between items-center p-4">
-					<h1
-						class="font-bold text-2xl md:text-3xl text-gray-800 dark:text-white"
+				<div class="flex justify-between items-center p-0 pb-4 md:p-4">
+					
+					<div
 					>
-						Menu
-					</h1>
+						<h1
+							class="font-bold text-2xl md:text-3xl text-white bg-gradient-to-r from-red-700/100 to-red-600/10 p-2 "
+						>
+							Menu
+						</h1><br>
+						<span>ご飯セットには味噌汁、前菜、コーヒー／レモンティー／レモンウォーター／緑茶（冷／温）が含まれています。</span><br />
+						<span>Rice set includes Miso Soup, Appetizer, Coffee / Lemon Tea / Lemon
+							Water / Green Tea (Cold / Hot)</span>
+					</div>
 				</div>
 				<div
 					class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full px-0 md:px-4"
@@ -33,10 +33,10 @@ const page = ref(1);
 					<div
 						v-for="(menu, index) in props.menus"
 						:key="index"
-						class="rounded-lg shadow hover:shadow-lg transition-all duration-300 overflow-hidden bg-white p-2 px-4"
+						class="rounded-lg border border-gray-200 transition-all duration-300 overflow-hidden bg-white p-2 px-4"
 					>
 						<div class="flex flex-col md:flex-row items-start gap-4">
-							<div class="flex justify-center items-center">
+							<div class="flex justify-center items-center w-full md:w-auto">
 								<img
 									:src="menu.image"
 									alt=""
@@ -50,45 +50,47 @@ const page = ref(1);
 								<p class="text-gray-600 dark:text-gray-400">
 									{{ menu.name }}
 								</p>
-								<span class="text-red-600 dark:text-red-500 font-bold">₱ {{ menu.price }}</span>
-								<div class="flex gap-4 items-center">
-									<motion.div
-										class="flex items-center justify-center rounded-lg bg-gray-900 px-3 text-md text-white"
-										:whileHover="{
-											scale: [null, 1.1, 1.6],
-											transition: {
-												duration: 0.5,
-												times: [0, 0.6, 1],
-												ease: ['easeInOut', 'easeOut'],
-											},
-										}"
-										:transition="{
-											duration: 0.3,
-											ease: 'easeOut',
-										}"
-									>
-										Details
-									</motion.div>
-									<motion.div
-										class="flex items-center justify-center rounded-full h-10 w-10 bg-red-600 text-white"
-										:whileHover="{
-											scale: [null, 1.1, 1.6],
-											transition: {
-												duration: 0.5,
-												times: [0, 0.6, 1],
-												ease: ['easeInOut', 'easeOut'],
-											},
-										}"
-										:transition="{
-											duration: 0.3,
-											ease: 'easeOut',
-										}"
-									>
-										<UIcon
-											name="heroicons:arrow-up-right-16-solid"
-											class="size-7"
-										/>
-									</motion.div>
+								<div >
+									<span class="text-red-600 dark:text-red-500 font-bold">₱ {{ menu.price }}</span>
+									<div class="flex gap-4 items-center">
+										<motion.div
+											class="flex items-center justify-center rounded-lg bg-gray-900 px-3 text-md text-white"
+											:whileHover="{
+												scale: [null, 1.1, 1.6],
+												transition: {
+													duration: 0.5,
+													times: [0, 0.6, 1],
+													ease: ['easeInOut', 'easeOut'],
+												},
+											}"
+											:transition="{
+												duration: 0.3,
+												ease: 'easeOut',
+											}"
+										>
+											Details
+										</motion.div>
+										<motion.div
+											class="flex items-center justify-center rounded-full h-10 w-10 bg-red-600 text-white"
+											:whileHover="{
+												scale: [null, 1.1, 1.6],
+												transition: {
+													duration: 0.5,
+													times: [0, 0.6, 1],
+													ease: ['easeInOut', 'easeOut'],
+												},
+											}"
+											:transition="{
+												duration: 0.3,
+												ease: 'easeOut',
+											}"
+										>
+											<UIcon
+												name="heroicons:arrow-up-right-16-solid"
+												class="size-7"
+											/>
+										</motion.div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -104,7 +106,7 @@ const page = ref(1);
 				</div>
 			</div>
 			<div
-				class="flex flex-col items-start p-4 w-full lg:w-52 bg-white border border-orange-400 rounded-lg"
+				class="flex flex-col items-start p-4 w-full lg:w-52 bg-white border border-gray-200 rounded-lg"
 			>
 				<div
 					class="flex justify-center items-center bg-orange-950 text-orange-200 w-14 h-14 rounded-full"

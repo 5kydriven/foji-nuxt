@@ -11,14 +11,15 @@ const page = ref(1);
 </script>
 <template>
 	<div
+		id="featured"
 		class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10 dark:bg-gray-900 px-4 py-10"
 	>
-		<h1 class="font-bold text-3xl md:text-4xl text-gray-800 dark:text-white">
-			Featured Foods
-		</h1>
 		<div
-			class="text-white bg-gradient-to-r from-black/100 to-black/10 w-full p-2"
+		class="text-center w-full p-2"
 		>
+			<h1 class="font-bold text-3xl md:text-4xl text-gray-800 dark:text-white">
+				Featured Foods
+			</h1><br>
 			<span>おすすめ料理をお楽しみください。</span><br />
 			<span>Enjoy our featured dishes, specially selected for you!</span>
 		</div>

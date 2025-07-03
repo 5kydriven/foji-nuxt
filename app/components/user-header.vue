@@ -7,7 +7,8 @@ const isOpen = ref(false)
 const items = ref<NavigationMenuItem[][]>([
   [
     { label: 'Home', to: '/' },
-    { label: 'Menu', to: '/menu' },
+    { label: 'Menu', to: '#menu' },
+    { label: 'Featured', to: '#featured' },
     { label: 'About', to: '/maintenance' },
     { label: 'Recipe', to: '/maintenance' },
   ],
