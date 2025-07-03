@@ -36,7 +36,7 @@ const page = ref(1);
 						class="rounded-lg border border-gray-200 transition-all duration-300 overflow-hidden bg-white p-2 px-4"
 					>
 						<div class="flex flex-col md:flex-row items-start gap-4">
-							<div class="flex justify-center items-center w-full md:w-auto">
+							<div class="flex justify-center items-center w-full md:w-auto bg-black/80 rounded-md min-w-40 min-h-40">
 								<img
 									:src="menu.image"
 									alt=""
