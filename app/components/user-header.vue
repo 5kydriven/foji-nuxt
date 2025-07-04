@@ -7,7 +7,8 @@ const isOpen = ref(false)
 const items = ref<NavigationMenuItem[][]>([
   [
     { label: 'Home', to: '/' },
-    { label: 'Menu', to: '/menu' },
+    { label: 'Menu', to: '#menu' },
+    { label: 'Featured', to: '#featured' },
     { label: 'About', to: '/maintenance' },
     { label: 'Recipe', to: '/maintenance' },
   ],
@@ -20,7 +21,8 @@ const items = ref<NavigationMenuItem[][]>([
 			<img
 				src="/logo.png"
 				alt="FOJI Logo"
-				class="h-14 w-14"/>
+				class="h-14 w-14"
+/>
 				<span class="font-bold text-red-600 text-xl">FOJI</span>
 		</div>
 
@@ -31,7 +33,11 @@ const items = ref<NavigationMenuItem[][]>([
       @click="isOpen = true"
     />
 
-    <USlideover v-model="isOpen" title="FOJI" close-icon="i-lucide-arrow-right">
+    <USlideover
+v-model="isOpen"
+title="FOJI"
+close-icon="i-lucide-arrow-right"
+>
       <template #body>
 				<div>
 					<UNavigationMenu
@@ -41,10 +47,12 @@ const items = ref<NavigationMenuItem[][]>([
 						class="w-full"
 					/><br>
 					<hr>
-					<UButton label="Log in" color="error"/>
+					<UButton
+label="Log in"
+color="error"
+/>
 				</div>
-
-      </template>
+</template>
     </USlideover>
   </div>
 
@@ -53,7 +61,8 @@ const items = ref<NavigationMenuItem[][]>([
 			<img
 				src="/logo.png"
 				alt="FOJI Logo"
-				class="h-14 w-14"/>
+				class="h-14 w-14"
+/>
 					<span class="font-bold text-red-600 text-xl">FOJI</span>
 					<span class="font-bold hidden lg:block">Japanese Restaurant</span>
 		</div>
@@ -65,7 +74,7 @@ const items = ref<NavigationMenuItem[][]>([
 				class="w-full"
 			>
 				<template #default="{ item }: { item: NavigationMenuItem }">
-					<div class="flex items-center space-x-2" >
+					<div class="flex items-center space-x-2">
 						<UIcon :name="item.icon as any" />
 						<span>{{ item.label }}</span>
 					</div>

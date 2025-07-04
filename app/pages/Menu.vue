@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { motion } from "motion-v"
+import { motion } from 'motion-v'
 
 const items = [
 		'https://picsum.photos/468/468?random=1',
@@ -9,8 +9,8 @@ const items = [
 		'https://picsum.photos/468/468?random=5',
 		'https://picsum.photos/468/468?random=6',
 	];
-
 </script>
+
 <template>
 	<div
 			class="w-full flex flex-col items-center justify-center gap-8"
@@ -51,14 +51,17 @@ const items = [
 				</button>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full ">
-				<div v-for="(item, index) in items" :key="item">
+				<div
+v-for="(item, index) in items"
+:key="item"
+>
 					<motion.div
 						:initial="{ opacity: 0, scale: 0.5 }"
 							:animate="{ opacity: 1, scale: 1 }"
 							:transition="{
 									duration: 0.8,
 									delay: 0.5 + index * 0.2,
-									ease: [0, 0.71, 0.2, 1.01]
+									ease: [0, 0.71, 0.2, 1.01],
 							}"
 							>
 						<img
