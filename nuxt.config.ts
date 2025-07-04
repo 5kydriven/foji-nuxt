@@ -8,13 +8,13 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 	],
 	pages: {
-		pattern: ['**/*.vue', '!**/components/**'],
+		pattern: ['**/*.vue', '!**/_components/**'],
 	},
 	components: [
 		'~/components',
 		{
 			path: '~/pages',
-			pattern: '**/components/**',
+			pattern: '**/_components/**',
 			pathPrefix: false,
 		},
 	],

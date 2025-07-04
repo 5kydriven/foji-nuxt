@@ -7,8 +7,8 @@ const props = defineProps<{
 }>();
 
 const page = ref(1);
-
 </script>
+
 <template>
 	<div
 		id="featured"

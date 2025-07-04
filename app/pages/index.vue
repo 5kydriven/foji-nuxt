@@ -1,9 +1,8 @@
 <script setup lang="ts">
-	import { motion } from 'motion-v';
+	import HeroSection from './_components/hero-section.vue';
+	import MenuSection from './_components/menu-section.vue';
+	import FeaturedSection from './_components/featured-section.vue';
 	import type { Menu } from '~~/types/menu.type';
-	import HeroSection from './components/hero-section.vue';
-	import MenuSection from './components/menu-section.vue';
-	import FeaturedSection from './components/featured-section.vue';
 
 	const menus = ref<Menu[]>([
 		{
