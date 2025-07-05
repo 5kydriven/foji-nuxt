@@ -7,10 +7,10 @@ const isOpen = ref(false)
 const items = ref<NavigationMenuItem[][]>([
   [
     { label: 'Home', to: '/' },
+    { label: 'About', to: '#about' },
     { label: 'Menu', to: '#menu' },
-    { label: 'Featured', to: '#featured' },
-    { label: 'About', to: '/maintenance' },
-    { label: 'Recipe', to: '/maintenance' },
+    { label: 'Faq', to: '#faq' },
+    { label: 'Contact us', to: '#contact' },
   ],
 ])
 </script>
@@ -65,7 +65,7 @@ const items = ref<NavigationMenuItem[][]>([
 				class="h-14 w-14"
 />
 					<span class="font-bold text-red-600 text-xl">FOJI</span>
-					<span class="font-bold hidden lg:block">Japanese Restaurant</span>
+					<!-- <span class="font-bold hidden lg:block">Japanese Restaurant</span> -->
 		</div>
 
 		<div class="flex-1 flex justify-end">

@@ -1,7 +1,13 @@
 <script setup lang="ts">
 	import HeroSection from './_components/hero-section.vue';
+	// import FeaturedSection from './_components/featured-section.vue';
+	import AboutSection from './_components/about-section.vue';
+	import ServiceSection from './_components/service-section.vue';
 	import MenuSection from './_components/menu-section.vue';
-	import FeaturedSection from './_components/featured-section.vue';
+	import ReservationSection from './_components/reservation-section.vue';
+	import FeedbackSection from './_components/feedback-section.vue';
+	import FaqSection from './_components/faq-section.vue';
+	import ContactSection from './_components/contact-section.vue';
 	import type { Menu } from '~~/types/menu.type';
 
 	const menus = ref<Menu[]>([
@@ -55,7 +61,13 @@
 <template>
 	<div class="flex flex-col gap-5">
 		<HeroSection />
+		<!-- <AboutSection /> -->
+		<ServiceSection />
 		<MenuSection :menus="menus" />
-		<FeaturedSection :menus="menus" />
+		<ReservationSection />
+		<FeedbackSection />
+		<!-- <FaqSection />
+		<ContactSection /> -->
+		<!-- <FeaturedSection :menus="menus" /> -->
 	</div>
 </template>

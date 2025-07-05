@@ -117,7 +117,7 @@
 			</div>
 		</div>
 		<div>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+			<!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
 				<motion.div
 					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
 					:initial="{ opacity: 0, scale: 0.5 }"
@@ -178,7 +178,7 @@
 						Lorem ipsum dolor sit amet.
 					</span>
 				</motion.div>
-			</div>
-		</div>
+			</div>-->
+		</div> 
 	</div>
 </template>
