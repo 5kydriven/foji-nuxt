@@ -16,14 +16,14 @@ const items = ref<NavigationMenuItem[][]>([
 </script>
 
 <template>
-  <div class="flex items-center justify-between md:hidden bg-gray-100 p-2 rounded-md">
+  <div class="flex items-center justify-between md:hidden  rounded-md">
 		<div class="flex items-center space-x-2 flex-1">
 			<img
 				src="/logo.png"
 				alt="FOJI Logo"
 				class="h-14 w-14"
-/>
-				<span class="font-bold text-red-600 text-xl">FOJI</span>
+			/>
+			<span class="font-bold text-red-600 text-xl">FOJI</span>
 		</div>
 
     <UButton
@@ -32,12 +32,13 @@ const items = ref<NavigationMenuItem[][]>([
       variant="subtle"
       @click="isOpen = true"
     />
-
+		{{ isOpen }}
+		
     <USlideover
-v-model="isOpen"
-title="FOJI"
-close-icon="i-lucide-arrow-right"
->
+			v-model="isOpen"
+			title="FOJI"
+			close-icon="i-lucide-arrow-right"
+			>
       <template #body>
 				<div>
 					<UNavigationMenu
@@ -48,15 +49,15 @@ close-icon="i-lucide-arrow-right"
 					/><br>
 					<hr>
 					<UButton
-label="Log in"
-color="error"
-/>
+						label="Log in"
+						color="error"
+						/>
 				</div>
-</template>
+			</template>
     </USlideover>
   </div>
 
-  <div class="hidden items-center justify-between md:flex bg-gray-100 px-2 rounded-md">
+  <div class="hidden items-center justify-between md:flex  rounded-md">
     <div class="flex items-center space-x-2 flex-1">
 			<img
 				src="/logo.png"
