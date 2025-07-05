@@ -178,7 +178,7 @@
 						Lorem ipsum dolor sit amet.
 					</span>
 				</motion.div>
-			</div>-->
-		</div> 
+			</div> -->
+		</div>
 	</div>
 </template>

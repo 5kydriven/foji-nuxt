@@ -11,7 +11,10 @@
 				<p class="text-gray-600">
 					We are excited to welcome you to our restaurant! To ensure a smooth dining experience, we recommend making a reservation in advance.
 				</p>
-				<UButton label="Reserve Now" color="error"/>
+				<UButton
+label="Reserve Now"
+color="error"
+/>
 			</div>
 			<div class="flex-1 flex justify-center items-center">
 				<img

@@ -19,65 +19,65 @@ const data = ref<User[]>([
     name: 'Lindsay Walton',
     position: 'Front-end Developer',
     email: 'lindsay.walton@example.com',
-    role: 'Member'
+    role: 'Member',
   },
   {
     id: 2,
     name: 'Courtney Henry',
     position: 'Designer',
     email: 'courtney.henry@example.com',
-    role: 'Admin'
+    role: 'Admin',
   },
   {
     id: 3,
     name: 'Tom Cook',
     position: 'Director of Product',
     email: 'tom.cook@example.com',
-    role: 'Member'
+    role: 'Member',
   },
   {
     id: 4,
     name: 'Whitney Francis',
     position: 'Copywriter',
     email: 'whitney.francis@example.com',
-    role: 'Admin'
+    role: 'Admin',
   },
   {
     id: 5,
     name: 'Leonard Krasner',
     position: 'Senior Designer',
     email: 'leonard.krasner@example.com',
-    role: 'Owner'
+    role: 'Owner',
   },
   {
     id: 6,
     name: 'Floyd Miles',
     position: 'Principal Designer',
     email: 'floyd.miles@example.com',
-    role: 'Member'
-  }
+    role: 'Member',
+  },
 ])
 
 const columns: TableColumn<User>[] = [
   {
     accessorKey: 'id',
-    header: 'ID'
+    header: 'ID',
   },
   {
     accessorKey: 'name',
-    header: 'Name'
+    header: 'Name',
   },
   {
     accessorKey: 'email',
-    header: 'Email'
+    header: 'Email',
   },
   {
     accessorKey: 'role',
-    header: 'Role'
+    header: 'Role',
   },
   {
-    id: 'action'
-  }
+    id: 'action',
+  },
 ]
 
 function getDropdownActions(user: User): DropdownMenuItem[][] {
@@ -92,28 +92,32 @@ function getDropdownActions(user: User): DropdownMenuItem[][] {
           toast.add({
             title: 'User ID copied to clipboard!',
             color: 'success',
-            icon: 'i-lucide-circle-check'
+            icon: 'i-lucide-circle-check',
           })
-        }
-      }
+        },
+      },
     ],
     [
       {
         label: 'Edit',
-        icon: 'i-lucide-edit'
+        icon: 'i-lucide-edit',
       },
       {
         label: 'Delete',
         icon: 'i-lucide-trash',
-        color: 'error'
-      }
-    ]
+        color: 'error',
+      },
+    ],
   ]
 }
 </script>
 
 <template>
-  <UTable :data="data" :columns="columns" class="flex-1">
+  <UTable
+:data="data"
+:columns="columns"
+class="flex-1"
+>
     <template #name-cell="{ row }">
       <div class="flex items-center gap-3">
         <UAvatar

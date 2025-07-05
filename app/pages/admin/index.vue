@@ -3,6 +3,7 @@ definePageMeta({
 	layout: 'custom',
 });
 </script>
+
 <template>
 	Admin
 </template>

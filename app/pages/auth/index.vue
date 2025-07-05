@@ -3,10 +3,9 @@ definePageMeta({
 	layout: false,
 });
 
-
 const state = reactive({
   email: '',
-  password: ''
+  password: '',
 })
 
 const toast = useToast()
@@ -28,17 +27,42 @@ async function onSubmit(event: any) {
 				<h1 class="text-3xl font-bold text-center mb-4">Login</h1>
 				<p class="text-center text-gray-600 mb-6">Please enter your credentials to continue.</p>
 			</div>
-			<UForm  :state="state" class="space-y-4 w-full" @submit="onSubmit">
-				<UFormField label="Email" name="email">
-					<UInput v-model="state.email" class="w-full" color="error" placeholder="Enter your email"/>
+			<UForm
+:state="state"
+class="space-y-4 w-full"
+@submit="onSubmit"
+>
+				<UFormField
+label="Email"
+name="email"
+>
+					<UInput
+v-model="state.email"
+class="w-full"
+color="error"
+placeholder="Enter your email"
+/>
 				</UFormField>
-		
-				<UFormField label="Password" name="password">
-					<UInput v-model="state.password" type="password" class="w-full" color="error" placeholder="Enter your password"/>
+
+				<UFormField
+label="Password"
+name="password"
+>
+					<UInput
+v-model="state.password"
+type="password"
+class="w-full"
+color="error"
+placeholder="Enter your password"
+/>
 				</UFormField>
-		
+
 				<div class="flex items-center justify-between w-full">
-					<UButton type="submit" class="w-full " color="error">
+					<UButton
+type="submit"
+class="w-full "
+color="error"
+>
 						<span class="text-center w-full">Submit</span>
 					</UButton>
 				</div>
@@ -46,4 +70,3 @@ async function onSubmit(event: any) {
 		</div>
 	</div>
 </template>
-

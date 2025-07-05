@@ -34,14 +34,14 @@
 						</span>
 					</div>
 				</div>
-				<UCarousel 
-					v-slot="{ item }" 
+				<UCarousel
+					v-slot="{ item }"
 					loop
 					dots
 					:autoplay="{ delay: 2000 }"
-					:items="props.menus" 
+					:items="props.menus"
 					:ui="{
-						item: 'px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4'
+						item: 'px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4',
 					}"
 					class="w-full"
 				>
@@ -58,8 +58,7 @@
 							/>
 						</div>
 						<div class="flex flex-col items-center">
-		
-							<span class="text-gray-800 dark:text-white font-semibold text-center">{{
+<span class="text-gray-800 dark:text-white font-semibold text-center">{{
 								item.japaneseName
 							}}</span>
 							<p class="text-gray-600 dark:text-gray-400 text-center">
@@ -70,7 +69,7 @@
 							<span class=" font-bold text-white">
 								₱ {{ item.price }}
 							</span>
-							<div >
+							<div>
 								<motion.div
 									class="flex items-center justify-center rounded-full h-10 w-10 border border-white  text-white"
 									:whileHover="{
@@ -104,7 +103,7 @@
 				>
 					SOUP
 				</div>
-				
+
 				<div
 					class="flex flex-wrap justify-evenly w-full "
 				>

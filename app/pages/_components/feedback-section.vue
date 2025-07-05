@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const feedbacks = [
 	{
 		name: 'John Doe',
@@ -20,10 +19,10 @@ const feedbacks = [
 		name: 'Bob Brown',
 		review: 'Great food and great service! I will definitely come back again.',
 		image: 'https://picsum.photos/640/640?random=4',
-	}
+	},
 ]
-
 </script>
+
 <template>
 	<div
 		id="faq"
@@ -31,21 +30,26 @@ const feedbacks = [
 	>
 		<h1 class="text-3xl font-bold">What Our Customer Says?</h1>
 		<div class="w-full">
-			<UCarousel 
-				v-slot="{ item }" 
+			<UCarousel
+				v-slot="{ item }"
 				loop
 				dots
 				:autoplay="{ delay: 2000 }"
-				:items="feedbacks" 
+				:items="feedbacks"
 				:ui="{
-					item: 'px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4'
+					item: 'px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4',
 				}"
 				class="w-full"
 			>
 				<div class="p-4 rounded-md bg-gray-50 space-y-2 flex flex-col items-center">
 					<p class="text-gray-600 dark:text-gray-400 text-center">{{ item.review }}</p>
 					<div class="flex flex-col items-center mt-2">
-						<img :src="item.image" width="50" height="50" class="rounded-full mb-2">
+						<img
+:src="item.image"
+width="50"
+height="50"
+class="rounded-full mb-2"
+>
 						<h2 class="text-lg font-semibold">{{ item.name }}</h2>
 					</div>
 				</div>
