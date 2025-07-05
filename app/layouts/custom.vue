@@ -1,15 +1,13 @@
+<script setup lang="ts">
+import AdminHeader from '~/components/admin-header.vue';
+import AdminSidebar from '~/components/admin-sidebar.vue';
+
+</script>
 <template>
-	<div class="h-screen flex">
-		<div class="flex flex-col gap-4">
-			<div>Logo</div>
-			<USeparator />
-			<div>Home</div>
-			<div>featured</div>
-			<div>Menu</div>
-			<div>Settings</div>
-			<USeparator />
-			<div>Sign out</div>
+	<div class="h-screen">
+		<AdminHeader />
+		<div class="p-4 overflow-y-auto">
+			<slot />
 		</div>
-		<slot />
 	</div>
 </template>
