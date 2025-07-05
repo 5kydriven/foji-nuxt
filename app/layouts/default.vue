@@ -4,17 +4,9 @@
 </script>
 
 <template>
-	<UCard  :ui="{ header:'bg-gray-100' ,footer: 'bg-gray-100' }">
-		<template #header>
-			<UserHeader />
-		</template>
+	<UserHeader />
 
-		<slot />
+	<slot />
 
-		<template #footer>
-			<div classt="pt-5">
-				<UserFooter />
-			</div>
-		</template>
-	</UCard>
+	<UserFooter />
 </template>
