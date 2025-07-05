@@ -53,7 +53,7 @@
 
 <template>
 	<div
-		class="min-h-[60vh] flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3"
+		class="min-h-[60vh] md:h-screen flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3"
 	>
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5">
 			<div>

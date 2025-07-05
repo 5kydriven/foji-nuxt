@@ -6,10 +6,10 @@
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Home', to: '/' },
-			{ label: 'Menu', to: '#menu' },
-			{ label: 'Featured', to: '#featured' },
 			{ label: 'About', to: '/maintenance' },
-			{ label: 'Recipe', to: '/maintenance' },
+			{ label: 'Menu', to: '/maintenance' },
+			{ label: 'Faq', to: '/maintenance' },
+			{ label: 'Contact Us', to: '/maintenance' },
 		],
 	]);
 </script>

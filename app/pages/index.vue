@@ -39,20 +39,20 @@
 			price: 300,
 			description: 'Scrumptious menu item 4',
 		},
-		{
-			japaneseName: 'スチューズエッグとチキンライスセット',
-			name: 'Stewes Egg with Chicken Rice Set',
-			image: '/menu-5.png',
-			price: 300,
-			description: 'Savory menu item 5',
-		},
-		{
-			japaneseName: '海鮮チャーハンセット / 日本の味',
-			name: 'Sea Food Fried Rice Set / Japanes Taste',
-			image: '/menu-6.png',
-			price: 300,
-			description: 'Appetizing menu item 6',
-		},
+		// {
+		// 	japaneseName: 'スチューズエッグとチキンライスセット',
+		// 	name: 'Stewes Egg with Chicken Rice Set',
+		// 	image: '/menu-5.png',
+		// 	price: 300,
+		// 	description: 'Savory menu item 5',
+		// },
+		// {
+		// 	japaneseName: '海鮮チャーハンセット / 日本の味',
+		// 	name: 'Sea Food Fried Rice Set / Japanes Taste',
+		// 	image: '/menu-6.png',
+		// 	price: 300,
+		// 	description: 'Appetizing menu item 6',
+		// },
 	]);
 
 	const page = ref(1);

@@ -17,7 +17,7 @@
 	<h1
 		class="font-bold text-center w-full text-2xl md:text-3xl lg:text-4xl  dark:text-white"
 	>
-		Regular Menu Pack
+		Best Seller
 	</h1>
 		<div class=" w-full">
 			<div class="flex-1 w-full">
@@ -34,17 +34,25 @@
 						</span>
 					</div>
 				</div>
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 w-full px-0 md:px-4">
+				<UCarousel 
+					v-slot="{ item }" 
+					loop
+					dots
+					:autoplay="{ delay: 2000 }"
+					:items="props.menus" 
+					:ui="{
+						item: 'px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4'
+					}"
+					class="w-full"
+				>
 					<div
-						v-for="(menu, index) in props.menus"
-						:key="index"
-						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg  transition-all duration-300 overflow-hidden  p-2 px-4"
+						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg  transition-all duration-300 overflow-hidden  p-2 px-4 h-96 my-2"
 					>
 						<div
-							class="flex justify-center items-center w-full md:w-auto  rounded-md min-w-40 min-h-40"
+							class="flex justify-center items-center w-full md:w-auto  rounded-md min-w-40 min-h-40 bg-red-50"
 						>
 							<img
-								:src="menu.image"
+								:src="item.image"
 								alt=""
 								class="w-40 "
 							/>
@@ -52,19 +60,19 @@
 						<div class="flex flex-col items-center">
 		
 							<span class="text-gray-800 dark:text-white font-semibold text-center">{{
-								menu.japaneseName
+								item.japaneseName
 							}}</span>
 							<p class="text-gray-600 dark:text-gray-400 text-center">
-								{{ menu.name }}
+								{{ item.name }}
 							</p>
 						</div>
-						<div class="flex  items-center justify-between w-full pb-4">
-							<span class=" font-bold">
-								₱ {{ menu.price }}
+						<div class="flex  items-center justify-between w-full py-4 px-4 md:px-8 bg-red-500 rounded-full">
+							<span class=" font-bold text-white">
+								₱ {{ item.price }}
 							</span>
 							<div >
 								<motion.div
-									class="flex items-center justify-center rounded-full h-10 w-10 border border-red-600  text-red-600"
+									class="flex items-center justify-center rounded-full h-10 w-10 border border-white  text-white"
 									:whileHover="{
 										scale: [null, 1.1, 1.6],
 										transition: {
@@ -86,15 +94,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- <div class="flex justify-center mt-4">
-					<UPagination
-						v-model:page="page"
-						:items-per-page="20"
-						:total="100"
-						active-color="error"
-					/>
-				</div> -->
+				</UCarousel>
 			</div>
 			<!-- <div
 				class="flex flex-col items-start p-4 w-full  bg-white border border-gray-200 rounded-lg"
