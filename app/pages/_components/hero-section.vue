@@ -53,7 +53,7 @@
 
 <template>
 	<div
-		class="min-h-[60vh] flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3 sm:p-5"
+		class="min-h-[60vh] flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3"
 	>
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5">
 			<div>
@@ -69,7 +69,7 @@
 				</div>
 				<br />
 				<motion.div
-					class="text-slate-200 text-base sm:text-lg"
+					class="text-slate-200"
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
@@ -105,7 +105,7 @@
 				>
 					<img
 						src="/menu.png"
-						class="w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 rounded-lg drop-shadow-2xl/50 object-cover"
+						class="w-48 h-48 md:w-72 md:h-72 rounded-lg drop-shadow-2xl/50"
 					/>
 				</div>
 				<div class="flex justify-center">
@@ -117,9 +117,9 @@
 			</div>
 		</div>
 		<div>
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+			<!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
 				<motion.div
-					class="p-3 sm:p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
+					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
@@ -130,8 +130,8 @@
 				>
 					<img
 						src="https://picsum.photos/468/468?random=3"
-						width="80"
-						class="rounded-lg max-w-full max-h-32 sm:max-h-40 object-cover"
+						width="100"
+						class="rounded-lg max-w-xl max-h-xl object-cover"
 					/>
 					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
 					<span class="text-xs sm:text-sm text-center">
@@ -139,7 +139,7 @@
 					</span>
 				</motion.div>
 				<motion.div
-					class="p-3 sm:p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
+					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
@@ -150,8 +150,8 @@
 				>
 					<img
 						src="https://picsum.photos/468/468?random=4"
-						width="80"
-						class="rounded-lg max-w-full max-h-32 sm:max-h-40 object-cover"
+						width="100"
+						class="rounded-lg max-w-xl max-h-xl object-cover"
 					/>
 					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
 					<span class="text-xs sm:text-sm text-center">
@@ -159,7 +159,7 @@
 					</span>
 				</motion.div>
 				<motion.div
-					class="p-3 sm:p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
+					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
@@ -170,15 +170,15 @@
 				>
 					<img
 						src="https://picsum.photos/468/468?random=5"
-						width="80"
-						class="rounded-lg max-w-full max-h-32 sm:max-h-40 object-cover"
+						width="100"
+						class="rounded-lg max-w-xl max-h-xl object-cover"
 					/>
 					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
 					<span class="text-xs sm:text-sm text-center">
 						Lorem ipsum dolor sit amet.
 					</span>
 				</motion.div>
-			</div>
-		</div>
+			</div>-->
+		</div> 
 	</div>
 </template>
