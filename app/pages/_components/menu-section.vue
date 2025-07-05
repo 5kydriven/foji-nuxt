@@ -1,42 +1,49 @@
 <script lang="ts" setup>
-import { motion } from 'motion-v';
-import type { Menu } from '~~/types/menu.type';
+	import { motion } from 'motion-v';
+	import type { Menu } from '~~/types/menu.type';
 
-const props = defineProps<{
-	menus: Menu[];
-}>();
+	const props = defineProps<{
+		menus: Menu[];
+	}>();
 
-const page = ref(1);
-
+	const page = ref(1);
 </script>
+
 <template>
-	<div class="space-y-2 w-full min-h-[60vh]  px-4 py-10" id="menu">
-		<div class="flex flex-col  lg:flex-row lg:items-start gap-4 w-full">
+	<div
+		id="menu"
+		class="space-y-2 w-full min-h-[60vh] px-4 py-10"
+	>
+		<div class="flex flex-col lg:flex-row lg:items-start gap-4 w-full">
 			<div class="flex-1 w-full">
 				<div class="flex justify-between items-center p-0 pb-4 md:p-4">
-					
-					<div
-					>
+					<div>
 						<h1
-							class="font-bold text-2xl md:text-3xl text-white bg-gradient-to-r from-red-700/100 to-red-600/10 p-2 "
+							class="font-bold text-2xl md:text-3xl text-white bg-gradient-to-r from-red-700/100 to-red-600/10 p-2"
 						>
 							Menu
-						</h1><br>
-						<span>ご飯セットには味噌汁、前菜、コーヒー／レモンティー／レモンウォーター／緑茶（冷／温）が含まれています。</span><br />
-						<span>Rice set includes Miso Soup, Appetizer, Coffee / Lemon Tea / Lemon
-							Water / Green Tea (Cold / Hot)</span>
+						</h1>
+						<br />
+						<span>
+							ご飯セットには味噌汁、前菜、コーヒー／レモンティー／レモンウォーター／緑茶（冷／温）が含まれています。
+						</span>
+						<br />
+						<span>
+							Rice set includes Miso Soup, Appetizer, Coffee / Lemon Tea / Lemon
+							Water / Green Tea (Cold / Hot)
+						</span>
 					</div>
 				</div>
-				<div
-					class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full px-0 md:px-4"
-				>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full px-0 md:px-4">
 					<div
 						v-for="(menu, index) in props.menus"
 						:key="index"
 						class="rounded-lg border border-gray-200 transition-all duration-300 overflow-hidden bg-white p-2 px-4"
 					>
 						<div class="flex flex-col md:flex-row items-start gap-4">
-							<div class="flex justify-center items-center w-full md:w-auto bg-black/80 rounded-md min-w-40 min-h-40">
+							<div
+								class="flex justify-center items-center w-full md:w-auto bg-black/80 rounded-md min-w-40 min-h-40"
+							>
 								<img
 									:src="menu.image"
 									alt=""
@@ -50,8 +57,10 @@ const page = ref(1);
 								<p class="text-gray-600 dark:text-gray-400">
 									{{ menu.name }}
 								</p>
-								<div >
-									<span class="text-red-600 dark:text-red-500 font-bold">₱ {{ menu.price }}</span>
+								<div>
+									<span class="text-red-600 dark:text-red-500 font-bold">
+										₱ {{ menu.price }}
+									</span>
 									<div class="flex gap-4 items-center">
 										<motion.div
 											class="flex items-center justify-center rounded-lg bg-gray-900 px-3 text-md text-white"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useAnimationFrame, animate, stagger, motion } from 'motion-v';
-import OrderModal from './modals/order-modal.vue';
+	import { useAnimationFrame, animate, stagger, motion } from 'motion-v';
+	import OrderModal from './modals/order-modal.vue';
 
 	const containerRef = ref<HTMLDivElement | null>(null);
 
@@ -26,7 +26,7 @@ import OrderModal from './modals/order-modal.vue';
 			});
 
 			h1.textContent = '';
-			words.forEach(span => h1.appendChild(span));
+			words.forEach((span: any) => h1.appendChild(span));
 
 			animate(
 				words,
@@ -50,6 +50,7 @@ import OrderModal from './modals/order-modal.vue';
 		cubeRef.value.style.transform = `translateY(${y}px) `;
 	});
 </script>
+
 <template>
 	<div
 		class="min-h-[60vh] md:h-screen flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-5 rounded-md"
@@ -60,9 +61,10 @@ import OrderModal from './modals/order-modal.vue';
 					ref="containerRef"
 					class="invisible"
 				>
-					<h1 class="font-bold text-3xl md:text-5xl text-dark h1 text-white">
-						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern
-						Vibes.
+					<h1
+						class="font-bold text-2xl sm:text-3xl md:text-5xl text-dark h1 text-white leading-tight break-words"
+					>
+						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.
 					</h1>
 				</div>
 				<br />
@@ -77,9 +79,10 @@ import OrderModal from './modals/order-modal.vue';
 					}"
 				>
 					Experience the taste of Japan with our signature sushi, ramen, and
-					more. Enjoy a unique dining atmosphere at FOJI, where tradition
-					meets innovation.
-				</motion.div><br />
+					more. Enjoy a unique dining atmosphere at FOJI, where tradition meets
+					innovation.
+				</motion.div>
+				<br />
 				<motion.div
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
@@ -130,8 +133,10 @@ import OrderModal from './modals/order-modal.vue';
 						width="100"
 						class="rounded-lg max-w-xl max-h-xl object-cover"
 					/>
-					<h1 class="font-semibold">Lorem Epsom</h1>
-					<span>Lorem ipsum dolor sit amet.</span>
+					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
+					<span class="text-xs sm:text-sm text-center">
+						Lorem ipsum dolor sit amet.
+					</span>
 				</motion.div>
 				<motion.div
 					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
@@ -148,8 +153,10 @@ import OrderModal from './modals/order-modal.vue';
 						width="100"
 						class="rounded-lg max-w-xl max-h-xl object-cover"
 					/>
-					<h1 class="font-semibold">Lorem Epsom</h1>
-					<span>Lorem ipsum dolor sit amet.</span>
+					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
+					<span class="text-xs sm:text-sm text-center">
+						Lorem ipsum dolor sit amet.
+					</span>
 				</motion.div>
 				<motion.div
 					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
@@ -166,8 +173,10 @@ import OrderModal from './modals/order-modal.vue';
 						width="100"
 						class="rounded-lg max-w-xl max-h-xl object-cover"
 					/>
-					<h1 class="font-semibold">Lorem Epsom</h1>
-					<span>Lorem ipsum dolor sit amet.</span>
+					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
+					<span class="text-xs sm:text-sm text-center">
+						Lorem ipsum dolor sit amet.
+					</span>
 				</motion.div>
 			</div>
 		</div>
