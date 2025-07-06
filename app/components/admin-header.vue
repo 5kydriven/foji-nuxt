@@ -1,6 +1,12 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
+	const client = useSupabaseClient();
+
+	async function logout() {
+		await client.auth.signOut();
+		navigateTo('/auth');
+	}
 	const isOpen = ref(false);
 
 	const items = ref<NavigationMenuItem[][]>([
@@ -9,7 +15,7 @@
 			{ label: 'Featured', to: '/admin/featured' },
 			{ label: 'Menu', to: '/admin/menu' },
 			{ label: 'Settings', to: '/admin/setting' },
-			{ label: 'Sign out', to: '/maintenance' },
+			{ label: 'Sign out', onSelect: logout },
 		],
 	]);
 </script>

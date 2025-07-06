@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 		'motion-v/nuxt',
 		'@nuxtjs/supabase',
 		'@nuxt/image',
+		'@pinia/nuxt',
 	],
 	pages: {
 		pattern: ['**/*.vue', '!**/_components/**'],
