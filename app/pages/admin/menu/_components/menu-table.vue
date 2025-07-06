@@ -1,64 +1,19 @@
 <script setup lang="ts">
 import type { TableColumn, DropdownMenuItem } from '@nuxt/ui'
 import { useClipboard } from '@vueuse/core'
+import AddMenuModal from './modals/add-modal.vue'
+import type { Menu } from '~~/types/menu.type'
+import { useMenuStore } from '~/stores/menu'
+import { useMenuModal } from '~/composables/lazy-menu-modal'
 
-interface User {
-  id: number
-  name: string
-  position: string
-  email: string
-  role: string
-}
-
+const { openEditModal, openDeleteModal } = useMenuModal()
+const store = useMenuStore()
 const toast = useToast()
-const { copy } = useClipboard()
+const menu = ref<Menu>({})
+const value = ref('')
+const page = ref(5)
 
-const data = ref<User[]>([
-  {
-    id: 1,
-    name: 'Lindsay Walton',
-    position: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-  },
-  {
-    id: 2,
-    name: 'Courtney Henry',
-    position: 'Designer',
-    email: 'courtney.henry@example.com',
-    role: 'Admin',
-  },
-  {
-    id: 3,
-    name: 'Tom Cook',
-    position: 'Director of Product',
-    email: 'tom.cook@example.com',
-    role: 'Member',
-  },
-  {
-    id: 4,
-    name: 'Whitney Francis',
-    position: 'Copywriter',
-    email: 'whitney.francis@example.com',
-    role: 'Admin',
-  },
-  {
-    id: 5,
-    name: 'Leonard Krasner',
-    position: 'Senior Designer',
-    email: 'leonard.krasner@example.com',
-    role: 'Owner',
-  },
-  {
-    id: 6,
-    name: 'Floyd Miles',
-    position: 'Principal Designer',
-    email: 'floyd.miles@example.com',
-    role: 'Member',
-  },
-])
-
-const columns: TableColumn<User>[] = [
+const columns: TableColumn<any>[] = [
   {
     accessorKey: 'id',
     header: 'ID',
@@ -80,32 +35,19 @@ const columns: TableColumn<User>[] = [
   },
 ]
 
-function getDropdownActions(user: User): DropdownMenuItem[][] {
+function getDropdownActions(user: any): DropdownMenuItem[][] {
   return [
-    [
-      {
-        label: 'Copy user Id',
-        icon: 'i-lucide-copy',
-        onSelect: () => {
-          copy(user.id.toString())
-
-          toast.add({
-            title: 'User ID copied to clipboard!',
-            color: 'success',
-            icon: 'i-lucide-circle-check',
-          })
-        },
-      },
-    ],
     [
       {
         label: 'Edit',
         icon: 'i-lucide-edit',
+        onSelect: () => openEditModal(user.id),
       },
       {
         label: 'Delete',
         icon: 'i-lucide-trash',
         color: 'error',
+        onSelect: () => openDeleteModal(user.id),
       },
     ],
   ]
@@ -113,37 +55,62 @@ function getDropdownActions(user: User): DropdownMenuItem[][] {
 </script>
 
 <template>
-  <UTable
-:data="data"
-:columns="columns"
-class="flex-1"
->
-    <template #name-cell="{ row }">
-      <div class="flex items-center gap-3">
-        <UAvatar
-          :src="`https://i.pravatar.cc/120?img=${row.original.id}`"
-          size="lg"
-          :alt="`${row.original.name} avatar`"
-        />
-        <div>
-          <p class="font-medium text-highlighted">
-            {{ row.original.name }}
-          </p>
-          <p>
-            {{ row.original.position }}
-          </p>
+  <div class="p-4 rounded-md border border-neutral-200">
+    <div class="flex justify-between items-center p-2">
+      <UInput
+        v-model="value"
+        placeholder="Type something..."
+        :ui="{ trailing: 'pe-1' }"
+      >
+        <template v-if="value?.length" #trailing>
+          <UButton
+            color="neutral"
+            variant="link"
+            size="sm"
+            icon="i-lucide-circle-x"
+            aria-label="Clear input"
+            @click="value = ''"
+          />
+        </template>
+      </UInput>
+      <AddMenuModal />
+    </div>
+    <UTable
+    :data="store"
+    :columns="columns"
+    class="flex-1"
+    sticky
+    >
+      <template #name-cell="{ row }">
+        <div class="flex items-center gap-3">
+          <UAvatar
+            :src="`https://i.pravatar.cc/120?img=${row.original.id}`"
+            size="lg"
+            :alt="`${row.original.name} avatar`"
+          />
+          <div>
+            <p class="font-medium text-highlighted">
+              {{ row.original.name }}
+            </p>
+            <p>
+              {{ row.original.position }}
+            </p>
+          </div>
         </div>
-      </div>
-    </template>
-    <template #action-cell="{ row }">
-      <UDropdownMenu :items="getDropdownActions(row.original)">
-        <UButton
-          icon="i-lucide-ellipsis-vertical"
-          color="neutral"
-          variant="ghost"
-          aria-label="Actions"
-        />
-      </UDropdownMenu>
-    </template>
-  </UTable>
+      </template>
+      <template #action-cell="{ row }">
+        <UDropdownMenu :items="getDropdownActions(row.original)">
+          <UButton
+            icon="i-lucide-ellipsis-vertical"
+            color="neutral"
+            variant="ghost"
+            aria-label="Actions"
+          />
+        </UDropdownMenu>
+      </template>
+    </UTable>
+    <div class="flex justify-center my-2">
+      <UPagination v-model:page="page" :sibling-count="1" :total="100" active-color="error"/>
+    </div>
+  </div>
 </template>
