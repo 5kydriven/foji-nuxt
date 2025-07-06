@@ -1,9 +1,14 @@
 <script setup lang="ts">
-	import { motion } from 'motion-v';
+	import HeroSection from './_components/hero-section.vue';
+	// import FeaturedSection from './_components/featured-section.vue';
+	import AboutSection from './_components/about-section.vue';
+	import ServiceSection from './_components/service-section.vue';
+	import MenuSection from './_components/menu-section.vue';
+	import ReservationSection from './_components/reservation-section.vue';
+	import FeedbackSection from './_components/feedback-section.vue';
+	import FaqSection from './_components/faq-section.vue';
+	import ContactSection from './_components/contact-section.vue';
 	import type { Menu } from '~~/types/menu.type';
-	import HeroSection from './components/hero-section.vue';
-	import MenuSection from './components/menu-section.vue';
-	import FeaturedSection from './components/featured-section.vue';
 
 	const menus = ref<Menu[]>([
 		{
@@ -34,20 +39,20 @@
 			price: 300,
 			description: 'Scrumptious menu item 4',
 		},
-		{
-			japaneseName: 'スチューズエッグとチキンライスセット',
-			name: 'Stewes Egg with Chicken Rice Set',
-			image: '/menu-5.png',
-			price: 300,
-			description: 'Savory menu item 5',
-		},
-		{
-			japaneseName: '海鮮チャーハンセット / 日本の味',
-			name: 'Sea Food Fried Rice Set / Japanes Taste',
-			image: '/menu-6.png',
-			price: 300,
-			description: 'Appetizing menu item 6',
-		},
+		// {
+		// 	japaneseName: 'スチューズエッグとチキンライスセット',
+		// 	name: 'Stewes Egg with Chicken Rice Set',
+		// 	image: '/menu-5.png',
+		// 	price: 300,
+		// 	description: 'Savory menu item 5',
+		// },
+		// {
+		// 	japaneseName: '海鮮チャーハンセット / 日本の味',
+		// 	name: 'Sea Food Fried Rice Set / Japanes Taste',
+		// 	image: '/menu-6.png',
+		// 	price: 300,
+		// 	description: 'Appetizing menu item 6',
+		// },
 	]);
 
 	const page = ref(1);
@@ -56,7 +61,13 @@
 <template>
 	<div class="flex flex-col gap-5">
 		<HeroSection />
+		<!-- <AboutSection /> -->
+		<ServiceSection />
 		<MenuSection :menus="menus" />
-		<FeaturedSection :menus="menus" />
+		<ReservationSection />
+		<FeedbackSection />
+		<!-- <FaqSection />
+		<ContactSection /> -->
+		<!-- <FeaturedSection :menus="menus" /> -->
 	</div>
 </template>

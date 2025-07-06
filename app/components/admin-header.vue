@@ -5,11 +5,11 @@
 
 	const items = ref<NavigationMenuItem[][]>([
 		[
-			{ label: 'Home', to: '/' },
-			{ label: 'About', to: '/maintenance' },
-			{ label: 'Menu', to: '/maintenance' },
-			{ label: 'Faq', to: '/maintenance' },
-			{ label: 'Contact Us', to: '/maintenance' },
+			{ label: 'Home', to: '/admin' },
+			{ label: 'Featured', to: '/maintenance' },
+			{ label: 'Menu', to: '/admin/menu' },
+			{ label: 'Settings', to: '/maintenance' },
+			{ label: 'Sign out', to: '/maintenance' },
 		],
 	]);
 </script>

@@ -1,5 +1,9 @@
+<script setup lang="ts">
+definePageMeta({
+	layout: 'custom',
+});
+</script>
+
 <template>
-	<MyComponent />
-	<GlobalComponents />
-	<UButton />
+	Admin
 </template>
