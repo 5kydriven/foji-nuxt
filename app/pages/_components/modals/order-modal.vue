@@ -9,7 +9,7 @@
 		/>
 
 		<template #body>
-			<Placeholder class="h-48" />
+			<div>test</div>
 		</template>
 	</UModal>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <UModal title="Modal with title">
-    <UButton
+	<UModal title="Modal with title">
+		<UButton
 			label="Add Menu"
 			color="error"
 			variant="solid"
@@ -8,8 +8,8 @@
 			class="ml-2"
 		/>
 
-    <template #body>
-      <Placeholder class="h-48" />
-    </template>
-  </UModal>
+		<template #body>
+			<div>test</div>
+		</template>
+	</UModal>
 </template>
