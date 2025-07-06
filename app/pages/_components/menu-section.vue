@@ -58,7 +58,7 @@
 							/>
 						</div>
 						<div class="flex flex-col items-center">
-<span class="text-gray-800 dark:text-white font-semibold text-center">{{
+							<span class="text-gray-800 dark:text-white font-semibold text-center">{{
 								item.japaneseName
 							}}</span>
 							<p class="text-gray-600 dark:text-gray-400 text-center">

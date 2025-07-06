@@ -1,11 +1,11 @@
 <template>
-	<UModal
-		:dismissible="false"
-		title="Order Details"
-	>
+	<UModal title="Modal with title">
 		<UButton
-			label="Order now"
+			label="Add Menu"
 			color="error"
+			variant="solid"
+			icon="i-lucide-plus"
+			class="ml-2"
 		/>
 
 		<template #body>

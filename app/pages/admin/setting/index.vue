@@ -6,5 +6,5 @@
 </script>
 
 <template>
-	<div>Admin</div>
+	<div>Settings</div>
 </template>
