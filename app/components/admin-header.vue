@@ -6,9 +6,9 @@
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Home', to: '/admin' },
-			{ label: 'Featured', to: '/maintenance' },
+			{ label: 'Featured', to: '/admin/featured' },
 			{ label: 'Menu', to: '/admin/menu' },
-			{ label: 'Settings', to: '/maintenance' },
+			{ label: 'Settings', to: '/admin/setting' },
 			{ label: 'Sign out', to: '/maintenance' },
 		],
 	]);
