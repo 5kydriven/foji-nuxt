@@ -18,6 +18,7 @@ export default withNuxt(
 			'vue/html-self-closing': 'off',
 			'vue/singleline-html-element-content-newline': 'off',
 			'@stylistic/brace-style': 'off',
+			'@stylistic/operator-linebreak': 'off',
 		},
 	},
 );
