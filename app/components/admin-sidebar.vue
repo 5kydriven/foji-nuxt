@@ -25,12 +25,12 @@ const items = ref<NavigationMenuItem[][]>([
     :items="items"
     color="error"
     class="data-[orientation=vertical]:w-48"
-    >
-      <template #default="{ item }: { item: NavigationMenuItem }">
+    />
+      <!-- <template #default="{ item }: { item: NavigationMenuItem }">
 				<div class="flex items-center space-x-2 p-2 text-lg">
 					<UIcon :name="item.icon as any" />
 					<span>{{ item.label }}</span>
 				</div>
-			</template></UNavigationMenu>
+			</template></UNavigationMenu> -->
   </div>
 </template>

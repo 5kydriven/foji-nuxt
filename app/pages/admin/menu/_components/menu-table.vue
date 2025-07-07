@@ -22,12 +22,12 @@
 			header: 'Name',
 		},
 		{
-			accessorKey: 'email',
-			header: 'Email',
+			accessorKey: 'description',
+			header: 'Description',
 		},
 		{
-			accessorKey: 'role',
-			header: 'Role',
+			accessorKey: 'price',
+			header: 'Price',
 		},
 		{
 			id: 'action',
@@ -86,18 +86,24 @@
 			<template #name-cell="{ row }">
 				<div class="flex items-center gap-3">
 					<UAvatar
-						:src="`https://i.pravatar.cc/120?img=${row.original.id}`"
+						:src="row.original.image"
 						size="lg"
-						:alt="`${row.original.name} avatar`"
 					/>
 					<div>
 						<p class="font-medium text-highlighted">
-							{{ row.original.name }}
+							{{ row.original.japaneseName }}
 						</p>
 						<p>
-							{{ row.original.position }}
+							{{ row.original.name }}
 						</p>
 					</div>
+				</div>
+			</template>
+			<template #price-cell="{ row }">
+				<div>
+					<p>
+						{{ formatPeso(row.original.price) }}
+					</p>
 				</div>
 			</template>
 			<template #action-cell="{ row }">

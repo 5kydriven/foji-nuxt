@@ -1,13 +1,14 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
+	const isDark = ref(false);
 	const isOpen = ref(false);
 
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Home', to: '/' },
-			{ label: 'About', to: '/maintenance' },
-			{ label: 'Menu', to: '/maintenance' },
+			{ label: 'About', to: '/about' },
+			{ label: 'Menu', to: '/menu' },
 			{ label: 'Faq', to: '/maintenance' },
 			{ label: 'Contact Us', to: '/maintenance' },
 		],
@@ -33,18 +34,26 @@
 			>
 				<template #default="{ item }: { item: NavigationMenuItem }">
 					<div class="flex items-center space-x-2">
-						<UIcon :name="item.icon as any" />
+						<!-- <UIcon :name="item.icon as any" /> -->
 						<span>{{ item.label }}</span>
 					</div>
 				</template>
 			</UNavigationMenu>
-			<UButton
-				icon="heroicons:bars-3-bottom-right-solid"
-				color="neutral"
-				variant="subtle"
-				class="md:hidden"
-				@click="isOpen = true"
-			/>
+			<div class="space-x-2">
+				<UButton
+					:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+					color="neutral"
+					variant="ghost"
+					@click="isDark = !isDark"
+				/>
+				<UButton
+					icon="heroicons:bars-3-bottom-right-solid"
+					color="neutral"
+					variant="subtle"
+					class="md:hidden"
+					@click="isOpen = true"
+				/>
+			</div>
 			<USlideover
 				v-model="isOpen"
 				title="FOJI"

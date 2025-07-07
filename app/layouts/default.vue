@@ -4,9 +4,11 @@
 </script>
 
 <template>
-	<UserHeader />
-
-	<slot />
-
-	<UserFooter />
+	<div class="h-screen flex flex-col justify-between">
+		<UserHeader />
+	
+		<slot />
+	
+		<UserFooter />
+	</div>
 </template>
