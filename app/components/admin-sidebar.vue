@@ -13,8 +13,10 @@ const items = ref<NavigationMenuItem[][]>([
 			{ label: 'Featured', icon: 'heroicons:building-storefront-solid', to: '/admin/featured' },
 			{ label: 'Menu', icon: 'heroicons:building-storefront-solid', to: '/admin/menu' },
 			{ label: 'Settings', icon: 'heroicons:cog-6-tooth-20-solid', to: '/admin/setting' },
-			{ label: 'Sign out', icon: 'heroicons:arrow-up-on-square-stack-solid', onSelect: logout},
 		],
+    [
+      { label: 'Sign out', icon: 'heroicons:arrow-up-on-square-stack-solid', onSelect: logout},
+    ]
 	]);
 </script>
 
@@ -24,7 +26,7 @@ const items = ref<NavigationMenuItem[][]>([
     orientation="vertical"
     :items="items"
     color="error"
-    class="data-[orientation=vertical]:w-48"
+    class="data-[orientation=vertical]:w-48 h-screen"
     />
       <!-- <template #default="{ item }: { item: NavigationMenuItem }">
 				<div class="flex items-center space-x-2 p-2 text-lg">

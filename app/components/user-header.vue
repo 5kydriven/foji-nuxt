@@ -39,42 +39,36 @@
 					</div>
 				</template>
 			</UNavigationMenu>
-			<div class="space-x-2">
+			<div class="flex items-center space-x-2">
 				<UButton
 					:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
 					color="neutral"
 					variant="ghost"
 					@click="isDark = !isDark"
 				/>
-				<UButton
-					icon="heroicons:bars-3-bottom-right-solid"
-					color="neutral"
-					variant="subtle"
-					class="md:hidden"
-					@click="isOpen = true"
-				/>
-			</div>
-			<USlideover
-				v-model="isOpen"
-				title="FOJI"
-				close-icon="i-lucide-arrow-right"
-			>
-				<template #body>
-					<div>
-						<UNavigationMenu
-							orientation="vertical"
-							color="error"
-							:items="items"
-							class="w-full"
-						/><br />
-						<hr />
-						<UButton
-							label="Log in"
-							color="error"
+				<div class="md:hidden">
+					<USlideover
+						title="FOJI"
+					>
+						<UButton 
+						icon="heroicons:bars-3-bottom-right-solid"
+						color="neutral"
+						variant="subtle""
 						/>
-					</div>
-				</template>
-			</USlideover>
+			
+						<template #body>
+							<div>
+								<UNavigationMenu
+									orientation="vertical"
+									color="error"
+									:items="items"
+									class="w-full"
+								/>
+							</div>
+						</template>
+					</USlideover>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

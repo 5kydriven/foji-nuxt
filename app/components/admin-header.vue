@@ -1,16 +1,24 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
+	const client = useSupabaseClient();
+
+  async function logout() {
+    await client.auth.signOut();
+    navigateTo('/auth');
+  }
+
 	const isDark = ref(false)
-	const isOpen = ref(false);
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Dashboard', icon: 'heroicons:home-modern-solid', to: '/admin' },
 			{ label: 'Featured', icon: 'heroicons:building-storefront-solid', to: '/admin/featured' },
 			{ label: 'Menu', icon: 'heroicons:building-storefront-solid', to: '/admin/menu' },
 			{ label: 'Settings', icon: 'heroicons:cog-6-tooth-20-solid', to: '/admin/setting' },
-			{ label: 'Sign out', icon: 'heroicons:arrow-up-on-square-stack-solid', to: '/maintenance' },
 		],
+		[
+			{ label: 'Sign out', icon: 'heroicons:arrow-up-on-square-stack-solid', onSelect: logout },
+		]
 	]);
 </script>
 
@@ -31,34 +39,28 @@
 				variant="ghost"
 				@click="isDark = !isDark"
 			/>
-			<UButton
-				icon="heroicons:bars-3-bottom-right-solid"
-				color="neutral"
-				variant="subtle"
-				class="md:hidden"
-				@click="isOpen = true"
-			/>
+			<div class="md:hidden">
+				<USlideover
+					title="FOJI"
+				>
+					<UButton 
+					icon="heroicons:bars-3-bottom-right-solid"
+					color="neutral"
+					variant="subtle""
+					/>
+		
+					<template #body>
+						<div>
+							<UNavigationMenu
+								orientation="vertical"
+								color="error"
+								:items="items"
+								class="w-full"
+							/>
+						</div>
+					</template>
+				</USlideover>
+			</div>
 		</div>
-			<USlideover
-				v-model="isOpen"
-				title="FOJI"
-				close-icon="i-lucide-arrow-right"
-			>
-				<template #body>
-					<div>
-						<UNavigationMenu
-							orientation="vertical"
-							color="error"
-							:items="items"
-							class="w-full"
-						/><br />
-						<hr />
-						<UButton
-							label="Log in"
-							color="error"
-						/>
-					</div>
-				</template>
-			</USlideover>
 	</div>
 </template>
