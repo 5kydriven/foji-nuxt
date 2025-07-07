@@ -1,18 +1,35 @@
 <script setup lang="ts">
-	import type { TableColumn, DropdownMenuItem } from '@nuxt/ui';
+	import type { TableColumn, DropdownMenuItem, TableRow } from '@nuxt/ui';
 	import AddMenuModal from './modals/add-modal.vue';
 	import type { Menu } from '~~/types/menu.type';
 	import { useMenuStore } from '~/stores/menu';
 	import { useMenuModal } from '~/composables/lazy-menu-modal';
 
-	const { openEditModal, openDeleteModal } = useMenuModal();
+	const { openViewModal, openEditModal, openDeleteModal } = useMenuModal();
 	const store = useMenuStore();
-	const toast = useToast();
-	const menu = ref<Menu>({});
 	const value = ref('');
 	const page = ref(5);
+	const UCheckbox = resolveComponent('UCheckbox')
 
 	const columns: TableColumn<any>[] = [
+		{
+			id: 'select',
+			header: ({ table }) =>
+				h(UCheckbox, {
+					modelValue: table.getIsSomePageRowsSelected()
+						? 'indeterminate'
+						: table.getIsAllPageRowsSelected(),
+					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
+						table.toggleAllPageRowsSelected(!!value),
+					'aria-label': 'Select all'
+				}),
+			cell: ({ row }) =>
+				h(UCheckbox, {
+					modelValue: row.getIsSelected(),
+					'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
+					'aria-label': 'Select row'
+				})
+		},
 		{
 			accessorKey: 'id',
 			header: 'ID',
@@ -28,6 +45,7 @@
 		{
 			accessorKey: 'price',
 			header: 'Price',
+			cell: ({ row }) => formatPeso(row.getValue('price')),
 		},
 		{
 			id: 'action',
@@ -38,7 +56,13 @@
 		return [
 			[
 				{
+					label: 'View Details',
+					icon: 'i-lucide-eye',
+					onSelect: () => openViewModal(user.id),
+				},
+				{
 					label: 'Edit',
+					color: 'info',
 					icon: 'i-lucide-edit',
 					onSelect: () => openEditModal(user.id),
 				},
@@ -51,6 +75,15 @@
 			],
 		];
 	}
+
+	const rowSelection = ref<Record<string, boolean>>({})
+
+	function onSelect(row: TableRow<Menu>, e?: Event) {
+		row.toggleSelected(!row.getIsSelected())
+
+		console.log(e)
+	}
+	
 </script>
 
 <template>
@@ -78,10 +111,12 @@
 			<AddMenuModal />
 		</div>
 		<UTable
+			v-model:row-selection="rowSelection"
 			:data="store"
 			:columns="columns"
 			class="flex-1"
 			sticky
+			@select="onSelect"
 		>
 			<template #name-cell="{ row }">
 				<div class="flex items-center gap-3">
@@ -97,13 +132,6 @@
 							{{ row.original.name }}
 						</p>
 					</div>
-				</div>
-			</template>
-			<template #price-cell="{ row }">
-				<div>
-					<p>
-						{{ formatPeso(row.original.price) }}
-					</p>
 				</div>
 			</template>
 			<template #action-cell="{ row }">

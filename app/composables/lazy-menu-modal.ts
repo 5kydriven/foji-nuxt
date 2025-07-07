@@ -1,9 +1,17 @@
+import ViewModal from '~/pages/admin/menu/_components/modals/view-modal.vue';
 import EditModal from '~/pages/admin/menu/_components/modals/edit-modal.vue';
 import DeleteModal from '~/pages/admin/menu/_components/modals/delete-modal.vue';
 
 export function useMenuModal() {
 	const overlay = useOverlay();
 	const toast = useToast();
+
+	async function openViewModal(id: number) {
+		const modal = overlay.create(ViewModal, {
+			props: { id },
+		});
+		const instance = modal.open();
+	}
 
 	async function openEditModal(id: number) {
 		const modal = overlay.create(EditModal, {
@@ -40,6 +48,7 @@ export function useMenuModal() {
 	}
 
 	return {
+		openViewModal,
 		openEditModal,
 		openDeleteModal,
 	};

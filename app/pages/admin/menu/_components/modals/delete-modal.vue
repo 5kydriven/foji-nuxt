@@ -12,7 +12,7 @@ const emit = defineEmits<{ close: [boolean] }>()
     title="Are you sure you want to delete this menu?"
   >
     <template #footer>
-      <div class="flex gap-2">
+      <div class="flex justify-end gap-2 w-full">
         <UButton color="neutral" label="Cancel" @click="emit('close', false)" />
         <UButton label="Yes" color="error" @click="emit('close', true)" />
       </div>
