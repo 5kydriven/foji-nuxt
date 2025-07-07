@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
-	const isOpen = ref(false);
 	const isDark = ref(false)
+	const isOpen = ref(false);
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Dashboard', icon: 'heroicons:home-modern-solid', to: '/admin' },
@@ -25,8 +25,12 @@
 			<span class="font-bold text-red-600 text-xl">FOJI</span>
 		</div>
 		<div class="flex gap-4 items-center">
-			<UButton icon="heroicons:sun" color="neutral" variant="subtle" @click="isDark = false" v-if="!isDark"/>
-			<UButton icon="heroicons:moon-16-solid" color="neutral" variant="subtle" @click="isDark = true" v-else/>
+			<UButton
+				:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+				color="neutral"
+				variant="ghost"
+				@click="isDark = !isDark"
+			/>
 			<UButton
 				icon="heroicons:bars-3-bottom-right-solid"
 				color="neutral"
