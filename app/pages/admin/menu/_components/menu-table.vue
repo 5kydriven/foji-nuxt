@@ -91,7 +91,8 @@
 		<div class="flex justify-between items-center p-2">
 			<UInput
 				v-model="value"
-				placeholder="Type something..."
+				icon="heroicons:magnifying-glass-solid"
+				placeholder="Search..."
 				:ui="{ trailing: 'pe-1' }"
 			>
 				<template
