@@ -1,7 +1,6 @@
 <template>
 	<div
-		id="faq"
-		class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10 dark:bg-gray-900 px-4 py-10"
+		class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10  px-4 py-10"
 	>
 		<div class="flex flex-col md:flex-row items-center justify-between gap-10 p-4 rounded-md ">
 			<div class="flex-1 flex justify-center items-center ">
@@ -20,9 +19,10 @@
 					This restaurant is not just about food; it's about creating an unforgettable experience. From our exquisite menu to our attentive service, we strive to make every visit special. Whether you're here for a casual meal or a celebration, we have something for everyone.
 				</p>
 				<UButton
-label="About Us"
-color="error"
-/>
+				@click="$router.push('/about')"
+				label="About Us"
+				color="error"
+				/>
 			</div>
 		</div>
 	</div>

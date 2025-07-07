@@ -4,7 +4,7 @@
 </script>
 
 <template>
-	<div class="h-screen flex flex-col justify-between">
+	<div class="h-screen flex flex-col justify-between ">
 		<UserHeader />
 	
 		<slot />
