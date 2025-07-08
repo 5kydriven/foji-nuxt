@@ -11,8 +11,7 @@
 
 <template>
 	<div
-		id="menu"
-		class="space-y-2 w-full min-h-[60vh] px-4 py-10"
+		class="space-y-2 w-full min-h-[60vh] px-4 py-10 xl:px-16"
 	>
 	<h1
 		class="font-bold text-center w-full text-2xl md:text-3xl lg:text-4xl  dark:text-white"

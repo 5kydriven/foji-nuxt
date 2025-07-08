@@ -32,19 +32,19 @@ async function onSubmit(event: FormSubmitEvent<typeof menu>) {
 			<UForm :validate="validate" :state="menu" class="space-y-4" @submit="onSubmit">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 					<UFormField label="Name" name="name">
-						<UInput v-model="menu.name" variant="subtle" class="w-full"/>
+						<UInput v-model="menu.name"  class="w-full"/>
 					</UFormField>
 	
 					<UFormField label="Japanese Name" name="japaneseName" >
-						<UInput v-model="menu.japaneseName" variant="subtle" class="w-full"/>
+						<UInput v-model="menu.japaneseName"  class="w-full"/>
 					</UFormField>
 				</div>
 
 				<UFormField label="Price" name="price">
-					<UInput icon="lucide:philippine-peso" v-model="menu.price" type="number" placeholder="00.00" variant="subtle"/>
+					<UInput icon="lucide:philippine-peso" v-model="menu.price" type="number" placeholder="00.00" />
 				</UFormField>
 				<UFormField label="Description" name="description">
-					 <UTextarea color="neutral" variant="subtle" highlight placeholder="Type something..." class="w-full"/>
+					 <UTextarea color="neutral"  highlight placeholder="Type something..." class="w-full"/>
 				</UFormField>
 				<UFormField label="Menu Image" name="image">
 					  <UInput type="file"  class="w-full"/>

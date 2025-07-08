@@ -25,8 +25,7 @@ const feedbacks = [
 
 <template>
 	<div
-		id="faq"
-		class="w-full min-h-[60vh] gap-10 dark:bg-gray-900 px-4 py-10 space-y-4"
+		class="w-full min-h-[60vh] gap-10 dark:bg-gray-900 px-4 py-10 xl:px-16 space-y-4"
 	>
 		<h1 class="text-3xl font-bold">What Our Customer Says?</h1>
 		<div class="w-full">

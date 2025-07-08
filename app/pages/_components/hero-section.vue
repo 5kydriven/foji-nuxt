@@ -53,7 +53,7 @@
 
 <template>
 	<div
-		class="min-h-[60vh] md:h-screen flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3"
+		class="min-h-[60vh] md:h-screen flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3 xl:p-16"
 	>
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5">
 			<div>
@@ -62,14 +62,14 @@
 					class="invisible"
 				>
 					<h1
-						class="font-bold text-2xl sm:text-3xl md:text-5xl text-dark h1 text-white leading-tight break-words"
+						class="font-bold text-2xl sm:text-3xl md:text-5xl xl:text-6xl text-dark h1 text-white leading-tight break-words"
 					>
 						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.
 					</h1>
 				</div>
 				<br />
 				<motion.div
-					class="text-slate-200"
+					class="text-slate-200 xl:text-3xl"
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
@@ -105,7 +105,7 @@
 				>
 					<img
 						src="/menu.png"
-						class="w-48 h-48 md:w-72 md:h-72 rounded-lg drop-shadow-2xl/50"
+						class="w-48 h-48 md:w-72 md:h-72 xl:w-auto xl:h-auto rounded-lg drop-shadow-2xl/50"
 					/>
 				</div>
 				<div class="flex justify-center">

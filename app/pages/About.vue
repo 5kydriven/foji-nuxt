@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="w-full py-8 flex flex-col items-center gap-8 p-2"
+		class="w-full py-8 flex flex-col items-center gap-8 p-2 "
 	>
 		<h1 class="text-3xl font-bold ">About Us</h1>
 		<div class="flex flex-col md:flex-row items-center p-4 rounded-md bg-red-100">

@@ -67,6 +67,7 @@
 						v-model="state.email"
 						class="w-full"
 						color="error"
+						size="xl"
 						placeholder="Enter your email"
 					/>
 				</UFormField>
@@ -80,6 +81,7 @@
 						type="password"
 						class="w-full"
 						color="error"
+						size="xl"
 						placeholder="Enter your password"
 					/>
 				</UFormField>
