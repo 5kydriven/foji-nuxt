@@ -17,14 +17,14 @@
 
 <template>
 	<div class="bg-gray-100">
-		<div class="max-w-screen flex items-center justify-between  p-2 xl:px-16 xl:py-4">
+		<div class="max-w-screen flex items-center justify-between  p-2 ">
 			<div class="flex items-center justify-center">
 				<img
 					src="/logo.png"
 					alt="FOJI Logo"
-					class="h-14 w-14 xl:w-16 xl:h-16"
+					class="h-14 w-14 "
 				/>
-				<span class="font-bold text-red-600 text-xl xl:text-2xl">FOJI</span>
+				<span class="font-bold text-red-600 text-xl ">FOJI</span>
 			</div>
 
 			<UNavigationMenu

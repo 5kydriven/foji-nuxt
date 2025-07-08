@@ -53,23 +53,23 @@
 
 <template>
 	<div
-		class="min-h-[60vh] md:h-screen flex flex-col justify-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3 xl:p-16"
+		class="min-h-screen flex justify-center items-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3 "
 	>
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5 ">
 			<div>
 				<div
 					ref="containerRef"
 					class="invisible"
 				>
 					<h1
-						class="font-bold text-2xl sm:text-3xl md:text-5xl xl:text-6xl text-dark h1 text-white leading-tight break-words"
+						class="font-bold text-2xl sm:text-3xl lg:text-5xl  text-dark h1 text-white leading-tight break-words drop-shadow-2xl"
 					>
 						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.
 					</h1>
 				</div>
 				<br />
 				<motion.div
-					class="text-slate-200 xl:text-3xl"
+					class="text-slate-200 "
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
@@ -105,7 +105,7 @@
 				>
 					<img
 						src="/menu.png"
-						class="w-48 h-48 md:w-72 md:h-72 xl:w-auto xl:h-auto rounded-lg drop-shadow-2xl/50"
+						class="w-48 h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-lg drop-shadow-2xl/50"
 					/>
 				</div>
 				<div class="flex justify-center">
@@ -115,70 +115,6 @@
 					/>
 				</div>
 			</div>
-		</div>
-		<div>
-			<!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-				<motion.div
-					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 1,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
-				>
-					<img
-						src="https://picsum.photos/468/468?random=3"
-						width="100"
-						class="rounded-lg max-w-xl max-h-xl object-cover"
-					/>
-					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
-					<span class="text-xs sm:text-sm text-center">
-						Lorem ipsum dolor sit amet.
-					</span>
-				</motion.div>
-				<motion.div
-					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 0.5,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
-				>
-					<img
-						src="https://picsum.photos/468/468?random=4"
-						width="100"
-						class="rounded-lg max-w-xl max-h-xl object-cover"
-					/>
-					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
-					<span class="text-xs sm:text-sm text-center">
-						Lorem ipsum dolor sit amet.
-					</span>
-				</motion.div>
-				<motion.div
-					class="p-4 rounded-md bg-black/40 text-white flex flex-col items-center"
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 1,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
-				>
-					<img
-						src="https://picsum.photos/468/468?random=5"
-						width="100"
-						class="rounded-lg max-w-xl max-h-xl object-cover"
-					/>
-					<h1 class="font-semibold text-base sm:text-lg">Lorem Epsom</h1>
-					<span class="text-xs sm:text-sm text-center">
-						Lorem ipsum dolor sit amet.
-					</span>
-				</motion.div>
-			</div> -->
 		</div>
 	</div>
 </template>

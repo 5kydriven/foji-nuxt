@@ -1,7 +1,7 @@
 <template>
 	<div
 		id="faq"
-		class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10 dark:bg-gray-900 px-4 py-10"
+		class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10 dark:bg-gray-900 px-4 py-10 xl:px-16 "
 	>
 		<div class="flex flex-col md:flex-row items-center justify-between gap-10 p-4 xl:p-8 rounded-md bg-red-50">
 			<div class="flex-1 space-y-2">
