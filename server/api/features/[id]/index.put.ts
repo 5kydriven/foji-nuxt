@@ -3,6 +3,7 @@ import { serverSupabaseClient } from '#supabase/server';
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
 	const id = getRouterParam(event, 'id');
+	const body = await readBody(event);
 
 	if (!id) {
 		throw createError({
@@ -12,11 +13,18 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
+	if (!body) {
+		throw createError({
+			statusCode: 400,
+			statusMessage: 'Bad Request',
+			message: 'Body is required',
+		});
+	}
+
 	const { data, error } = await client
-		.from('menus')
-		.select('*')
-		.eq('id', id)
-		.single();
+		.from('features')
+		.update(body)
+		.eq('id', id);
 
 	if (error) {
 		throw createError({
@@ -28,7 +36,7 @@ export default defineEventHandler(async (event) => {
 
 	return sendResponse({
 		event,
-		statusCode: 201,
+		message: 'Successfully updated feature',
 		data,
 	});
 });
