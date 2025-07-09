@@ -18,6 +18,7 @@ async function onSubmit(event: FormSubmitEvent<typeof menu>) {
   console.log(event.data)
 }
 </script>
+
 <template>
 	<UModal title="Add Menu">
 		<UButton
@@ -29,29 +30,71 @@ async function onSubmit(event: FormSubmitEvent<typeof menu>) {
 		/>
 
 		<template #body>
-			<UForm :validate="validate" :state="menu" class="space-y-4" @submit="onSubmit">
+			<UForm
+:validate="validate"
+:state="menu"
+class="space-y-4"
+@submit="onSubmit"
+>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-					<UFormField label="Name" name="name">
-						<UInput v-model="menu.name"  class="w-full"/>
+					<UFormField
+label="Name"
+name="name"
+>
+						<UInput
+v-model="menu.name"
+class="w-full"
+/>
 					</UFormField>
-	
-					<UFormField label="Japanese Name" name="japaneseName" >
-						<UInput v-model="menu.japaneseName"  class="w-full"/>
+
+					<UFormField
+label="Japanese Name"
+name="japaneseName"
+>
+						<UInput
+v-model="menu.japaneseName"
+class="w-full"
+/>
 					</UFormField>
 				</div>
 
-				<UFormField label="Price" name="price">
-					<UInput icon="lucide:philippine-peso" v-model="menu.price" type="number" placeholder="00.00" />
+				<UFormField
+label="Price"
+name="price"
+>
+					<UInput
+v-model="menu.price"
+icon="lucide:philippine-peso"
+type="number"
+placeholder="00.00"
+/>
 				</UFormField>
-				<UFormField label="Description" name="description">
-					 <UTextarea color="neutral"  highlight placeholder="Type something..." class="w-full"/>
+				<UFormField
+label="Description"
+name="description"
+>
+					 <UTextarea
+color="neutral"
+highlight
+placeholder="Type something..."
+class="w-full"
+/>
 				</UFormField>
-				<UFormField label="Menu Image" name="image">
-					  <UInput type="file"  class="w-full"/>
+				<UFormField
+label="Menu Image"
+name="image"
+>
+					  <UInput
+type="file"
+class="w-full"
+/>
 				</UFormField>
 
 				<div class="flex justify-end w-full">
-					<UButton type="submit" color="error">
+					<UButton
+type="submit"
+color="error"
+>
 						Submit
 					</UButton>
 				</div>

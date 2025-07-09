@@ -16,19 +16,19 @@
 			id: 'select',
 			header: ({ table }) =>
 				h(UCheckbox, {
-					modelValue: table.getIsSomePageRowsSelected()
+					'modelValue': table.getIsSomePageRowsSelected()
 						? 'indeterminate'
 						: table.getIsAllPageRowsSelected(),
 					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
 						table.toggleAllPageRowsSelected(!!value),
-					'aria-label': 'Select all'
+					'aria-label': 'Select all',
 				}),
 			cell: ({ row }) =>
 				h(UCheckbox, {
-					modelValue: row.getIsSelected(),
+					'modelValue': row.getIsSelected(),
 					'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
-					'aria-label': 'Select row'
-				})
+					'aria-label': 'Select row',
+				}),
 		},
 		{
 			accessorKey: 'id',
@@ -83,7 +83,6 @@
 
 		console.log(e)
 	}
-	
 </script>
 
 <template>

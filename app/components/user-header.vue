@@ -50,12 +50,13 @@
 					<USlideover
 						title="FOJI"
 					>
-						<UButton 
+						<UButton
 						icon="heroicons:bars-3-bottom-right-solid"
 						color="neutral"
-						variant="subtle""
+						variant="subtle"
+"
 						/>
-			
+
 						<template #body>
 							<div>
 								<UNavigationMenu

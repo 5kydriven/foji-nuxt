@@ -51,7 +51,6 @@
 		// 	description: 'Appetizing menu item 6',
 		// },
 	]);
-
 </script>
 
 <template>

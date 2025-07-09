@@ -115,14 +115,14 @@ const menus = ref<Menu[]>([
 						</div>
 						<div class="px-2 hidden xl:block">
 							<span class="text-gray-800 dark:text-white font-semibold ">{{
-								menu.japaneseName?.length || 0 > 15 ? menu.japaneseName?.slice(0, 15) + '…' : menu.japaneseName 
+								menu.japaneseName?.length || 0 > 15 ? menu.japaneseName?.slice(0, 15) + '…' : menu.japaneseName
 							}}</span>
 							<p class="text-gray-600 dark:text-gray-400 ">
 								{{ menu.name?.length || 0 > 30 ? menu.name?.slice(0, 30) + '…' : menu.name }}
 							</p>
 						</div>
 						<div class="px-2 xl:hidden">
-							<span class="text-gray-800 dark:text-white font-semibold ">{{ menu.japaneseName 
+							<span class="text-gray-800 dark:text-white font-semibold ">{{ menu.japaneseName
 							}}</span>
 							<p class="text-gray-600 dark:text-gray-400 ">
 								{{ menu.name }}
@@ -130,11 +130,11 @@ const menus = ref<Menu[]>([
 						</div>
 						<div class="flex  items-center justify-between w-full py-4 px-2 rounded-full">
 							<span class=" font-bold ">
-								₱ {{  menu.price }}
+								₱ {{ menu.price }}
 							</span>
 							<div>
 								<div
-									class="flex items-center justify-center rounded-full px-2 border border-red-600  text-red-600 hover:bg-red-600 hover:text-white"	
+									class="flex items-center justify-center rounded-full px-2 border border-red-600  text-red-600 hover:bg-red-600 hover:text-white"
 								>
 									Details
 									<UIcon
