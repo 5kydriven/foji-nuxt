@@ -87,7 +87,7 @@ const menus = ref<Menu[]>([
 					Gaming
 				</button>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full ">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full p-2">
 				<div
 				v-for="(menu, index) in menus"
 				:key="menu.name"
@@ -102,7 +102,7 @@ const menus = ref<Menu[]>([
 							}"
 							>
 					<div
-						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg  transition-all duration-300 overflow-hidden  p-2 px-4 h-96 my-2"
+						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg  transition-all duration-300 overflow-hidden  my-2"
 					>
 						<div
 							class="flex justify-center items-center w-full md:w-auto  rounded-md min-w-40 min-h-40 bg-red-50"
@@ -113,15 +113,22 @@ const menus = ref<Menu[]>([
 								class="w-40 "
 							/>
 						</div>
-						<div class="flex flex-col items-center">
-							<span class="text-gray-800 dark:text-white font-semibold text-center">{{
-								menu.japaneseName
+						<div class="px-2 hidden xl:block">
+							<span class="text-gray-800 dark:text-white font-semibold ">{{
+								menu.japaneseName?.length || 0 > 15 ? menu.japaneseName?.slice(0, 15) + '…' : menu.japaneseName 
 							}}</span>
-							<p class="text-gray-600 dark:text-gray-400 text-center">
+							<p class="text-gray-600 dark:text-gray-400 ">
+								{{ menu.name?.length || 0 > 30 ? menu.name?.slice(0, 30) + '…' : menu.name }}
+							</p>
+						</div>
+						<div class="px-2 xl:hidden">
+							<span class="text-gray-800 dark:text-white font-semibold ">{{ menu.japaneseName 
+							}}</span>
+							<p class="text-gray-600 dark:text-gray-400 ">
 								{{ menu.name }}
 							</p>
 						</div>
-						<div class="flex  items-center justify-between w-full py-4 px-4 md:px-8  rounded-full">
+						<div class="flex  items-center justify-between w-full py-4 px-2 rounded-full">
 							<span class=" font-bold ">
 								₱ {{  menu.price }}
 							</span>
