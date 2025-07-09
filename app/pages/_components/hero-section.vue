@@ -53,23 +53,25 @@
 
 <template>
 	<div
-		class="min-h-screen flex justify-center items-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3 "
+		class="min-h-screen w-full flex justify-center items-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3"
 	>
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5 ">
+		<div
+			class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5 max-w-screen-xl mx-auto"
+		>
 			<div>
 				<div
 					ref="containerRef"
 					class="invisible"
 				>
 					<h1
-						class="font-bold text-2xl sm:text-3xl lg:text-5xl  text-dark h1 text-white leading-tight break-words drop-shadow-2xl"
+						class="font-bold text-2xl sm:text-3xl lg:text-5xl text-dark h1 text-white leading-tight break-words drop-shadow-2xl"
 					>
 						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.
 					</h1>
 				</div>
 				<br />
 				<motion.div
-					class="text-slate-200 "
+					class="text-slate-200"
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
