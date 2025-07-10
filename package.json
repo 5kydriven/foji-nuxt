@@ -29,6 +29,7 @@
 	"devDependencies": {
 		"@iconify-json/lucide": "^1.2.53",
 		"@nuxtjs/supabase": "^1.5.3",
+		"supabase": "^2.30.4",
 		"typescript": "^5.8.3",
 		"vue-tsc": "^2.2.10"
 	}
