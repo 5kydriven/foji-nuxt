@@ -13,8 +13,16 @@ const emit = defineEmits<{ close: [boolean] }>()
   >
     <template #footer>
       <div class="flex justify-end gap-2 w-full">
-        <UButton color="neutral" label="Cancel" @click="emit('close', false)" />
-        <UButton label="Yes" color="error" @click="emit('close', true)" />
+        <UButton
+color="neutral"
+label="Cancel"
+@click="emit('close', false)"
+/>
+        <UButton
+label="Yes"
+color="error"
+@click="emit('close', true)"
+/>
       </div>
     </template>
   </UModal>

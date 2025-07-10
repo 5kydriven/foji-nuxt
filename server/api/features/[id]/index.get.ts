@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const { data, error } = await client
-		.from('menus')
+		.from('features')
 		.select('*')
 		.eq('id', id)
 		.single();

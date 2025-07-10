@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 	const limit = parseInt(query.limit as string) || 10;
 	const offset = (page - 1) * limit;
 
-	let supabaseQuery = client.from('menus').select('*', { count: 'exact' });
+	let supabaseQuery = client.from('features').select('*', { count: 'exact' });
 
 	if (search) {
 		supabaseQuery = supabaseQuery.ilike('name', `%${search}%`);

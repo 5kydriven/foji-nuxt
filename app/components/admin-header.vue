@@ -18,7 +18,7 @@
 		],
 		[
 			{ label: 'Sign out', icon: 'heroicons:arrow-up-on-square-stack-solid', onSelect: logout },
-		]
+		],
 	]);
 </script>
 
@@ -43,12 +43,13 @@
 				<USlideover
 					title="FOJI"
 				>
-					<UButton 
+					<UButton
 					icon="heroicons:bars-3-bottom-right-solid"
 					color="neutral"
-					variant="subtle""
+					variant="subtle"
+"
 					/>
-		
+
 					<template #body>
 						<div>
 							<UNavigationMenu

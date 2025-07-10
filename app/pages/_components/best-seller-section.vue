@@ -70,7 +70,7 @@
 							</span>
 							<div>
 								<div
-									class="flex items-center justify-center rounded-full px-2 border border-red-600  text-red-600 hover:bg-red-600 hover:text-white"	
+									class="flex items-center justify-center rounded-full px-2 border border-red-600  text-red-600 hover:bg-red-600 hover:text-white"
 								>
 									Details
 									<UIcon

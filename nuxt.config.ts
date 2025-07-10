@@ -30,6 +30,10 @@ export default defineNuxtConfig({
 			supabaseKey: process.env.SUPABASE_KEY,
 		},
 	},
+	routeRules: {
+		'/': { prerender: true },
+		'/admin/**': { ssr: false },
+	},
 	future: {
 		compatibilityVersion: 4,
 	},

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const { openEditModal, openDeleteModal } = useMenuModal();
 defineProps<{
   id: number
@@ -19,8 +18,16 @@ const emit = defineEmits<{ close: [boolean] }>()
 		</template>
     <template #footer>
       <div class="flex justify-end gap-2 w-full">
-        <UButton color="error" label="Edit" @click="openEditModal(id)" />
-        <UButton label="Delete" @click="openDeleteModal(id)" color="neutral"/>
+        <UButton
+color="error"
+label="Edit"
+@click="openEditModal(id)"
+/>
+        <UButton
+label="Delete"
+color="neutral"
+@click="openDeleteModal(id)"
+/>
       </div>
     </template>
   </UModal>
