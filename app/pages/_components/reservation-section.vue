@@ -17,7 +17,7 @@
 				/>
 			</div>
 			<div class="flex-1 flex justify-center items-center">
-				<img	
+				<img
 					src="/menu.png"
 					class="w-48 h-48 md:w-72 md:h-72 rounded-lg drop-shadow-2xl/50"
 				/>

@@ -15,8 +15,8 @@ const items = ref<NavigationMenuItem[][]>([
 			{ label: 'Settings', icon: 'heroicons:cog-6-tooth-20-solid', to: '/admin/setting' },
 		],
     [
-      { label: 'Sign out', icon: 'heroicons:arrow-up-on-square-stack-solid', onSelect: logout},
-    ]
+      { label: 'Sign out', icon: 'heroicons:arrow-up-on-square-stack-solid', onSelect: logout },
+    ],
 	]);
 </script>
 

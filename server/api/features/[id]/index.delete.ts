@@ -12,11 +12,7 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
-	const { data, error } = await client
-		.from('menus')
-		.select('*')
-		.eq('id', id)
-		.single();
+	const { data, error } = await client.from('features').delete().eq('id', id);
 
 	if (error) {
 		throw createError({
@@ -28,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
 	return sendResponse({
 		event,
-		statusCode: 201,
+		message: 'Successfully deleted feature',
 		data,
 	});
 });

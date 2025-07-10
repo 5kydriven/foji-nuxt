@@ -6,9 +6,9 @@
 <template>
 	<div class="h-screen flex flex-col justify-between ">
 		<UserHeader />
-	
+
 		<slot />
-	
+
 		<UserFooter />
 	</div>
 </template>
