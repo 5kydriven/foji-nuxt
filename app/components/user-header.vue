@@ -3,7 +3,7 @@
 
 	const isDark = ref(false);
 	const isOpen = ref(false);
-
+	const router = useRouter()
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Home', to: '/' },
@@ -16,7 +16,7 @@
 </script>
 
 <template>
-	<div class="bg-gray-100">
+	<div class="z-10 " :class="router.currentRoute.value.path !== '/' ? 'bg-gray-100' : 'bg-black/30'">
 		<div class="max-w-screen-xl mx-auto flex items-center justify-between p-2">
 			<div class="flex items-center justify-center">
 				<img
@@ -24,18 +24,20 @@
 					alt="FOJI Logo"
 					class="h-14 w-14"
 				/>
-				<span class="font-bold text-red-600 text-xl">FOJI</span>
+				<span class="font-bold text-red-400 text-xl">FOJI</span>
 			</div>
 
 			<UNavigationMenu
 				color="error"
+				highlight
+				highlight-color="error"
 				:items="items"
 				class="w-full justify-end hidden md:flex"
 			>
 				<template #default="{ item }: { item: NavigationMenuItem }">
 					<div class="flex items-center space-x-2">
 						<!-- <UIcon :name="item.icon as any" /> -->
-						<span>{{ item.label }}</span>
+						<span class="text-white">{{ item.label }}</span>
 					</div>
 				</template>
 			</UNavigationMenu>

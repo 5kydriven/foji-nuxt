@@ -49,8 +49,9 @@ const menus = ref<Menu[]>([
 </script>
 
 <template>
-	<div
-			class="w-full flex flex-col items-center justify-center gap-4 py-4 xl:px-16"
+	<div class="w-full flex justify-center bg-gray-50">
+		<div
+			class="max-w-screen-xl mx-auto flex flex-col items-center justify-center gap-4 py-4 xl:px-16"
 		>
 			<h1 class="font-bold text-2xl md:text-3xl">Our Regular Menu Pack</h1>
 			<div
@@ -87,7 +88,7 @@ const menus = ref<Menu[]>([
 					Gaming
 				</button>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full p-2">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 w-full p-2">
 				<div
 				v-for="(menu, index) in menus"
 				:key="menu.name"
@@ -102,39 +103,39 @@ const menus = ref<Menu[]>([
 							}"
 							>
 					<div
-						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg  transition-all duration-300 overflow-hidden  my-2"
+						class="flex flex-col justify-between bg-white shadow rounded-lg  transition-all duration-300 overflow-hidden  my-2"
 					>
 						<div
-							class="flex justify-center items-center w-full md:w-auto  rounded-md min-w-40 min-h-40 bg-red-50"
+							class="flex justify-center items-center w-full md:w-auto   min-w-40 min-h-40 bg-black/30"
 						>
 							<img
 								:src="menu.image"
 								alt=""
-								class="w-40 "
+								class="w-40 hover:scale-150 transition-transform duration-300"
 							/>
 						</div>
-						<div class="px-2 hidden xl:block">
-							<span class="text-gray-800 dark:text-white font-semibold ">{{
-								menu.japaneseName?.length || 0 > 15 ? menu.japaneseName?.slice(0, 15) + '…' : menu.japaneseName
-							}}</span>
-							<p class="text-gray-600 dark:text-gray-400 ">
-								{{ menu.name?.length || 0 > 30 ? menu.name?.slice(0, 30) + '…' : menu.name }}
-							</p>
-						</div>
-						<div class="px-2 xl:hidden">
-							<span class="text-gray-800 dark:text-white font-semibold ">{{ menu.japaneseName
-							}}</span>
-							<p class="text-gray-600 dark:text-gray-400 ">
-								{{ menu.name }}
-							</p>
-						</div>
-						<div class="flex  items-center justify-between w-full py-4 px-2 rounded-full">
-							<span class=" font-bold ">
+						<div class="bg-red-700 p-2">
+							<span class=" font-thin text-white text-xl">
 								₱ {{ menu.price }}
 							</span>
-							<div>
+							<!-- <div class="hidden xl:block">
+								<span class="text-white font-semibold ">{{
+									menu.japaneseName?.length || 0 > 15 ? menu.japaneseName?.slice(0, 15) + '…' : menu.japaneseName
+								}}</span>
+								<p class="text-gray-200 dark:text-gray-400 ">
+									{{ menu.name?.length || 0 > 30 ? menu.name?.slice(0, 30) + '…' : menu.name }}
+								</p>
+							</div> -->
+							<div >
+								<span class="text-white font-semibold ">{{ menu.japaneseName
+								}}</span>
+								<p class="text-gray-200 dark:text-gray-400 ">
+									{{ menu.name }}
+								</p>
+							</div>
+							<div class="flex  items-center justify-between w-full py-4 px-2 rounded-full">
 								<div
-									class="flex items-center justify-center rounded-full px-2 border border-red-600  text-red-600 hover:bg-red-600 hover:text-white"
+									class="flex items-center justify-center rounded-full px-2 border border-white  text-white hover:bg-white hover:text-red-600"
 								>
 									Details
 									<UIcon
@@ -149,4 +150,5 @@ const menus = ref<Menu[]>([
 				</div>
 			</div>
 		</div>
+	</div>
 </template>

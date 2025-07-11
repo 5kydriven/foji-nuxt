@@ -20,19 +20,6 @@
 	</h1>
 		<div class=" w-full">
 			<div class="flex-1 w-full">
-				<!-- <div class="flex justify-between items-center p-0 pb-4 md:p-4">
-					<div>
-						<br />
-						<span>
-							ご飯セットには味噌汁、前菜、コーヒー／レモンティー／レモンウォーター／緑茶（冷／温）が含まれています。
-						</span>
-						<br />
-						<span>
-							Rice set includes Miso Soup, Appetizer, Coffee / Lemon Tea / Lemon
-							Water / Green Tea (Cold / Hot)
-						</span>
-					</div>
-				</div> -->
 				<UCarousel
 					v-slot="{ item }"
 					loop
@@ -40,31 +27,31 @@
 					:autoplay="{ delay: 2000 }"
 					:items="props.menus"
 					:ui="{
-						item: 'px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4',
+						item: 'px-2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6',
 					}"
 					class="w-full"
 				>
 					<div
-						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg  transition-all duration-300 overflow-hidden  p-2 px-4 h-96 my-2"
+						class="flex flex-col justify-between bg-white  gap-4 rounded-lg  transition-all duration-300 overflow-hidden   my-2 border border-gray-300"
 					>
 						<div
-							class="flex justify-center items-center w-full md:w-auto  rounded-md min-w-40 min-h-40 bg-red-50"
+							class="flex justify-center items-center w-full min-w-20 min-h-20 md:w-auto  bg-red-50"
 						>
 							<img
 								:src="item.image"
 								alt=""
-								class="w-40 "
+								class="w-20 "
 							/>
 						</div>
-						<div class="flex flex-col items-center">
-							<span class="text-gray-800 dark:text-white font-semibold text-center">{{
+						<div class="flex flex-col items-center min-w-20 min-h-10">
+							<!-- <span class="text-gray-800 dark:text-white font-semibold text-center">{{
 								item.japaneseName
-							}}</span>
+							}}</span> -->
 							<p class="text-gray-600 dark:text-gray-400 text-center">
 								{{ item.name }}
 							</p>
 						</div>
-						<div class="flex  items-center justify-between w-full py-4 px-4 md:px-8  rounded-full">
+						<!-- <div class="flex  items-center justify-between w-full py-4 px-4 md:px-8  rounded-full">
 							<span class=" font-bold ">
 								₱ {{ item.price }}
 							</span>
@@ -79,7 +66,7 @@
 									/>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</UCarousel>
 			</div>

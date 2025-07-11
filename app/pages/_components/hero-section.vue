@@ -53,25 +53,35 @@
 
 <template>
 	<div
-		class="min-h-screen w-full flex justify-center items-center gap-8 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat p-3"
+		class="min-h-screen w-full flex items-center justify-center gap-8 p-3 "
 	>
-		<div
-			class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-5 max-w-screen-xl mx-auto"
+		<video 
+			class="absolute top-0 left-0 w-full h-full object-cover" 
+			autoplay 
+			muted 
+			loop 
+			playsinline
 		>
-			<div>
+			<source src="/ai-video-bg.mp4" type="video/mp4" />
+			Your browser does not support the video tag.
+		</video>
+		<div
+			class="max-w-screen-xl mx-auto relative z-10 flex  py-5 max-w-screen-xl mx-auto bg-black/30 rounded-md"
+		>
+			<div class="flex flex-col items-center justify-center ">
 				<div
 					ref="containerRef"
 					class="invisible"
 				>
 					<h1
-						class="font-bold text-2xl sm:text-3xl lg:text-5xl text-dark h1 text-white leading-tight break-words drop-shadow-2xl"
+						class="font-bold text-2xl sm:text-3xl lg:text-5xl text-dark h1 text-white leading-tight break-words drop-shadow-2xl text-center"
 					>
 						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.
 					</h1>
 				</div>
 				<br />
 				<motion.div
-					class="text-slate-200"
+					class="text-gray-200 text-lg max-w-96 text-center"
 					:initial="{ opacity: 0, scale: 0.5 }"
 					:animate="{ opacity: 1, scale: 1 }"
 					:transition="{
@@ -99,23 +109,6 @@
 						class="hidden lg:block"
 					/>
 				</motion.div>
-			</div>
-			<div>
-				<div
-					ref="cubeRef"
-					class="flex justify-center py-5 lg:py-0"
-				>
-					<img
-						src="/menu.png"
-						class="w-48 h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-lg drop-shadow-2xl/50"
-					/>
-				</div>
-				<div class="flex justify-center">
-					<OrderModal
-						color="error"
-						class="block lg:hidden"
-					/>
-				</div>
 			</div>
 		</div>
 	</div>
