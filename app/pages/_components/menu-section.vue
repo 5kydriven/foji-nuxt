@@ -106,7 +106,7 @@ const menus = ref<Menu[]>([
 						class="flex flex-col justify-between bg-white shadow rounded-lg  transition-all duration-300 overflow-hidden  my-2"
 					>
 						<div
-							class="flex justify-center items-center w-full md:w-auto   min-w-40 min-h-40 bg-black/30"
+							class="flex justify-center items-center w-full md:w-auto   min-w-40 min-h-40 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat"
 						>
 							<img
 								:src="menu.image"

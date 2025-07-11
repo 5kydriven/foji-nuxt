@@ -53,7 +53,7 @@
 
 <template>
 	<div
-		class="min-h-screen w-full flex items-center justify-center gap-8 p-3 "
+		class="min-h-screen max-w-screen-xl mx-auto flex items-center justify-center gap-8 p-3 "
 	>
 		<video 
 			class="absolute top-0 left-0 w-full h-full object-cover" 
@@ -66,7 +66,7 @@
 			Your browser does not support the video tag.
 		</video>
 		<div
-			class="max-w-screen-xl mx-auto relative z-10 flex  py-5 max-w-screen-xl mx-auto bg-black/30 rounded-md"
+			class=" relative z-10 flex  py-5 max-w-screen-xl mx-auto bg-black/30 rounded-md"
 		>
 			<div class="flex flex-col items-center justify-center ">
 				<div
