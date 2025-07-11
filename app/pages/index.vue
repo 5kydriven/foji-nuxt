@@ -2,7 +2,7 @@
 	import HeroSection from './_components/hero-section.vue';
 	import ServiceSection from './_components/service-section.vue';
 	import BestSellerSection from './_components/best-seller-section.vue';
-	import AddOnsSection from './_components/add-ons-section.vue'
+	import AddOnsSection from './_components/add-ons-section.vue';
 	import ReservationSection from './_components/reservation-section.vue';
 	import MenuSection from './_components/menu-section.vue';
 	import FeedbackSection from './_components/feedback-section.vue';
@@ -52,6 +52,15 @@
 			description: 'Appetizing menu item 6',
 		},
 	]);
+
+	const user = useSupabaseUser();
+	const router = useRouter();
+
+	onMounted(() => {
+		if (user.value) {
+			router.replace('/admin');
+		}
+	});
 </script>
 
 <template>
