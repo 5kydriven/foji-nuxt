@@ -29,3 +29,9 @@
 		</NuxtLayout>
 	</UApp>
 </template>
+
+<!-- <style>
+	.max-w-screen-xl {
+		width: 1280px;
+	}
+</style> -->

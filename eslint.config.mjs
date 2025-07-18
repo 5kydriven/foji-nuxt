@@ -19,6 +19,7 @@ export default withNuxt(
 			'vue/singleline-html-element-content-newline': 'off',
 			'@stylistic/brace-style': 'off',
 			'@stylistic/operator-linebreak': 'off',
+			'@stylistic/indent-binary-ops': 'off',
 		},
 	},
 );

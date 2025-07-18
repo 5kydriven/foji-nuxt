@@ -47,7 +47,7 @@
 
 <template>
 	<div class="w-full h-screen flex items-center justify-center">
-		<div class="flex flex-col items-center min-w-xs">
+		<div class="flex flex-col items-center min-w-xs shadow-xl p-4 md:p-8 rounded-md">
 			<img
 				src="/logo.png"
 				alt="FOJI Logo"
@@ -67,6 +67,7 @@
 						v-model="state.email"
 						class="w-full"
 						color="error"
+						size="xl"
 						placeholder="Enter your email"
 					/>
 				</UFormField>
@@ -80,6 +81,7 @@
 						type="password"
 						class="w-full"
 						color="error"
+						size="xl"
 						placeholder="Enter your password"
 					/>
 				</UFormField>

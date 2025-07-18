@@ -1,13 +1,14 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
+	const isDark = ref(false);
 	const isOpen = ref(false);
-
+	const router = useRouter()
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Home', to: '/' },
-			{ label: 'About', to: '/maintenance' },
-			{ label: 'Menu', to: '/maintenance' },
+			{ label: 'About', to: '/about' },
+			{ label: 'Menu', to: '/menu' },
 			{ label: 'Faq', to: '/maintenance' },
 			{ label: 'Contact Us', to: '/maintenance' },
 		],
@@ -15,57 +16,63 @@
 </script>
 
 <template>
-	<div class="bg-gray-100">
-		<div class="max-w-screen-xl flex items-center justify-between mx-auto p-2">
-			<div class="flex items-center justify-center">
+	<div class="z-10 " :class="router.currentRoute.value.path !== '/' ? 'bg-gray-100' : 'bg-black/30'">
+		<div class="max-w-screen-xl mx-auto flex items-center justify-between p-2">
+			<div class="flex items-center justify-center w-full">
 				<img
 					src="/logo.png"
 					alt="FOJI Logo"
 					class="h-14 w-14"
 				/>
-				<span class="font-bold text-red-600 text-xl">FOJI</span>
+				<div class="flex flex-col items-start w-full">
+					<span class="font-bold text-red-400 text-xl">FOJI</span>
+					<span class="text-white text-sm">Japanese Restaurant</span>
+				</div>
 			</div>
 
 			<UNavigationMenu
 				color="error"
+				variant="link"
+				highlight
+				highlight-color="error"
 				:items="items"
 				class="w-full justify-end hidden md:flex"
 			>
 				<template #default="{ item }: { item: NavigationMenuItem }">
 					<div class="flex items-center space-x-2">
-						<UIcon :name="item.icon as any" />
-						<span>{{ item.label }}</span>
+						<!-- <UIcon :name="item.icon as any" /> -->
+						<span class="text-white">{{ item.label }}</span>
 					</div>
 				</template>
 			</UNavigationMenu>
-			<UButton
-				icon="heroicons:bars-3-bottom-right-solid"
-				color="neutral"
-				variant="subtle"
-				class="md:hidden"
-				@click="isOpen = true"
-			/>
-			<USlideover
-				v-model="isOpen"
-				title="FOJI"
-				close-icon="i-lucide-arrow-right"
-			>
-				<template #body>
-					<div>
-						<UNavigationMenu
-							orientation="vertical"
-							color="error"
-							:items="items"
-							class="w-full"
-						/><br />
-						<hr />
+			<div class="flex items-center space-x-2">
+				<UButton
+					:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+					color="neutral"
+					variant="ghost"
+					@click="isDark = !isDark"
+				/>
+				<div class="md:hidden">
+					<USlideover title="FOJI">
 						<UButton
-							label="Log in"
-							color="error"
+							icon="heroicons:bars-3-bottom-right-solid"
+							color="neutral"
+							variant="subtle"
 						/>
-					</div>
-				</template>
-			</USlideover>
+
+						<template #body>
+							<div>
+								<UNavigationMenu
+									orientation="vertical"
+									color="error"
+									:items="items"
+									class="w-full"
+								/>
+							</div>
+						</template>
+					</USlideover>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

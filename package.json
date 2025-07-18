@@ -21,7 +21,8 @@
 		"nuxt": "^3.17.5",
 		"pinia": "^3.0.3",
 		"vue": "latest",
-		"vue-router": "^4.5.1"
+		"vue-router": "^4.5.1",
+		"zod": "^3.25.76"
 	},
 	"overrides": {
 		"vue": "latest"
@@ -29,6 +30,7 @@
 	"devDependencies": {
 		"@iconify-json/lucide": "^1.2.53",
 		"@nuxtjs/supabase": "^1.5.3",
+		"supabase": "^2.30.4",
 		"typescript": "^5.8.3",
 		"vue-tsc": "^2.2.10"
 	}

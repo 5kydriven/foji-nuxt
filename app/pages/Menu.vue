@@ -50,7 +50,7 @@ const menus = ref<Menu[]>([
 
 <template>
 	<div
-			class="w-full flex flex-col items-center justify-center gap-8 py-4"
+			class="w-full flex flex-col items-center justify-center gap-8 py-4 xl:px-16"
 		>
 			<h1 class="font-bold text-2xl md:text-3xl">Menu's</h1>
 			<div

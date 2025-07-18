@@ -1,56 +1,56 @@
-interface User {
-	id: number;
-	name: string;
-	position: string;
-	email: string;
-	role: string;
-}
+import type { Menu } from '~~/types/menu.type';
 
 export function useMenuStore() {
-	const menu = ref<User[]>([
+	const menus = ref<Menu[]>([
 		{
 			id: 1,
-			name: 'Lindsay Walton',
-			position: 'Front-end Developer',
-			email: 'lindsay.walton@example.com',
-			role: 'Member',
+			japaneseName: '豚肉のカツ丼の煮卵セット',
+			name: 'Stewed Egg with Pork Chop Rice Set',
+			image: '/menu.png',
+			price: 300,
+			description: 'Delicious menu item 1',
 		},
 		{
 			id: 2,
-			name: 'Courtney Henry',
-			position: 'Designer',
-			email: 'courtney.henry@example.com',
-			role: 'Admin',
+			japaneseName: '特製豚生姜ご飯セット',
+			name: 'Special Pork Ginger Rice Set',
+			image: '/menu-2.png',
+			price: 300,
+			description: 'Tasty menu item 2',
 		},
 		{
 			id: 3,
-			name: 'Tom Cook',
-			position: 'Director of Product',
-			email: 'tom.cook@example.com',
-			role: 'Member',
+			japaneseName: '豚肉チョップ天心飯セット',
+			name: 'Pork Chop Tenshinhan Set',
+			image: '/menu-3.png',
+			price: 300,
+			description: 'Yummy menu item 3',
 		},
 		{
 			id: 4,
-			name: 'Whitney Francis',
-			position: 'Copywriter',
-			email: 'whitney.francis@example.com',
-			role: 'Admin',
+			japaneseName: 'チキンライスオムレツセット / 日本の味',
+			name: 'Chicken Rice Omelet Set / Japanes Taste',
+			image: '/menu-4.png',
+			price: 300,
+			description: 'Scrumptious menu item 4',
 		},
 		{
 			id: 5,
-			name: 'Leonard Krasner',
-			position: 'Senior Designer',
-			email: 'leonard.krasner@example.com',
-			role: 'Owner',
+			japaneseName: 'スチューズエッグとチキンライスセット',
+			name: 'Stewes Egg with Chicken Rice Set',
+			image: '/menu-5.png',
+			price: 300,
+			description: 'Savory menu item 5',
 		},
 		{
 			id: 6,
-			name: 'Floyd Miles',
-			position: 'Principal Designer',
-			email: 'floyd.miles@example.com',
-			role: 'Member',
+			japaneseName: '海鮮チャーハンセット / 日本の味',
+			name: 'Sea Food Fried Rice Set / Japanes Taste',
+			image: '/menu-6.png',
+			price: 300,
+			description: 'Appetizing menu item 6',
 		},
 	]);
 
-	return menu;
+	return menus;
 }

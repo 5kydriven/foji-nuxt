@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { openEditModal, openDeleteModal } = useMenuModal();
 defineProps<{
   id: number
 }>()
@@ -9,19 +10,23 @@ const emit = defineEmits<{ close: [boolean] }>()
 <template>
   <UModal
     :close="{ onClick: () => emit('close', false) }"
-    title="Are you sure you want to delete this menu?"
+    title="View Menu Details"
   >
+		<template #body>
+			<p>This is a view modal for the item with ID: {{ id }}</p>
+			<p>You can display any relevant information here.</p>
+		</template>
     <template #footer>
       <div class="flex justify-end gap-2 w-full">
         <UButton
-color="neutral"
-label="Cancel"
-@click="emit('close', false)"
+color="error"
+label="Edit"
+@click="openEditModal(id)"
 />
         <UButton
-label="Yes"
-color="error"
-@click="emit('close', true)"
+label="Delete"
+color="neutral"
+@click="openDeleteModal(id)"
 />
       </div>
     </template>

@@ -19,7 +19,7 @@ export default defineNuxtConfig({
 			pathPrefix: false,
 		},
 	],
-	devtools: { enabled: false },
+	devtools: { enabled: true },
 	css: ['~/assets/css/main.css'],
 	ui: {
 		colorMode: false,
@@ -29,6 +29,9 @@ export default defineNuxtConfig({
 			supabaseUrl: process.env.SUPABASE_URL,
 			supabaseKey: process.env.SUPABASE_KEY,
 		},
+	},
+	routeRules: {
+		'/': { prerender: true },
 	},
 	future: {
 		compatibilityVersion: 4,
