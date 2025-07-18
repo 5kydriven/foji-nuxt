@@ -1,14 +1,10 @@
 import { serverSupabaseClient } from '#supabase/server';
 import { sendResponse } from '~~/server/utils/sendResponse';
+import { validateQueryParams } from '~~/server/utils/validateQueryParams';
 
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
-
-	const query = getQuery(event);
-	const search = query.search?.toString().trim() || '';
-	const page = parseInt(query.page as string) || 1;
-	const limit = parseInt(query.limit as string) || 10;
-	const offset = (page - 1) * limit;
+	const { limit, page, search, offset } = validateQueryParams(event);
 
 	let supabaseQuery = client.from('menus').select('*', { count: 'exact' });
 
