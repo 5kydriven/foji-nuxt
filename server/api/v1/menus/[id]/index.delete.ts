@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
 	return sendResponse({
 		event,
-		message: 'Successfully deleted menu',
+		message: 'Successfully deleted',
 		data,
 	});
 });

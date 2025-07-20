@@ -3,7 +3,7 @@
 
 	const colorMode = useColorMode();
 	const isOpen = ref(false);
-	const router = useRouter()
+	const router = useRouter();
 	const items = ref<NavigationMenuItem[][]>([
 		[
 			{ label: 'Home', to: '/' },
@@ -25,7 +25,12 @@
 </script>
 
 <template>
-	<div class="z-10 " :class="router.currentRoute.value.path !== '/' ? 'bg-gray-100' : 'bg-black/30'">
+	<div
+		class="z-10"
+		:class="
+			router.currentRoute.value.path !== '/' ? 'bg-gray-100' : 'bg-black/30'
+		"
+	>
 		<div class="max-w-screen-xl mx-auto flex items-center justify-between p-2">
 			<div class="flex items-center justify-center w-full">
 				<img
@@ -46,14 +51,8 @@
 				highlight-color="error"
 				:items="items"
 				class="w-full justify-end hidden md:flex"
-			>
-				<template #default="{ item }: { item: NavigationMenuItem }">
-					<div class="flex items-center space-x-2">
-						<!-- <UIcon :name="item.icon as any" /> -->
-						<span class="text-white">{{ item.label }}</span>
-					</div>
-				</template>
-			</UNavigationMenu>
+			/>
+
 			<div class="flex items-center space-x-2">
 				<ClientOnly v-if="!colorMode?.forced">
 					<UButton

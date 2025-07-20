@@ -28,7 +28,6 @@ export default defineEventHandler(async (event) => {
 
 	return sendResponse({
 		event,
-		statusCode: 201,
 		data,
 	});
 });

@@ -26,7 +26,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			supabaseUrl: process.env.SUPABASE_URL,
-			supabaseKey: process.env.SUPABASE_KEY,
+			// supabaseKey: process.env.SUPABASE_KEY,
+			supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
 		},
 	},
 	routeRules: {
@@ -46,10 +47,12 @@ export default defineNuxtConfig({
 		},
 	},
 	i18n: {
+		defaultLocale: 'en',
 		locales: [
 			{
 				code: 'en',
 				name: 'English',
+				file: 'en.json',
 			},
 			{
 				code: 'ja',

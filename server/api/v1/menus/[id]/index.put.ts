@@ -3,23 +3,30 @@ import { serverSupabaseClient } from '#supabase/server';
 
 const MenuSchema = z.object({
 	name: z.string().min(1, 'Name is required'),
-	japaneseName: z.string().optional(),
+	japanese_name: z.string().optional(),
 	price: z.coerce.number().positive('Price must be positive'),
 	description: z.string().optional(),
 });
 
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
+	const id = getRouterParam(event, 'id');
 	const formData = await readFormData(event);
 	const formObject = Object.fromEntries(formData.entries());
+
+	if (!id) {
+		throw createError({
+			statusCode: 400,
+			statusMessage: 'Bad Request',
+			message: 'ID is required',
+		});
+	}
 
 	const image = formData.get('image');
 	let imageUrl = '';
 
+	// Handle image upload if image provided
 	if (image && image instanceof File) {
-		// if (image.size > 2 * 1024 * 1024) {
-		// 	throw createError({ statusCode: 400, statusMessage: 'File too large' });
-		// }
 		if (!image.type.startsWith('image/')) {
 			throw createError({
 				statusCode: 400,
@@ -33,7 +40,7 @@ export default defineEventHandler(async (event) => {
 		const filePath = `menus/${fileName}`;
 
 		const { error: uploadError } = await client.storage
-			.from('menu-images')
+			.from('images')
 			.upload(filePath, arrayBuffer, {
 				contentType: image.type,
 				upsert: true,
@@ -47,7 +54,7 @@ export default defineEventHandler(async (event) => {
 			});
 		}
 
-		const { data } = client.storage.from('menu-images').getPublicUrl(filePath);
+		const { data } = client.storage.from('images').getPublicUrl(filePath);
 
 		imageUrl = data.publicUrl;
 	}
@@ -63,12 +70,13 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
+	// Prepare update data
 	const menuData = {
 		...result.data,
-		image: imageUrl || '',
+		...(imageUrl ? { image: imageUrl } : {}),
 	};
 
-	const { data, error } = await client.from('menus').insert(menuData).single();
+	const { error } = await client.from('menus').update(menuData).eq('id', id);
 
 	if (error) {
 		throw createError({
@@ -80,8 +88,6 @@ export default defineEventHandler(async (event) => {
 
 	return sendResponse({
 		event,
-		statusCode: 201,
-		message: 'Successfully created',
-		data,
+		message: 'Successfully updated',
 	});
 });
