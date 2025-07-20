@@ -1,4 +1,6 @@
 <script setup lang="ts">
+	import * as locales from '@nuxt/ui/locale';
+
 	useHead({
 		meta: [
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -8,6 +10,8 @@
 			lang: 'en',
 		},
 	});
+
+	const { locale } = useI18n();
 
 	const title = 'FOJI JAPANESE RESTAURANT';
 	const description =
@@ -22,16 +26,10 @@
 </script>
 
 <template>
-	<UApp>
+	<UApp :locale="locales[locale]">
 		<NuxtLoadingIndicator />
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
 	</UApp>
 </template>
-
-<!-- <style>
-	.max-w-screen-xl {
-		width: 1280px;
-	}
-</style> -->

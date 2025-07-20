@@ -7,6 +7,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/supabase',
 		'@nuxt/image',
 		'@pinia/nuxt',
+		'@nuxtjs/i18n',
 	],
 	pages: {
 		pattern: ['**/*.vue', '!**/_components/**'],
@@ -21,9 +22,7 @@ export default defineNuxtConfig({
 	],
 	devtools: { enabled: false },
 	css: ['~/assets/css/main.css'],
-	ui: {
-		colorMode: false,
-	},
+	ui: {},
 	runtimeConfig: {
 		public: {
 			supabaseUrl: process.env.SUPABASE_URL,
@@ -46,6 +45,18 @@ export default defineNuxtConfig({
 		config: {
 			stylistic: true,
 		},
+	},
+	i18n: {
+		locales: [
+			{
+				code: 'en',
+				name: 'English',
+			},
+			{
+				code: 'ja',
+				name: '日本語',
+			},
+		],
 	},
 	supabase: {
 		redirect: false,

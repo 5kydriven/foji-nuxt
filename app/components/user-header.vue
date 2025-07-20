@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
-	const isDark = ref(false);
+	const colorMode = useColorMode();
 	const isOpen = ref(false);
 
 	const items = ref<NavigationMenuItem[][]>([
@@ -13,6 +13,15 @@
 			{ label: 'Contact Us', to: '/maintenance' },
 		],
 	]);
+
+	const isDark = computed({
+		get() {
+			return colorMode.value === 'dark';
+		},
+		set(_isDark) {
+			colorMode.preference = _isDark ? 'dark' : 'light';
+		},
+	});
 </script>
 
 <template>
@@ -40,12 +49,18 @@
 				</template>
 			</UNavigationMenu>
 			<div class="flex items-center space-x-2">
-				<UButton
-					:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
-					color="neutral"
-					variant="ghost"
-					@click="isDark = !isDark"
-				/>
+				<ClientOnly v-if="!colorMode?.forced">
+					<UButton
+						:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+						color="neutral"
+						variant="ghost"
+						@click="isDark = !isDark"
+					/>
+
+					<template #fallback>
+						<div class="size-8" />
+					</template>
+				</ClientOnly>
 				<div class="md:hidden">
 					<USlideover title="FOJI">
 						<UButton
