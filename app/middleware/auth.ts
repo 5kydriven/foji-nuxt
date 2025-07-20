@@ -1,5 +1,10 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-	const session = useSupabaseSession();
+	const user = useSupabaseUser();
+	console.log(user.value);
+
+	if (user.value && to.path == '/') {
+		return navigateTo('/admin');
+	}
 
 	if (session.value && to.path == '/auth') {
 		console.log(to.path);

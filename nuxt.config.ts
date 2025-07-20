@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 			pathPrefix: false,
 		},
 	],
-	devtools: { enabled: false },
+	devtools: { enabled: true },
 	css: ['~/assets/css/main.css'],
 	ui: {},
 	runtimeConfig: {
@@ -31,7 +31,6 @@ export default defineNuxtConfig({
 	},
 	routeRules: {
 		'/': { prerender: true },
-		'/admin/**': { ssr: false },
 	},
 	future: {
 		compatibilityVersion: 4,
