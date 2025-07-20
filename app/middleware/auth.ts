@@ -6,12 +6,12 @@ export default defineNuxtRouteMiddleware((to, from) => {
 		return navigateTo('/admin');
 	}
 
-	if (session.value && to.path == '/auth') {
+	if (user.value && to.path == '/auth') {
 		console.log(to.path);
 		return navigateTo('/admin');
 	}
 
-	if (!session.value && to.path == '/admin') {
+	if (!user.value && to.path == '/admin') {
 		return navigateTo('/auth');
 	}
 });
