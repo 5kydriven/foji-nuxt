@@ -4,13 +4,15 @@
 	const colorMode = useColorMode();
 	const isOpen = ref(false);
 	const router = useRouter();
+	const localePath = useLocalePath();
+
 	const items = ref<NavigationMenuItem[][]>([
 		[
-			{ label: 'Home', to: '/' },
-			{ label: 'About', to: '/about' },
-			{ label: 'Menu', to: '/menu' },
-			{ label: 'Faq', to: '/maintenance' },
-			{ label: 'Contact Us', to: '/maintenance' },
+			{ label: 'Home', to: localePath('/') },
+			{ label: 'About', to: localePath('/about') },
+			{ label: 'Menu', to: localePath('/menu') },
+			{ label: 'Faq', to: localePath('/maintenance') },
+			{ label: 'Contact Us', to: localePath('/maintenance') },
 		],
 	]);
 
