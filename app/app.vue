@@ -1,17 +1,21 @@
 <script setup lang="ts">
 	import * as locales from '@nuxt/ui/locale';
 
+	const { locale } = useI18n();
+
+	const lang = computed(() => locales[locale.value].code);
+	const dir = computed(() => locales[locale.value].dir);
+
 	useHead({
 		meta: [
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 		],
 		link: [{ rel: 'icon', href: '/logo.png' }],
 		htmlAttrs: {
-			lang: 'en',
+			lang,
+			dir,
 		},
 	});
-
-	const { locale } = useI18n();
 
 	const title = 'FOJI JAPANESE RESTAURANT';
 	const description =
