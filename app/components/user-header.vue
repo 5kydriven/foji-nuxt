@@ -27,12 +27,7 @@
 </script>
 
 <template>
-	<div
-		class="z-10"
-		:class="
-			router.currentRoute.value.path !== '/' ? 'bg-gray-100' : 'bg-black/30'
-		"
-	>
+	<div class="z-10 bg-white dark:bg-gray-900">
 		<div class="max-w-screen-xl mx-auto flex items-center justify-between p-2">
 			<div class="flex items-center justify-center w-full">
 				<img
@@ -42,7 +37,9 @@
 				/>
 				<div class="flex flex-col items-start w-full">
 					<span class="font-bold text-red-400 text-xl">FOJI</span>
-					<span class="text-white text-sm">Japanese Restaurant</span>
+					<span class="text-black text-sm dark:text-white">
+						Japanese Restaurant
+					</span>
 				</div>
 			</div>
 

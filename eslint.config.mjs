@@ -21,6 +21,8 @@ export default withNuxt(
 			'@stylistic/operator-linebreak': 'off',
 			'@stylistic/indent-binary-ops': 'off',
 			'@stylistic/arrow-parens': 'off',
+			'@stylistic/quote-props': 'off',
+			'@stylistic/quotes': 'off',
 		},
 	},
 );

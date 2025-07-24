@@ -11,7 +11,7 @@
 			class="min-h-[60vh] max-w-screen-xl mx-auto flex flex-col items-center justify-center gap-10 px-4 py-10"
 		>
 			<div
-				class="flex flex-col md:flex-row items-center justify-between gap-10 p-4 rounded-md"
+				class="flex flex-col md:flex-row items-center justify-between gap-10 p-4 rounded-md overflow-hidden"
 			>
 				<motion.div
 					:initial="{ x: -250, opacity: 0 }"

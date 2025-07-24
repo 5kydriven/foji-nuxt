@@ -1,13 +1,6 @@
-import z from 'zod';
 import { serverSupabaseClient } from '#supabase/server';
+import { menuSchema } from '~~/schema/menuSchema';
 import { convertKeysToSnakeCase } from '~~/server/utils/caseConverters';
-
-const MenuSchema = z.object({
-	name: z.string().min(1, 'Name is required'),
-	japanese_name: z.string().optional(),
-	price: z.coerce.number().positive('Price must be positive'),
-	description: z.string().optional(),
-});
 
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
@@ -20,9 +13,6 @@ export default defineEventHandler(async (event) => {
 	let imageUrl = '';
 
 	if (image && image instanceof File) {
-		// if (image.size > 2 * 1024 * 1024) {
-		// 	throw createError({ statusCode: 400, statusMessage: 'File too large' });
-		// }
 		if (!image.type.startsWith('image/')) {
 			throw createError({
 				statusCode: 400,
@@ -58,7 +48,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const { image: _, ...fields } = formObject;
-	const result = MenuSchema.safeParse(fields);
+	const result = menuSchema.safeParse(fields);
 
 	if (!result.success) {
 		throw createError({
@@ -69,12 +59,12 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
-	const menuData = {
+	const transformData = convertKeysToSnakeCase({
 		...result.data,
 		image: imageUrl || '',
-	};
+	});
 
-	const { error } = await client.from('menus').insert(menuData);
+	const { error } = await client.from('menus').insert(transformData);
 
 	if (error) {
 		throw createError({

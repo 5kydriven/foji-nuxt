@@ -8,8 +8,15 @@ export default defineAppConfig({
 			variants: {
 				active: {
 					false: {
-						link: 'text-white',
+						link: 'text-black dark:text-white hover:text-red-500',
+						childLink: [
+							'hover:before:bg-elevated/50 text-default hover:text-highlighted',
+							'transition-colors before:transition-colors',
+						],
 					},
+				},
+				highlight: {
+					true: 'text-red-500',
 				},
 			},
 		},

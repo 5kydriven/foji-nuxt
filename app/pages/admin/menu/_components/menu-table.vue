@@ -9,14 +9,14 @@
 	const store = useMenuStore();
 	const value = ref('');
 	const page = ref(5);
-	const UCheckbox = resolveComponent('UCheckbox')
+	const UCheckbox = resolveComponent('UCheckbox');
 
 	const columns: TableColumn<any>[] = [
 		{
 			id: 'select',
 			header: ({ table }) =>
 				h(UCheckbox, {
-					'modelValue': table.getIsSomePageRowsSelected()
+					modelValue: table.getIsSomePageRowsSelected()
 						? 'indeterminate'
 						: table.getIsAllPageRowsSelected(),
 					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
@@ -25,8 +25,9 @@
 				}),
 			cell: ({ row }) =>
 				h(UCheckbox, {
-					'modelValue': row.getIsSelected(),
-					'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
+					modelValue: row.getIsSelected(),
+					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
+						row.toggleSelected(!!value),
 					'aria-label': 'Select row',
 				}),
 		},
@@ -76,12 +77,12 @@
 		];
 	}
 
-	const rowSelection = ref<Record<string, boolean>>({})
+	const rowSelection = ref<Record<string, boolean>>({});
 
 	function onSelect(row: TableRow<Menu>, e?: Event) {
-		row.toggleSelected(!row.getIsSelected())
+		row.toggleSelected(!row.getIsSelected());
 
-		console.log(e)
+		console.log(e);
 	}
 </script>
 
@@ -112,7 +113,7 @@
 		</div>
 		<UTable
 			v-model:row-selection="rowSelection"
-			:data="store"
+			:data="store.menus.value"
 			:columns="columns"
 			class="flex-1"
 			sticky
