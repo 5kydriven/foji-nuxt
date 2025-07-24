@@ -1,5 +1,6 @@
 import z from 'zod';
 import { serverSupabaseClient } from '#supabase/server';
+import { convertKeysToSnakeCase } from '~~/server/utils/caseConverters';
 
 const MenuSchema = z.object({
 	name: z.string().min(1, 'Name is required'),
@@ -11,7 +12,9 @@ const MenuSchema = z.object({
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
 	const formData = await readFormData(event);
-	const formObject = Object.fromEntries(formData.entries());
+	const formObject = convertKeysToSnakeCase(
+		Object.fromEntries(formData.entries()),
+	);
 
 	const image = formData.get('image');
 	let imageUrl = '';
@@ -23,7 +26,8 @@ export default defineEventHandler(async (event) => {
 		if (!image.type.startsWith('image/')) {
 			throw createError({
 				statusCode: 400,
-				statusMessage: 'Invalid file type',
+				statusMessage: 'Bad Request',
+				message: 'Invalid file type',
 			});
 		}
 
@@ -42,8 +46,9 @@ export default defineEventHandler(async (event) => {
 		if (uploadError) {
 			throw createError({
 				statusCode: 500,
-				statusMessage: 'Image upload failed',
-				message: uploadError.message,
+				statusMessage: 'Internal Server error',
+				message: 'Image upload failed',
+				data: uploadError.message,
 			});
 		}
 
@@ -59,6 +64,7 @@ export default defineEventHandler(async (event) => {
 		throw createError({
 			statusCode: 400,
 			statusMessage: 'Bad Request',
+			message: 'Invalid menu input',
 			data: result.error.flatten().fieldErrors,
 		});
 	}
@@ -74,13 +80,14 @@ export default defineEventHandler(async (event) => {
 		throw createError({
 			statusCode: 500,
 			statusMessage: 'Internal Server Error',
-			message: error.message,
+			message: 'Something went wrong',
+			data: error.message,
 		});
 	}
 
 	return sendResponse({
 		event,
 		statusCode: 201,
-		message: 'Successfully created',
+		message: 'Successfully created menu',
 	});
 });

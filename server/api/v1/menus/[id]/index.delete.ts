@@ -12,19 +12,19 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
-	const { data, error } = await client.from('menus').delete().eq('id', id);
+	const { error } = await client.from('menus').delete().eq('id', id);
 
 	if (error) {
 		throw createError({
 			statusCode: 500,
 			statusMessage: 'Internal Server Error',
-			message: error.message,
+			message: 'Something went wrong',
+			data: error.message,
 		});
 	}
 
 	return sendResponse({
 		event,
-		message: 'Successfully deleted',
-		data,
+		message: 'Successfully deleted menu',
 	});
 });

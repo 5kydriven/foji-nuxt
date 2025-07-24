@@ -1,5 +1,6 @@
 import z from 'zod';
 import { serverSupabaseClient } from '#supabase/server';
+import { convertKeysToSnakeCase } from '~~/server/utils/caseConverters';
 
 const MenuSchema = z.object({
 	name: z.string().min(1, 'Name is required'),
@@ -12,7 +13,10 @@ export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
 	const id = getRouterParam(event, 'id');
 	const formData = await readFormData(event);
-	const formObject = Object.fromEntries(formData.entries());
+
+	const formObject = convertKeysToSnakeCase(
+		Object.fromEntries(formData.entries()),
+	);
 
 	if (!id) {
 		throw createError({

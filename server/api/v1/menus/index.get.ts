@@ -1,4 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server';
+import { convertKeysToCamelCase } from '~~/server/utils/caseConverters';
 import { sendResponse } from '~~/server/utils/sendResponse';
 import { validateQueryParams } from '~~/server/utils/validateQueryParams';
 
@@ -16,6 +17,8 @@ export default defineEventHandler(async (event) => {
 
 	const { data, error, count } = await supabaseQuery;
 
+	const transformData = convertKeysToCamelCase(data);
+
 	if (error) {
 		throw createError({
 			statusCode: 500,
@@ -25,7 +28,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	return sendResponse({
-		data,
+		data: transformData,
 		event,
 		meta: {
 			page,

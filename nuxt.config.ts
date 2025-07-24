@@ -8,6 +8,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@pinia/nuxt',
 		'@nuxtjs/i18n',
+		'@vueuse/nuxt',
 	],
 	pages: {
 		pattern: ['**/*.vue', '!**/_components/**'],
