@@ -12,7 +12,7 @@
 	const menu = reactive<Partial<Schema>>({
 		name: undefined,
 		japaneseName: undefined,
-		price: 0,
+		price: undefined,
 		description: undefined,
 		image: null,
 	});
@@ -79,7 +79,6 @@
 							v-model="menu.price"
 							class="w-full"
 							icon="lucide:philippine-peso"
-							type="number"
 							placeholder="00.00"
 						/>
 					</UFormField>
