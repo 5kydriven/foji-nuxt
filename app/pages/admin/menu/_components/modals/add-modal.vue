@@ -1,33 +1,36 @@
 <script setup lang="ts">
 	import type { FormSubmitEvent } from '@nuxt/ui';
-	import z from 'zod';
+	import type { Toast } from '@nuxt/ui/runtime/composables/useToast.js';
+	import type z from 'zod';
 	import { toFormData } from '~/utils/toFormData';
+	import { menuSchema } from '~~/schema/menuSchema';
 
-	const schema = z.object({
-		name: z.string().min(5, 'Must be at least 5 characters'),
-		japaneseName: z.string().optional(),
-		price: z.number().positive('Must be positive number'),
-		description: z.string().optional(),
-	});
+	type Schema = z.output<typeof menuSchema>;
 
-	type Schema = z.output<typeof schema>;
+	const store = useMenuStore();
 
 	const menu = reactive<Partial<Schema>>({
 		name: undefined,
 		japaneseName: undefined,
 		price: 0,
 		description: undefined,
+		image: null,
 	});
 
 	const toast = useToast();
 	async function onSubmit(event: FormSubmitEvent<typeof menu>) {
-		toast.add({
-			title: 'Success',
-			description: 'The form has been submitted.',
-			color: 'success',
-		});
 		const formData = toFormData(event.data);
-		console.log(event.data);
+		if (menu.image) {
+			formData.append('image', menu.image);
+		}
+		const response = await store.addMenu(formData);
+		toast.add(response);
+	}
+
+	function handleFileChange(e: Event) {
+		const input = e.target as HTMLInputElement;
+		const file = input.files?.[0];
+		menu.image = file || null;
 	}
 </script>
 
@@ -44,11 +47,11 @@
 		<template #body>
 			<UForm
 				:state="menu"
-				:schema="schema"
+				:schema="menuSchema"
 				class="space-y-4"
-				@submit="onSubmit"
+				@submit.prevent="onSubmit"
 			>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div class="grid grid-cols-1 gap-4">
 					<UFormField
 						label="Name"
 						name="name"
@@ -68,44 +71,48 @@
 							class="w-full"
 						/>
 					</UFormField>
+					<UFormField
+						label="Price"
+						name="price"
+					>
+						<UInput
+							v-model="menu.price"
+							class="w-full"
+							icon="lucide:philippine-peso"
+							type="number"
+							placeholder="00.00"
+						/>
+					</UFormField>
+					<UFormField
+						label="Description"
+						name="description"
+					>
+						<UTextarea
+							v-model="menu.description"
+							color="neutral"
+							highlight
+							placeholder="Type something..."
+							class="w-full"
+						/>
+					</UFormField>
+					<UFormField
+						label="Menu Image"
+						name="image"
+					>
+						<UInput
+							accept="image/*"
+							type="file"
+							class="w-full"
+							@change="handleFileChange"
+						/>
+					</UFormField>
 				</div>
-
-				<UFormField
-					label="Price"
-					name="price"
-				>
-					<UInput
-						v-model="menu.price"
-						icon="lucide:philippine-peso"
-						type="number"
-						placeholder="00.00"
-					/>
-				</UFormField>
-				<UFormField
-					label="Description"
-					name="description"
-				>
-					<UTextarea
-						color="neutral"
-						highlight
-						placeholder="Type something..."
-						class="w-full"
-					/>
-				</UFormField>
-				<UFormField
-					label="Menu Image"
-					name="image"
-				>
-					<UInput
-						type="file"
-						class="w-full"
-					/>
-				</UFormField>
 
 				<div class="flex justify-end w-full">
 					<UButton
 						type="submit"
 						color="error"
+						:loading="store.isLoading.value"
 					>
 						Submit
 					</UButton>

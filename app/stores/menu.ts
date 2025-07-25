@@ -1,8 +1,9 @@
+import type { Toast } from '@nuxt/ui/runtime/composables/useToast.js';
 import { useDebounceFn } from '@vueuse/core';
 import type { Menu } from '~~/types/menu.type';
 import type { StoreResponse } from '~~/types/storeResponse.type';
 
-const apiUrl = '/v1/api/menus';
+const apiUrl = '/api/v1/menus';
 
 export function useMenuStore() {
 	// State
@@ -105,13 +106,14 @@ export function useMenuStore() {
 		}
 	}
 
-	async function addMenu(payload: FormData): Promise<StoreResponse> {
+	async function addMenu(payload: FormData): Promise<Partial<Toast>> {
 		try {
 			isLoading.value = true;
 			const response = await $fetch<ApiResponse<any>>(apiUrl, {
 				method: 'POST',
 				body: payload,
 			});
+			console.log(response);
 			return {
 				title: 'Menu Added',
 				description: response.message,

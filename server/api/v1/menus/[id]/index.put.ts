@@ -1,13 +1,6 @@
-import z from 'zod';
 import { serverSupabaseClient } from '#supabase/server';
+import { menuSchema } from '~~/schema/menuSchema';
 import { convertKeysToSnakeCase } from '~~/server/utils/caseConverters';
-
-const MenuSchema = z.object({
-	name: z.string().min(1, 'Name is required'),
-	japanese_name: z.string().optional(),
-	price: z.coerce.number().positive('Price must be positive'),
-	description: z.string().optional(),
-});
 
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
@@ -29,12 +22,12 @@ export default defineEventHandler(async (event) => {
 	const image = formData.get('image');
 	let imageUrl = '';
 
-	// Handle image upload if image provided
 	if (image && image instanceof File) {
 		if (!image.type.startsWith('image/')) {
 			throw createError({
 				statusCode: 400,
-				statusMessage: 'Invalid file type',
+				statusMessage: 'Bad Request',
+				message: 'Invalid image file type',
 			});
 		}
 
@@ -53,8 +46,9 @@ export default defineEventHandler(async (event) => {
 		if (uploadError) {
 			throw createError({
 				statusCode: 500,
-				statusMessage: 'Image upload failed',
-				message: uploadError.message,
+				statusMessage: 'Internal Server Error',
+				message: 'Image upload failed',
+				data: uploadError.message,
 			});
 		}
 
@@ -64,7 +58,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const { image: _, ...fields } = formObject;
-	const result = MenuSchema.safeParse(fields);
+	const result = menuSchema.safeParse(fields);
 
 	if (!result.success) {
 		throw createError({
@@ -74,13 +68,15 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
-	// Prepare update data
-	const menuData = {
+	const transformData = convertKeysToSnakeCase({
 		...result.data,
 		...(imageUrl ? { image: imageUrl } : {}),
-	};
+	});
 
-	const { error } = await client.from('menus').update(menuData).eq('id', id);
+	const { error } = await client
+		.from('menus')
+		.update(transformData)
+		.eq('id', id);
 
 	if (error) {
 		throw createError({

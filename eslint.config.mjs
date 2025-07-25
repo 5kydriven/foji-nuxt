@@ -22,6 +22,7 @@ export default withNuxt(
 			'@stylistic/indent-binary-ops': 'off',
 			'@stylistic/arrow-parens': 'off',
 			'@stylistic/quote-props': 'off',
+			'@stylistic/quotes': 'off',
 		},
 	},
 );
