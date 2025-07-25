@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'@nuxtjs/i18n',
 		'@vueuse/nuxt',
+		'@nuxtjs/device',
 	],
 	pages: {
 		pattern: ['**/*.vue', '!**/_components/**'],

@@ -8,7 +8,7 @@
 </script>
 
 <template>
-	<div class="flex justify-between items-center p-2">
+	<div class="flex justify-between items-center py-2">
 		<UInput
 			v-model="store.search"
 			icon="heroicons:magnifying-glass-solid"
@@ -34,7 +34,6 @@
 			color="error"
 			variant="solid"
 			icon="i-lucide-plus"
-			class="ml-2"
 			@click="modal.open()"
 		/>
 	</div>

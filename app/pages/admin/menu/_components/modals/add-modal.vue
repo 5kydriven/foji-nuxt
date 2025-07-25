@@ -116,7 +116,7 @@
 					:loading="store.isLoading"
 					@click="form?.submit()"
 				>
-					Submit
+					Create
 				</UButton>
 			</div>
 		</template>

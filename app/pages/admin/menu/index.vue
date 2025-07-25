@@ -8,8 +8,8 @@
 
 	const store = useMenuStore();
 
-	onMounted(() => {
-		store.getMenus();
+	onMounted(async () => {
+		await callOnce(() => store.getMenus());
 	});
 </script>
 
@@ -21,13 +21,11 @@
 				Manage your restaurant's menu items here.
 			</p>
 		</div>
-		<div class="p-4 rounded-md border border-neutral-200">
-			<MenuHeader />
-			<MenuTable
-				:menus="store.menus"
-				:isLoading="store.isLoading"
-			/>
-			<MenuPagination />
-		</div>
+		<MenuHeader />
+		<MenuTable
+			:menus="store.menus"
+			:isLoading="store.isLoading"
+		/>
+		<MenuPagination />
 	</div>
 </template>
