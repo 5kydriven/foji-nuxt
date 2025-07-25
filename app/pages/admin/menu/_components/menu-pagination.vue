@@ -5,9 +5,9 @@
 <template>
 	<div class="flex justify-center my-2">
 		<UPagination
-			v-model:page="store.page.value"
+			v-model:page="store.page"
 			:sibling-count="1"
-			:total="100"
+			:total="store.total"
 			active-color="error"
 		/>
 	</div>

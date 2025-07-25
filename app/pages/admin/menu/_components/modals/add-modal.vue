@@ -113,7 +113,7 @@
 				<UButton
 					type="submit"
 					color="error"
-					:loading="store.isLoading.value"
+					:loading="store.isLoading"
 					@click="form?.submit()"
 				>
 					Submit

@@ -6,10 +6,11 @@
 		middleware: 'auth',
 	});
 
-	// const { status, data, refresh } = await useLazyFetch('/api/v1/menus', {
-	// 	key: 'admin-menu',
-	// 	method: 'GET',
-	// });
+	const store = useMenuStore();
+
+	onMounted(() => {
+		store.getMenus();
+	});
 </script>
 
 <template>
@@ -22,7 +23,10 @@
 		</div>
 		<div class="p-4 rounded-md border border-neutral-200">
 			<MenuHeader />
-			<MenuTable />
+			<MenuTable
+				:menus="store.menus"
+				:isLoading="store.isLoading"
+			/>
 			<MenuPagination />
 		</div>
 	</div>

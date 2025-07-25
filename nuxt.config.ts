@@ -31,9 +31,9 @@ export default defineNuxtConfig({
 			supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
 		},
 	},
-	routeRules: {
-		'/': { prerender: true },
-	},
+	// routeRules: {
+	// 	'/': { prerender: true },
+	// },
 	future: {
 		compatibilityVersion: 4,
 	},

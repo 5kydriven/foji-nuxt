@@ -32,7 +32,7 @@
 					@click="emit('close')"
 				/>
 				<UButton
-					:loading="store.isLoading.value"
+					:loading="store.isLoading"
 					label="Confirm"
 					color="error"
 					@click="onConfirm"

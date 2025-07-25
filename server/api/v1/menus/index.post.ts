@@ -5,7 +5,7 @@ import { convertKeysToSnakeCase } from '~~/server/utils/caseConverters';
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
 	const formData = await readFormData(event);
-	const formObject = convertKeysToSnakeCase(
+	const formObject = convertKeysToCamelCase(
 		Object.fromEntries(formData.entries()),
 	);
 

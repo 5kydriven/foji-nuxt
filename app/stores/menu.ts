@@ -5,7 +5,7 @@ import type { StoreResponse } from '~~/shared/types/storeResponse.type';
 
 const apiUrl = '/api/v1/menus';
 
-export function useMenuStore() {
+export const useMenuStore = defineStore('menu', () => {
 	// State
 	const menus = ref<Menu[]>([]);
 	const menu = ref<Menu>();
@@ -32,7 +32,7 @@ export function useMenuStore() {
 		try {
 			const response = await $fetch<ApiResponse<Menu[]>>(url);
 			menus.value = response.data ?? [];
-			console.log('menu fetch', menus.value);
+			console.log(menus.value);
 			total.value = response.meta?.total ?? 0;
 			page.value = response.meta?.page ?? 1;
 		} catch (error) {
@@ -165,4 +165,4 @@ export function useMenuStore() {
 		deleteMenu,
 		updateMenu,
 	};
-}
+});

@@ -10,13 +10,13 @@
 <template>
 	<div class="flex justify-between items-center p-2">
 		<UInput
-			v-model="store.search.value"
+			v-model="store.search"
 			icon="heroicons:magnifying-glass-solid"
 			placeholder="Search..."
 			:ui="{ trailing: 'pe-1' }"
 		>
 			<template
-				v-if="store.search.value?.length"
+				v-if="store.search.length"
 				#trailing
 			>
 				<UButton
@@ -25,7 +25,7 @@
 					size="sm"
 					icon="i-lucide-circle-x"
 					aria-label="Clear input"
-					@click="store.search.value = ''"
+					@click="store.search = ''"
 				/>
 			</template>
 		</UInput>

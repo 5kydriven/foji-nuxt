@@ -1,20 +1,15 @@
 <script setup lang="ts">
 	import type { TableColumn, DropdownMenuItem, TableRow } from '@nuxt/ui';
 	import type { Menu } from '~~/shared/types/menu.type';
-	import { useMenuStore } from '~/stores/menu';
 	import { useMenuModal } from '~/composables/lazy-menu-modal';
 	import { LazyDeleteModal } from '#components';
 
 	const { openViewModal, openEditModal, openDeleteModal } = useMenuModal();
-	const store = useMenuStore();
 	const UCheckbox = resolveComponent('UCheckbox');
 	const UDropdownMenu = resolveComponent('UDropdownMenu');
 	const overlay = useOverlay();
 
 	const deleteModal = overlay.create(LazyDeleteModal);
-
-	const menus = computed(() => toRaw(store.menus.value));
-	const isLoading = computed(() => store.isLoading.value);
 
 	const columns: TableColumn<Menu>[] = [
 		{
@@ -82,26 +77,27 @@
 		];
 	}
 
-	const rowSelection = ref<Record<string, boolean>>({});
-
 	function onSelect(row: TableRow<Menu>, e?: Event) {
 		row.toggleSelected(!row.getIsSelected());
 
 		console.log(e);
 	}
 
-	onMounted(async () => {
-		await callOnce('admin-menus', () => store.getMenus());
-	});
+	const props = defineProps<{
+		menus: Menu[];
+		isLoading: boolean;
+	}>();
 </script>
 
 <template>
 	<UTable
-		:key="menus.length"
-		v-model:row-selection="rowSelection"
-		:loading="isLoading"
+		:loading="props.isLoading"
 		loading-animation="carousel"
-		:data="menus"
+		:loading-state="{
+			icon: 'i-heroicons-arrow-path-20-solid',
+			label: 'Loading...',
+		}"
+		:data="props.menus"
 		:columns="columns"
 		class="flex-1"
 		sticky
