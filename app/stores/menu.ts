@@ -1,7 +1,7 @@
 import type { Toast } from '@nuxt/ui/runtime/composables/useToast.js';
 import { useDebounceFn } from '@vueuse/core';
-import type { Menu } from '~~/types/menu.type';
-import type { StoreResponse } from '~~/types/storeResponse.type';
+import type { Menu } from '~~/shared/types/menu.type';
+import type { StoreResponse } from '~~/shared/types/storeResponse.type';
 
 const apiUrl = '/api/v1/menus';
 
@@ -30,12 +30,13 @@ export function useMenuStore() {
 		const url = `${apiUrl}${queryString ? '?' + queryString : ''}`;
 
 		try {
-			const response = await $fetch<ApiResponse<any>>(url);
-			menus.value = response.data;
+			const response = await $fetch<ApiResponse<Menu[]>>(url);
+			menus.value = response.data ?? [];
+			console.log('menu fetch', menus.value);
 			total.value = response.meta?.total ?? 0;
 			page.value = response.meta?.page ?? 1;
 		} catch (error) {
-			console.log(error);
+			console.log('Menu error:', error);
 			menus.value = [];
 		} finally {
 			isLoading.value = false;
@@ -50,7 +51,7 @@ export function useMenuStore() {
 			});
 			menu.value = response.data;
 		} catch (error: any) {
-			console.log(error);
+			console.log('Menu error:', error);
 			menu.value = {};
 		} finally {
 			isLoading.value = false;
@@ -58,20 +59,22 @@ export function useMenuStore() {
 	}
 
 	async function addMenu(payload: FormData): Promise<Partial<Toast>> {
+		isLoading.value = true;
 		try {
-			isLoading.value = true;
 			const response = await $fetch<ApiResponse<any>>(apiUrl, {
 				method: 'POST',
 				body: payload,
 			});
-			console.log(response);
+
+			await getMenus();
+
 			return {
 				title: 'Menu Added',
 				description: response.message,
 				color: 'success',
 			};
 		} catch (error: any) {
-			console.log(error);
+			console.log('Menu error:', error);
 			return {
 				title: error.statusMessage || 'Error',
 				description: error.message || 'Please try again.',
@@ -79,23 +82,25 @@ export function useMenuStore() {
 			};
 		} finally {
 			isLoading.value = false;
-			getMenus();
 		}
 	}
 
-	async function deleteMenu(id: string): Promise<StoreResponse> {
+	async function deleteMenu(id: string): Promise<Partial<Toast>> {
+		isLoading.value = true;
 		try {
-			isLoading.value = true;
 			const response = await $fetch<ApiResponse<any>>(`${apiUrl}/${id}`, {
 				method: 'DELETE',
 			});
+
+			await getMenus();
+
 			return {
 				title: 'Menu deleted',
 				color: 'success',
 				description: response.message,
 			};
 		} catch (error: any) {
-			console.log(error);
+			console.log('Menu error:', error);
 			return {
 				title: error.statusMessage || 'Error',
 				description: error.message || 'Please try again.',
@@ -125,7 +130,7 @@ export function useMenuStore() {
 				color: 'success',
 			};
 		} catch (error: any) {
-			console.log(error);
+			console.log('Menu error:', error);
 			return {
 				title: error.statusMessage || 'Error',
 				description: error.message || 'Please try again.',

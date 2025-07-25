@@ -1,41 +1,14 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
-	const client = useSupabaseClient();
-
-	async function logout() {
-		await client.auth.signOut();
-		navigateTo('/auth');
-	}
-
 	const isDark = ref(false);
-	const items = ref<NavigationMenuItem[][]>([
-		[
-			{ label: 'Dashboard', icon: 'heroicons:home-modern-solid', to: '/admin' },
-			{
-				label: 'Featured',
-				icon: 'heroicons:building-storefront-solid',
-				to: '/admin/featured',
-			},
-			{
-				label: 'Menu',
-				icon: 'heroicons:building-storefront-solid',
-				to: '/admin/menu',
-			},
-			{
-				label: 'Settings',
-				icon: 'heroicons:cog-6-tooth-20-solid',
-				to: '/admin/setting',
-			},
-		],
-		[
-			{
-				label: 'Sign out',
-				icon: 'heroicons:arrow-up-on-square-stack-solid',
-				onSelect: logout,
-			},
-		],
-	]);
+
+	const props = defineProps({
+		items: {
+			type: Array as PropType<NavigationMenuItem[][]>,
+			required: true,
+		},
+	});
 </script>
 
 <template>
@@ -68,7 +41,7 @@
 							<UNavigationMenu
 								orientation="vertical"
 								color="error"
-								:items="items"
+								:items="props.items"
 								class="w-full"
 							/>
 						</div>

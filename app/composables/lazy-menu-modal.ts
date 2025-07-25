@@ -6,14 +6,14 @@ export function useMenuModal() {
 	const overlay = useOverlay();
 	const toast = useToast();
 
-	async function openViewModal(id: number) {
+	async function openViewModal(id: string) {
 		const modal = overlay.create(ViewModal, {
 			props: { id },
 		});
 		const instance = modal.open();
 	}
 
-	async function openEditModal(id: number) {
+	async function openEditModal(id: string) {
 		const modal = overlay.create(EditModal, {
 			props: { id },
 		});
@@ -23,7 +23,7 @@ export function useMenuModal() {
 		handleModalResult(result, 'Edit');
 	}
 
-	async function openDeleteModal(id: number) {
+	async function openDeleteModal(id: string) {
 		const modal = overlay.create(DeleteModal, {
 			props: { id },
 		});

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 	import type { FormSubmitEvent } from '@nuxt/ui';
-	import type { Toast } from '@nuxt/ui/runtime/composables/useToast.js';
 	import type z from 'zod';
 	import { toFormData } from '~/utils/toFormData';
-	import { menuSchema } from '~~/schema/menuSchema';
+	import { menuSchema } from '~~/shared/schema/menuSchema';
 
 	type Schema = z.output<typeof menuSchema>;
 
 	const store = useMenuStore();
+	const toast = useToast();
+	const form = useTemplateRef('form');
 
 	const menu = reactive<Partial<Schema>>({
 		name: undefined,
@@ -17,7 +18,6 @@
 		image: null,
 	});
 
-	const toast = useToast();
 	async function onSubmit(event: FormSubmitEvent<typeof menu>) {
 		const formData = toFormData(event.data);
 		if (menu.image) {
@@ -25,6 +25,7 @@
 		}
 		const response = await store.addMenu(formData);
 		toast.add(response);
+		emit('close');
 	}
 
 	function handleFileChange(e: Event) {
@@ -32,24 +33,24 @@
 		const file = input.files?.[0];
 		menu.image = file || null;
 	}
+
+	const emit = defineEmits<{
+		(e: 'close'): void;
+	}>();
 </script>
 
 <template>
-	<UModal title="Add Menu">
-		<UButton
-			label="Add Menu"
-			color="error"
-			variant="solid"
-			icon="i-lucide-plus"
-			class="ml-2"
-		/>
-
+	<UModal
+		title="Add Menu"
+		:close="{ onClick: () => emit('close') }"
+	>
 		<template #body>
 			<UForm
+				ref="form"
 				:state="menu"
 				:schema="menuSchema"
 				class="space-y-4"
-				@submit.prevent="onSubmit"
+				@submit="onSubmit"
 			>
 				<div class="grid grid-cols-1 gap-4">
 					<UFormField
@@ -61,7 +62,6 @@
 							class="w-full"
 						/>
 					</UFormField>
-
 					<UFormField
 						label="Japanese Name"
 						name="japaneseName"
@@ -106,17 +106,19 @@
 						/>
 					</UFormField>
 				</div>
-
-				<div class="flex justify-end w-full">
-					<UButton
-						type="submit"
-						color="error"
-						:loading="store.isLoading.value"
-					>
-						Submit
-					</UButton>
-				</div>
 			</UForm>
+		</template>
+		<template #footer>
+			<div class="flex justify-end w-full">
+				<UButton
+					type="submit"
+					color="error"
+					:loading="store.isLoading.value"
+					@click="form?.submit()"
+				>
+					Submit
+				</UButton>
+			</div>
 		</template>
 	</UModal>
 </template>

@@ -1,5 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server';
-import { menuSchema } from '~~/schema/menuSchema';
+import { menuSchema } from '~~/shared/schema/menuSchema';
 import { convertKeysToSnakeCase } from '~~/server/utils/caseConverters';
 
 export default defineEventHandler(async (event) => {

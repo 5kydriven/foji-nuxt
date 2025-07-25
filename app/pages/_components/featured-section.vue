@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { motion } from 'motion-v';
-import type { Menu } from '~~/types/menu.type';
+	import { motion } from 'motion-v';
+	import type { Menu } from '~~/shared/types/menu.type';
 
-const props = defineProps<{
-	menus: Menu[];
-}>();
+	const props = defineProps<{
+		menus: Menu[];
+	}>();
 
-const page = ref(1);
+	const page = ref(1);
 </script>
 
 <template>
@@ -14,12 +14,11 @@ const page = ref(1);
 		id="featured"
 		class="w-full min-h-[60vh] flex flex-col items-center justify-center gap-10 dark:bg-gray-900 px-4 py-10"
 	>
-		<div
-		class="text-center w-full p-2"
-		>
+		<div class="text-center w-full p-2">
 			<h1 class="font-bold text-3xl md:text-4xl text-gray-800 dark:text-white">
 				Featured Foods
-			</h1><br>
+			</h1>
+			<br />
 			<span>おすすめ料理をお楽しみください。</span><br />
 			<span>Enjoy our featured dishes, specially selected for you!</span>
 		</div>
@@ -44,7 +43,9 @@ const page = ref(1);
 							menu.japaneseName
 						}}</span>
 						<p class="text-gray-600 dark:text-gray-400">{{ menu.name }}</p>
-						<span class="text-red-600 dark:text-red-500 font-bold">₱ {{ menu.price }}</span>
+						<span class="text-red-600 dark:text-red-500 font-bold"
+							>₱ {{ menu.price }}</span
+						>
 						<div class="flex gap-4 items-center">
 							<motion.div
 								class="flex items-center justify-center rounded-lg bg-gray-900 px-3 text-md text-white"
