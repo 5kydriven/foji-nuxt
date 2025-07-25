@@ -73,12 +73,15 @@ export function useMenuStore() {
 			page: page.value.toString(),
 			limit: limit.value.toString(),
 		};
+
 		const queryString = new URLSearchParams(payload).toString();
 		const url = `${apiUrl}${queryString ? '?' + queryString : ''}`;
 
 		try {
-			const menu = await $fetch<ApiResponse<any>>(url);
-			menus.value = menu.data;
+			const response = await $fetch<ApiResponse<any>>(url);
+			menus.value = response.data;
+			total.value = response.meta?.total ?? 0;
+			page.value = response.meta?.page ?? 1;
 		} catch (error) {
 			console.log(error);
 			menus.value = [];

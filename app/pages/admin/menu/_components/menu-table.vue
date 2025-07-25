@@ -7,16 +7,15 @@
 
 	const { openViewModal, openEditModal, openDeleteModal } = useMenuModal();
 	const store = useMenuStore();
-	const value = ref('');
-	const page = ref(5);
-	const UCheckbox = resolveComponent('UCheckbox')
+	const UCheckbox = resolveComponent('UCheckbox');
+	const UDropdownMenu = resolveComponent('UDropdownMenu');
 
-	const columns: TableColumn<any>[] = [
+	const columns: TableColumn<Menu>[] = [
 		{
 			id: 'select',
 			header: ({ table }) =>
 				h(UCheckbox, {
-					'modelValue': table.getIsSomePageRowsSelected()
+					modelValue: table.getIsSomePageRowsSelected()
 						? 'indeterminate'
 						: table.getIsAllPageRowsSelected(),
 					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
@@ -25,8 +24,9 @@
 				}),
 			cell: ({ row }) =>
 				h(UCheckbox, {
-					'modelValue': row.getIsSelected(),
-					'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
+					modelValue: row.getIsSelected(),
+					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
+						row.toggleSelected(!!value),
 					'aria-label': 'Select row',
 				}),
 		},
@@ -76,26 +76,30 @@
 		];
 	}
 
-	const rowSelection = ref<Record<string, boolean>>({})
+	const rowSelection = ref<Record<string, boolean>>({});
 
 	function onSelect(row: TableRow<Menu>, e?: Event) {
-		row.toggleSelected(!row.getIsSelected())
+		row.toggleSelected(!row.getIsSelected());
 
-		console.log(e)
+		console.log(e);
 	}
+
+	onMounted(() => {
+		store.getMenus();
+	});
 </script>
 
 <template>
 	<div class="p-4 rounded-md border border-neutral-200">
 		<div class="flex justify-between items-center p-2">
 			<UInput
-				v-model="value"
+				v-model="store.search.value"
 				icon="heroicons:magnifying-glass-solid"
 				placeholder="Search..."
 				:ui="{ trailing: 'pe-1' }"
 			>
 				<template
-					v-if="value?.length"
+					v-if="store.search.value?.length"
 					#trailing
 				>
 					<UButton
@@ -104,7 +108,7 @@
 						size="sm"
 						icon="i-lucide-circle-x"
 						aria-label="Clear input"
-						@click="value = ''"
+						@click="store.search.value = ''"
 					/>
 				</template>
 			</UInput>
@@ -112,7 +116,9 @@
 		</div>
 		<UTable
 			v-model:row-selection="rowSelection"
-			:data="store"
+			:loading="store.isLoading.value"
+			loading-animation="carousel"
+			:data="store.menus.value"
 			:columns="columns"
 			class="flex-1"
 			sticky
@@ -147,7 +153,7 @@
 		</UTable>
 		<div class="flex justify-center my-2">
 			<UPagination
-				v-model:page="page"
+				v-model:page="store.page.value"
 				:sibling-count="1"
 				:total="100"
 				active-color="error"
