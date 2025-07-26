@@ -99,7 +99,7 @@
 		}"
 		:data="props.menus"
 		:columns="columns"
-		class="flex-1"
+		class="flex-1 capitalize"
 		sticky
 		@select="onSelect"
 	>
@@ -107,7 +107,7 @@
 			<div class="flex items-center gap-3">
 				<UAvatar
 					:src="row.original.image"
-					size="lg"
+					size="xl"
 				/>
 				<div>
 					<p class="font-medium text-highlighted">

@@ -14,6 +14,7 @@
 			icon="heroicons:magnifying-glass-solid"
 			placeholder="Search..."
 			:ui="{ trailing: 'pe-1' }"
+			color="error"
 		>
 			<template
 				v-if="store.search.length"

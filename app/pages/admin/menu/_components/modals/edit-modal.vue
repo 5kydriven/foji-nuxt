@@ -1,12 +1,15 @@
 <script setup lang="ts">
 	import type { FormSubmitEvent } from '@nuxt/ui';
 	import type z from 'zod';
+	import { toFormData } from '~/utils/toFormData';
 	import { menuSchema } from '~~/shared/schema/menuSchema';
 
 	type Schema = z.output<typeof menuSchema>;
+		
 	const store = useMenuStore()
 	const toast = useToast();
 	const form = useTemplateRef('form');
+	const image = ref(null);
 
 	const props = defineProps<{
 		id: string;
@@ -16,7 +19,7 @@
 		description: string;
 		image: string;
 	}>();
-	console.log(props)
+
 	const menu = reactive<Partial<Schema>>({
 		name: props.name,
 		japaneseName: props.japaneseName,
@@ -31,14 +34,24 @@
 			formData.append('image', menu.image);
 		}
 		const response = await store.updateMenu({id: props.id, payload: formData});
-		// toast.add(response);
+		toast.add(response as any);
 		emit('close');
 	}
 
 	function handleFileChange(e: Event) {
 		const input = e.target as HTMLInputElement;
 		const file = input.files?.[0];
-		menu.image = file || null;
+		if (file) {
+			menu.image = file;
+			const reader = new FileReader();
+			reader.onload = (event) => {
+				image.value = event.target?.result as any;
+			};
+			reader.readAsDataURL(file);
+		} else {
+			image.value = null
+			menu.image = props.image;
+		}
 	}
 
 	const emit = defineEmits<{
@@ -105,23 +118,32 @@
 						label="Menu Image"
 						name="image"
 					>
-						<UInput
-							accept="image/*"
-							type="file"
-							class="w-full"
-							@change="handleFileChange"
-						/>
+						<div class="space-y-2">
+							<div>
+								<img :src="image" v-if="image"/>
+								<img :src="menu.image" v-else-if="menu.image"/>
+							</div>
+							<UInput
+								accept="image/*"
+								type="file"
+								class="w-full"
+								@change="handleFileChange"
+							/>
+						</div>
 					</UFormField>
 				</div>
-				<div class="flex gap-2">
+				<div class="flex w-full justify-end gap-2">
 					<UButton
 						color="neutral"
-						label="Dismiss"
+						label="Cancel"
 						@click="emit('close')"
 					/>
 					<UButton
-						label="Success"
+						label="Update"
 						type="submit"
+						:loading="store.isLoading"
+						color="error"
+						@click="form?.submit()"
 					/>
 				</div>
 			</UForm>

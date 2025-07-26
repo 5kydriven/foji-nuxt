@@ -9,6 +9,7 @@
 	const store = useMenuStore();
 	const toast = useToast();
 	const form = useTemplateRef('form');
+	const image = ref(null)
 
 	const menu = reactive<Partial<Schema>>({
 		name: undefined,
@@ -32,6 +33,15 @@
 		const input = e.target as HTMLInputElement;
 		const file = input.files?.[0];
 		menu.image = file || null;
+		if(file) {
+			const reader = new FileReader();
+			reader.onload = (event) => {
+				image.value = event.target?.result as any
+			}
+			reader.readAsDataURL(file);
+		} else{
+			image.value = null
+		}
 	}
 
 	const emit = defineEmits<{
@@ -98,12 +108,18 @@
 						label="Menu Image"
 						name="image"
 					>
-						<UInput
-							accept="image/*"
-							type="file"
-							class="w-full"
-							@change="handleFileChange"
-						/>
+						<div class="space-y-2">
+							<div>
+								<img :src="image" v-if="image"/>
+								<img :src="menu.image" v-else-if="menu.image"/>
+							</div>
+							<UInput
+								accept="image/*"
+								type="file"
+								class="w-full"
+								@change="handleFileChange"
+							/>
+						</div>
 					</UFormField>
 				</div>
 			</UForm>

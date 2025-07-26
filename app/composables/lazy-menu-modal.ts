@@ -20,7 +20,7 @@ export function useMenuModal() {
 		const instance = modal.open();
 		const result = await instance.result;
 
-		handleModalResult(result, 'Edit');
+		// handleModalResult(result, 'Edit');
 	}
 
 	async function openDeleteModal(id: string) {

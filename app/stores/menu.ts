@@ -116,9 +116,10 @@ export const useMenuStore = defineStore('menu', () => {
 		payload,
 	}: {
 		id: string;
-		payload: any;
+		payload: FormData;
 	}): Promise<StoreResponse> {
 		try {
+			console.log(payload);
 			isLoading.value = true;
 			const response = await $fetch<ApiResponse<any>>(`${apiUrl}/${id}`, {
 				method: 'PUT',
