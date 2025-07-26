@@ -13,9 +13,9 @@ export function useMenuModal() {
 		const instance = modal.open();
 	}
 
-	async function openEditModal(id: string) {
+	async function openEditModal(menu: any) {
 		const modal = overlay.create(EditModal, {
-			props: { id },
+			props: { ...menu },
 		});
 		const instance = modal.open();
 		const result = await instance.result;

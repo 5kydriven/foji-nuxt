@@ -1,8 +1,12 @@
 <script setup lang="ts">
+	import type { FormSubmitEvent } from '@nuxt/ui';
 	import type z from 'zod';
 	import { menuSchema } from '~~/shared/schema/menuSchema';
 
 	type Schema = z.output<typeof menuSchema>;
+	const store = useMenuStore()
+	const toast = useToast();
+	const form = useTemplateRef('form');
 
 	const props = defineProps<{
 		id: string;
@@ -12,19 +16,37 @@
 	}>();
 
 	const menu = reactive<Partial<Schema>>({
-		name: props.id,
+		name: props.name,
 		japaneseName: props.japaneseName,
 		price: undefined,
 		description: undefined,
 		image: null,
 	});
 
-	const emit = defineEmits<{ close: [boolean] }>();
+	async function onSubmit(event: FormSubmitEvent<typeof menu>) {
+		const formData = toFormData(event.data);
+		if (menu.image) {
+			formData.append('image', menu.image);
+		}
+		const response = await store.updateMenu({id: props.id, payload: formData});
+		// toast.add(response);
+		emit('close');
+	}
+
+	function handleFileChange(e: Event) {
+		const input = e.target as HTMLInputElement;
+		const file = input.files?.[0];
+		menu.image = file || null;
+	}
+
+	const emit = defineEmits<{
+		(e: 'close'): void;
+	}>();
 </script>
 
 <template>
 	<UModal
-		:close="{ onClick: () => emit('close', false) }"
+		:close="{ onClick: () => emit('close') }"
 		title="Edit menu"
 	>
 		<template #body>
@@ -89,20 +111,18 @@
 						/>
 					</UFormField>
 				</div>
+				<div class="flex gap-2">
+					<UButton
+						color="neutral"
+						label="Dismiss"
+						@click="emit('close')"
+					/>
+					<UButton
+						label="Success"
+						type="submit"
+					/>
+				</div>
 			</UForm>
-		</template>
-		<template #footer>
-			<div class="flex gap-2">
-				<UButton
-					color="neutral"
-					label="Dismiss"
-					@click="emit('close', false)"
-				/>
-				<UButton
-					label="Success"
-					@click="emit('close', true)"
-				/>
-			</div>
 		</template>
 	</UModal>
 </template>
