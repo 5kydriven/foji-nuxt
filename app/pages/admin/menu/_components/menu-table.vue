@@ -65,7 +65,7 @@
 					label: 'Edit',
 					color: 'info',
 					icon: 'i-lucide-edit',
-					onSelect: () => openEditModal(user.id),
+					onSelect: () => openEditModal(user),
 				},
 				{
 					label: 'Delete',

@@ -13,14 +13,16 @@
 		name: string;
 		price: number;
 		japaneseName: string;
+		description: string;
+		image: string;
 	}>();
-
+	console.log(props)
 	const menu = reactive<Partial<Schema>>({
 		name: props.name,
 		japaneseName: props.japaneseName,
-		price: undefined,
-		description: undefined,
-		image: null,
+		price: props.price,
+		description: props.description,
+		image: props.image,
 	});
 
 	async function onSubmit(event: FormSubmitEvent<typeof menu>) {
