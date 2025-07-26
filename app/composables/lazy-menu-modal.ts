@@ -6,9 +6,9 @@ export function useMenuModal() {
 	const overlay = useOverlay();
 	const toast = useToast();
 
-	async function openViewModal(id: string) {
+	async function openViewModal(menu: any) {
 		const modal = overlay.create(ViewModal, {
-			props: { id },
+			props: { ...menu },
 		});
 		const instance = modal.open();
 	}
@@ -30,7 +30,7 @@ export function useMenuModal() {
 		const instance = modal.open();
 		const result = await instance.result;
 
-		handleModalResult(result, 'Delete');
+		// handleModalResult(result, 'Delete');
 	}
 
 	function handleModalResult(result: any, action: string) {

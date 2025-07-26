@@ -21,7 +21,7 @@
 		title="Delete Menu"
 	>
 		<template #body>
-			<div>Are you sure you want to delete this menu? {{ props.id }}</div>
+			<div>Are you sure you want to delete this menu?</div>
 		</template>
 		<template #footer>
 			<div class="flex justify-end gap-4 w-full">

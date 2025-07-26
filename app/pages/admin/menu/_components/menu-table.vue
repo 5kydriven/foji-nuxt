@@ -59,7 +59,7 @@
 				{
 					label: 'View Details',
 					icon: 'i-lucide-eye',
-					onSelect: () => openViewModal(user.id),
+					onSelect: () => openViewModal(user),
 				},
 				{
 					label: 'Edit',

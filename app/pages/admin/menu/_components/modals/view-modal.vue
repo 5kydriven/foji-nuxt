@@ -1,7 +1,13 @@
 <script setup lang="ts">
 	const { openEditModal, openDeleteModal } = useMenuModal();
-	defineProps<{
+
+	const props = defineProps<{
 		id: string;
+		name: string;
+		price: number;
+		japaneseName: string;
+		description: string;
+		image: string;
 	}>();
 
 	const emit = defineEmits<{ close: [boolean] }>();
@@ -13,8 +19,22 @@
 		title="View Menu Details"
 	>
 		<template #body>
-			<p>This is a view modal for the item with ID: {{ id }}</p>
-			<p>You can display any relevant information here.</p>
+			<div>
+				<div>
+					<img :src="props.image" alt="Menu Image"/>
+				</div>
+				<div>
+					<div>
+						<span>{{ props.japaneseName }}</span><br>
+						<span class="font-bold text-xl">{{ props.name }}</span>
+					</div>
+					<span>{{ formatPeso(props.price) }}</span>
+				</div>
+				<div>
+					<label>Description</label>
+					<p>{{ props.description }}</p>
+				</div>
+			</div>
 		</template>
 		<template #footer>
 			<div class="flex justify-end gap-2 w-full">
