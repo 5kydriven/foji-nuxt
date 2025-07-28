@@ -5,11 +5,11 @@
 	import { menuSchema } from '~~/shared/schema/menuSchema';
 
 	type Schema = z.output<typeof menuSchema>;
-		
-	const store = useMenuStore()
-	const toast = useToast();
+
 	const form = useTemplateRef('form');
-	const image = ref(null);
+	const store = useMenuStore();
+	const toast = useToast();
+	const imageFile = ref(null);
 
 	const props = defineProps<{
 		id: string;
@@ -17,7 +17,7 @@
 		price: number;
 		japaneseName: string;
 		description: string;
-		image: string;
+		image: any;
 	}>();
 
 	const menu = reactive<Partial<Schema>>({
@@ -33,8 +33,11 @@
 		if (menu.image) {
 			formData.append('image', menu.image);
 		}
-		const response = await store.updateMenu({id: props.id, payload: formData});
-		toast.add(response as any);
+		const response = await store.updateMenu({
+			id: props.id,
+			payload: formData,
+		});
+		toast.add(response);
 		emit('close');
 	}
 
@@ -45,11 +48,11 @@
 			menu.image = file;
 			const reader = new FileReader();
 			reader.onload = (event) => {
-				image.value = event.target?.result as any;
+				imageFile.value = event.target?.result as any;
 			};
 			reader.readAsDataURL(file);
 		} else {
-			image.value = null
+			imageFile.value = null;
 			menu.image = props.image;
 		}
 	}
@@ -120,8 +123,14 @@
 					>
 						<div class="space-y-2">
 							<div>
-								<img :src="image" v-if="image"/>
-								<img :src="menu.image" v-else-if="menu.image"/>
+								<img
+									v-if="image"
+									:src="image"
+								/>
+								<img
+									v-else-if="menu.image"
+									:src="menu.image"
+								/>
 							</div>
 							<UInput
 								accept="image/*"

@@ -117,7 +117,7 @@ export const useMenuStore = defineStore('menu', () => {
 	}: {
 		id: string;
 		payload: FormData;
-	}): Promise<StoreResponse> {
+	}): Promise<Partial<Toast>> {
 		try {
 			console.log(payload);
 			isLoading.value = true;

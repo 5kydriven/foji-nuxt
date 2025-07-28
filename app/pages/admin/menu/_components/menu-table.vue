@@ -2,7 +2,7 @@
 	import type { TableColumn, DropdownMenuItem, TableRow } from '@nuxt/ui';
 	import type { Menu } from '~~/shared/types/menu.type';
 	import { useMenuModal } from '~/composables/lazy-menu-modal';
-	import { LazyDeleteModal } from '#components';
+	import { LazyDeleteModal, LazyEditModal } from '#components';
 
 	const { openViewModal, openEditModal, openDeleteModal } = useMenuModal();
 	const UCheckbox = resolveComponent('UCheckbox');
@@ -10,6 +10,7 @@
 	const overlay = useOverlay();
 
 	const deleteModal = overlay.create(LazyDeleteModal);
+	const editModal = overlay.create(LazyEditModal);
 
 	const columns: TableColumn<Menu>[] = [
 		{
@@ -65,7 +66,7 @@
 					label: 'Edit',
 					color: 'info',
 					icon: 'i-lucide-edit',
-					onSelect: () => openEditModal(user),
+					onSelect: () => editModal.open({ ...user }),
 				},
 				{
 					label: 'Delete',
