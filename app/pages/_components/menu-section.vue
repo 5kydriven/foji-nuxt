@@ -49,12 +49,23 @@
 </script>
 
 <template>
-	<div class="w-full flex justify-center bg-gray-50">
+	<div class="w-full flex justify-center bg-gray-50 dark:bg-gray-800">
 		<div
 			class="max-w-screen-xl mx-auto flex flex-col items-center justify-center gap-4 py-4 xl:px-16"
 		>
-			<h1 class="font-bold text-2xl md:text-3xl">Our Regular Menu Pack</h1>
-			<div
+			<motion.h1 
+				:initial="{ opacity: 0, scale: 0.5 }"
+				:whileInView="{
+					opacity: 1,
+					scale: 1,
+					transition: { duration: 0.5, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] },
+				}"
+				:inViewOptions="{once: false}"
+				class="font-bold text-2xl md:text-3xl
+			">
+				Our Regular Menu Pack
+			</motion.h1>
+			<!-- <div
 				class="flex flex-wrap items-center justify-center py-4 md:py-8 gap-2"
 			>
 				<button
@@ -87,7 +98,7 @@
 				>
 					Gaming
 				</button>
-			</div>
+			</div> -->
 			<div
 				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full p-2"
 			>
@@ -97,12 +108,15 @@
 				>
 					<motion.div
 						:initial="{ opacity: 0, scale: 0.5 }"
-						:animate="{ opacity: 1, scale: 1 }"
-						:transition="{
-							duration: 0.8,
-							delay: 0.5 + index * 0.2,
-							ease: [0, 0.71, 0.2, 1.01],
+						:whileInView=" {
+							opacity: 1, scale: 1,
+							transition : {
+								duration: 0.8,
+								delay: 0 + index * 0.2,
+								ease: [0, 0.71, 0.2, 1.01],
+							}
 						}"
+						:inViewOptions="{ once: false }"
 					>
 						<div
 							class="flex flex-col justify-between bg-white shadow rounded-lg transition-all duration-300 overflow-hidden my-2"

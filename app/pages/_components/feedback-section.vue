@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { motion } from 'motion-v';
 const feedbacks = [
 	{
 		name: 'John Doe',
@@ -25,7 +26,14 @@ const feedbacks = [
 
 <template>
 	<div class="w-full flex justify-center">
-		<div
+		<motion.div
+			:initial="{ opacity: 0, scale: 0.5 }"
+			:whileInView="{
+				opacity: 1,
+				scale: 1,
+				transition: { duration: 0.5, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] },
+			}"
+			:inViewOptions="{once: false}"
 			class="max-w-screen-xl mx-auto min-h-[60vh] gap-10 dark:bg-gray-900 px-4 py-10 xl:px-16 space-y-4"
 		>
 			<h1 class="text-3xl font-bold">What Our Customer Says?</h1>
@@ -41,20 +49,20 @@ const feedbacks = [
 					}"
 					class="w-full"
 				>
-					<div class="p-4 rounded-md bg-gray-50 space-y-2 flex flex-col items-center">
+					<div class="p-4 rounded-md bg-gray-50 dark:bg-gray-700 space-y-2 flex flex-col items-center">
 						<p class="text-gray-600 dark:text-gray-400 text-center">{{ item.review }}</p>
 						<div class="flex flex-col items-center mt-2">
 							<img
-	:src="item.image"
-	width="50"
-	height="50"
-	class="rounded-full mb-2"
-	>
+							:src="item.image"
+							width="50"
+							height="50"
+							class="rounded-full mb-2"
+							>
 							<h2 class="text-lg font-semibold">{{ item.name }}</h2>
 						</div>
 					</div>
 				</UCarousel>
 			</div>
-		</div>
+		</motion.div>
 	</div>
 </template>

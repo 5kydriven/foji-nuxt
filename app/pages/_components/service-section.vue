@@ -20,7 +20,7 @@
 						opacity: 1,
 						transition: { ease: ['easeIn', 'easeOut'], duration: 0.5 },
 					}"
-					:inViewOptions="{ once: true }"
+					:inViewOptions="{ once: false }"
 					class="flex-1 flex justify-center items-center"
 				>
 					<div class="p-8 rounded-full bg-red-600">
@@ -38,7 +38,7 @@
 						opacity: 1,
 						transition: { ease: ['easeIn', 'easeOut'], duration: 0.5 },
 					}"
-					:inViewOptions="{ once: true }"
+					:inViewOptions="{ once: false }"
 					class="flex-1 space-y-4"
 				>
 					<h1 class="text-3xl font-bold capitalize">

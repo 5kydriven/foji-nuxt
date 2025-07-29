@@ -33,7 +33,7 @@
 						class="w-full"
 					>
 						<div
-							class="flex flex-col justify-between bg-white gap-3 sm:gap-4 rounded-lg transition-all duration-300 overflow-hidden my-2 border border-gray-300"
+							class="flex flex-col justify-between bg-white dark:bg-gray-700 gap-3 sm:gap-4 rounded-lg transition-all duration-300 overflow-hidden my-2 border border-gray-300 dark:border-gray-700"
 						>
 							<div
 								class="flex justify-center items-center w-full min-w-16 min-h-16 sm:min-w-20 sm:min-h-20 md:w-auto bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat"

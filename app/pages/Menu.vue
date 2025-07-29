@@ -92,59 +92,60 @@
 			>
 				<motion.div
 					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 0.5 + index * 0.2,
-						ease: [0, 0.71, 0.2, 1.01],
+					:whileInView=" {
+						opacity: 1, scale: 1,
+						transition : {
+							duration: 0.8,
+							delay: 0 + index * 0.2,
+							ease: [0, 0.71, 0.2, 1.01],
+						}
 					}"
+					:inViewOptions="{ once: false }"
 				>
 					<div
-						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg transition-all duration-300 overflow-hidden p-2 px-4 h-96 my-2"
+						class="flex flex-col justify-between bg-white shadow rounded-lg transition-all duration-300 overflow-hidden my-2"
 					>
 						<div
-							class="flex justify-center items-center w-full md:w-auto rounded-md min-w-40 min-h-40 bg-red-50"
+							class="flex justify-center items-center w-full md:w-auto min-w-40 min-h-40 bg-[url(/bg.png)] bg-cover bg-center bg-no-repeat"
 						>
 							<img
 								:src="menu.image"
 								alt=""
-								class="w-40"
+								class="w-40 hover:scale-150 transition-transform duration-300"
 							/>
 						</div>
-						<div class="flex flex-col items-center">
-							<span
-								class="text-gray-800 dark:text-white font-semibold text-center"
-								>{{ menu.japaneseName }}</span
-							>
-							<p class="text-gray-600 dark:text-gray-400 text-center">
-								{{ menu.name }}
+						<div class="bg-red-700 p-2">
+							<span class="font-thin text-white text-xl">
+								₱ {{ menu.price }}
+							</span>
+							<!-- <div class="hidden xl:block">
+							<span class="text-white font-semibold ">{{
+								menu.japaneseName?.length || 0 > 15 ? menu.japaneseName?.slice(0, 15) + '…' : menu.japaneseName
+							}}</span>
+							<p class="text-gray-200 dark:text-gray-400 ">
+								{{ menu.name?.length || 0 > 30 ? menu.name?.slice(0, 30) + '…' : menu.name }}
 							</p>
-						</div>
-						<div
-							class="flex items-center justify-between w-full py-4 px-4 md:px-8 bg-red-400 rounded-full"
-						>
-							<span class="font-bold text-white"> ₱ {{ menu.price }} </span>
+						</div> -->
 							<div>
-								<motion.div
-									class="flex items-center justify-center rounded-full h-10 w-10 border border-white text-white"
-									:whileHover="{
-										scale: [null, 1.1, 1.6],
-										transition: {
-											duration: 0.5,
-											times: [0, 0.6, 1],
-											ease: ['easeInOut', 'easeOut'],
-										},
-									}"
-									:transition="{
-										duration: 0.3,
-										ease: 'easeOut',
-									}"
+								<span class="text-white font-semibold">{{
+									menu.japaneseName
+								}}</span>
+								<p class="text-gray-200 dark:text-gray-400">
+									{{ menu.name }}
+								</p>
+							</div>
+							<div
+								class="flex items-center justify-between w-full py-4 px-2 rounded-full"
+							>
+								<div
+									class="flex items-center justify-center rounded-full px-2 border border-white text-white hover:bg-white hover:text-red-600"
 								>
+									Details
 									<UIcon
 										name="heroicons:arrow-up-right-16-solid"
 										class="size-7"
 									/>
-								</motion.div>
+								</div>
 							</div>
 						</div>
 					</div>
