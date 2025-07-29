@@ -1,51 +1,11 @@
 <script setup lang="ts">
 	import { motion } from 'motion-v';
 	import type { Menu } from '~~/shared/types/menu.type';
+	const store = useMenuStore();
 
-	const menus = ref<Menu[]>([
-		{
-			japaneseName: '豚肉のカツ丼の煮卵セット',
-			name: 'Stewed Egg with Pork Chop Rice Set',
-			image: '/menu.png',
-			price: 300,
-			description: 'Delicious menu item 1',
-		},
-		{
-			japaneseName: '特製豚生姜ご飯セット',
-			name: 'Special Pork Ginger Rice Set',
-			image: '/menu-2.png',
-			price: 300,
-			description: 'Tasty menu item 2',
-		},
-		{
-			japaneseName: '豚肉チョップ天心飯セット',
-			name: 'Pork Chop Tenshinhan Set',
-			image: '/menu-3.png',
-			price: 300,
-			description: 'Yummy menu item 3',
-		},
-		{
-			japaneseName: 'チキンライスオムレツセット / 日本の味',
-			name: 'Chicken Rice Omelet Set / Japanes Taste',
-			image: '/menu-4.png',
-			price: 300,
-			description: 'Scrumptious menu item 4',
-		},
-		{
-			japaneseName: 'スチューズエッグとチキンライスセット',
-			name: 'Stewes Egg with Chicken Rice Set',
-			image: '/menu-5.png',
-			price: 300,
-			description: 'Savory menu item 5',
-		},
-		{
-			japaneseName: '海鮮チャーハンセット / 日本の味',
-			name: 'Sea Food Fried Rice Set / Japanes Taste',
-			image: '/menu-6.png',
-			price: 300,
-			description: 'Appetizing menu item 6',
-		},
-	]);
+	onMounted(async () => {
+		await callOnce(() => store.getMenus());
+	});
 </script>
 
 <template>
@@ -53,7 +13,7 @@
 		class="w-full flex flex-col items-center justify-center gap-8 py-4 xl:px-16"
 	>
 		<h1 class="font-bold text-2xl md:text-3xl">Menu's</h1>
-		<div class="flex flex-wrap items-center justify-center py-4 md:py-8 gap-2">
+		<!-- <div class="flex flex-wrap items-center justify-center py-4 md:py-8 gap-2">
 			<button
 				type="button"
 				class="text-red-700 hover:text-white border border-red-600 bg-white hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-500 dark:bg-gray-900 dark:focus:ring-red-800"
@@ -84,10 +44,12 @@
 			>
 				Gaming
 			</button>
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+		</div> -->
+		<div
+			class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full p-2"
+		>
 			<div
-				v-for="(menu, index) in menus"
+				v-for="(menu, index) in store.menus"
 				:key="menu.name"
 			>
 				<motion.div
