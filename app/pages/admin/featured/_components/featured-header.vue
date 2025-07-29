@@ -31,7 +31,7 @@
 			</template>
 		</UInput>
 		<UButton
-			label="Menu"
+			label="Featured"
 			color="error"
 			variant="solid"
 			icon="i-lucide-plus"
