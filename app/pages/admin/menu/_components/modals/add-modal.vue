@@ -68,6 +68,7 @@
 						name="name"
 					>
 						<UInput
+							color="neutral"
 							v-model="menu.name"
 							class="w-full"
 						/>
@@ -77,6 +78,7 @@
 						name="japaneseName"
 					>
 						<UInput
+							color="neutral"
 							v-model="menu.japaneseName"
 							class="w-full"
 						/>
@@ -86,6 +88,7 @@
 						name="price"
 					>
 						<UInput
+							color="neutral"
 							v-model="menu.price"
 							class="w-full"
 							icon="lucide:philippine-peso"
@@ -120,6 +123,7 @@
 								/>
 							</div>
 							<UInput
+								color="neutral"
 								accept="image/*"
 								type="file"
 								class="w-full"

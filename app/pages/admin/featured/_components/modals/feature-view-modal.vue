@@ -1,10 +1,10 @@
 <script setup lang="ts">
-	import { LazyEditModal, LazyDeleteModal } from '#components';
+	import { LazyFeatureEditModal, LazyFeatureDeleteModal } from '#components';
 
 	const overlay = useOverlay();
 
-	const deleteModal = overlay.create(LazyDeleteModal);
-	const editModal = overlay.create(LazyEditModal);
+	const deleteModal = overlay.create(LazyFeatureDeleteModal);
+	const editModal = overlay.create(LazyFeatureEditModal);
 
 	const props = defineProps<{
 		id: string;

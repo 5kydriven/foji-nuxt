@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	const store = useMenuStore();
+	const store = useFeatureStore();
 </script>
 
 <template>

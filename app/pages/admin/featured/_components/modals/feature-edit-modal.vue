@@ -2,12 +2,12 @@
 	import type { FormSubmitEvent } from '@nuxt/ui';
 	import type z from 'zod';
 	import { toFormData } from '~/utils/toFormData';
-	import { menuSchema } from '~~/shared/schema/menuSchema';
+	import { featureSchema } from '~~/shared/schema/featureSchema';
 
-	type Schema = z.output<typeof menuSchema>;
+	type Schema = z.output<typeof featureSchema>;
 
 	const form = useTemplateRef('form');
-	const store = useMenuStore();
+	const store = useFeatureStore();
 	const toast = useToast();
 	const imageFile = ref(null);
 
@@ -20,7 +20,7 @@
 		image: any;
 	}>();
 
-	const menu = reactive<Partial<Schema>>({
+	const feature = reactive<Partial<Schema>>({
 		name: props.name,
 		japaneseName: props.japaneseName,
 		price: props.price,
@@ -28,12 +28,12 @@
 		image: props.image,
 	});
 
-	async function onSubmit(event: FormSubmitEvent<typeof menu>) {
+	async function onSubmit(event: FormSubmitEvent<typeof feature>) {
 		const formData = toFormData(event.data);
-		if (menu.image) {
-			formData.append('image', menu.image);
+		if (feature.image) {
+			formData.append('image', feature.image);
 		}
-		const response = await store.updateMenu({
+		const response = await store.updateFeature({
 			id: props.id,
 			payload: formData,
 		});
@@ -45,7 +45,7 @@
 		const input = e.target as HTMLInputElement;
 		const file = input.files?.[0];
 		if (file) {
-			menu.image = file;
+			feature.image = file;
 			const reader = new FileReader();
 			reader.onload = (event) => {
 				imageFile.value = event.target?.result as any;
@@ -53,7 +53,7 @@
 			reader.readAsDataURL(file);
 		} else {
 			imageFile.value = null;
-			menu.image = props.image;
+			feature.image = props.image;
 		}
 	}
 
@@ -70,8 +70,8 @@
 		<template #body>
 			<UForm
 				ref="form"
-				:state="menu"
-				:schema="menuSchema"
+				:state="feature"
+				:schema="featureSchema"
 				class="space-y-4"
 				@submit="onSubmit"
 			>
@@ -81,7 +81,8 @@
 						name="name"
 					>
 						<UInput
-							v-model="menu.name"
+							color="neutral"
+							v-model="feature.name"
 							class="w-full"
 						/>
 					</UFormField>
@@ -90,7 +91,8 @@
 						name="japaneseName"
 					>
 						<UInput
-							v-model="menu.japaneseName"
+							color="neutral"
+							v-model="feature.japaneseName"
 							class="w-full"
 						/>
 					</UFormField>
@@ -99,7 +101,8 @@
 						name="price"
 					>
 						<UInput
-							v-model="menu.price"
+							color="neutral"
+							v-model="feature.price"
 							class="w-full"
 							icon="lucide:philippine-peso"
 							placeholder="00.00"
@@ -110,7 +113,7 @@
 						name="description"
 					>
 						<UTextarea
-							v-model="menu.description"
+							v-model="feature.description"
 							color="neutral"
 							highlight
 							placeholder="Type something..."
@@ -128,11 +131,12 @@
 									:src="image"
 								/>
 								<img
-									v-else-if="menu.image"
-									:src="menu.image"
+									v-else-if="feature.image"
+									:src="feature.image"
 								/>
 							</div>
 							<UInput
+								color="neutral"
 								accept="image/*"
 								type="file"
 								class="w-full"

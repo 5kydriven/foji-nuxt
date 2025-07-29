@@ -1,10 +1,10 @@
 <script setup lang="ts">
-	import { LazyAddModal } from '#components';
+	import { LazyFeatureAddModal } from '#components';
 
-	const store = useMenuStore();
+	const store = useFeatureStore();
 	const overlay = useOverlay();
 
-	const modal = overlay.create(LazyAddModal);
+	const modal = overlay.create(LazyFeatureAddModal);
 </script>
 
 <template>

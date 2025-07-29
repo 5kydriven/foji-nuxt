@@ -1,9 +1,9 @@
 <script setup lang="ts">
-	const store = useMenuStore();
+	const store = useFeatureStore();
 	const toast = useToast();
 
 	async function onConfirm() {
-		const response = await store.deleteMenu(props.id);
+		const response = await store.deleteFeature(props.id);
 		toast.add(response);
 		emit('close');
 	}

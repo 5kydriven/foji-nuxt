@@ -4,10 +4,10 @@
 		middleware: 'auth',
 	});
 
-	const store = useMenuStore();
+	const store = useFeatureStore();
 
 	onMounted(async () => {
-		await callOnce(() => store.getMenus());
+		await callOnce(() => store.getFeatures());
 	});
 </script>
 
@@ -21,7 +21,7 @@
 		</div>
 		<FeaturedHeader />
 		<FeaturedTable
-			:menus="store.menus"
+			:features="store.features"
 			:isLoading="store.isLoading"
 		/>
 		<FeaturedPagination />

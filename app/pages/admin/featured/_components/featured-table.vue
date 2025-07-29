@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import type { TableColumn, DropdownMenuItem, TableRow } from '@nuxt/ui';
-	import type { Menu } from '~~/shared/types/menu.type';
+	import type { Feature } from '~~/shared/types/feature.type';
 	import { LazyFeatureViewModal, LazyFeatureDeleteModal, LazyFeatureEditModal } from '#components';
 
 	const UCheckbox = resolveComponent('UCheckbox');
@@ -84,7 +84,7 @@
 	}
 
 	const props = defineProps<{
-		menus: Menu[];
+		features: Feature[];
 		isLoading: boolean;
 	}>();
 </script>
@@ -97,7 +97,7 @@
 			icon: 'i-heroicons-arrow-path-20-solid',
 			label: 'Loading...',
 		}"
-		:data="props.menus"
+		:data="props.features"
 		:columns="columns"
 		class="flex-1 capitalize"
 		sticky
