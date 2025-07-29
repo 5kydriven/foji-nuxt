@@ -79,7 +79,7 @@
 					<h1
 						class="font-bold text-2xl sm:text-3xl lg:text-5xl text-dark h1 text-white leading-tight break-words drop-shadow-2xl text-center"
 					>
-						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.
+						{{ $t('hero.title') }}
 					</h1>
 				</div>
 				<br />
@@ -93,9 +93,7 @@
 						ease: [0, 0.71, 0.2, 1.01],
 					}"
 				>
-					Experience the taste of Japan with our signature sushi, ramen, and
-					more. Enjoy a unique dining atmosphere at FOJI, where tradition meets
-					innovation.
+					{{ $t('hero.description') }}
 				</motion.div>
 				<br />
 				<motion.div

@@ -42,13 +42,10 @@
 					class="flex-1 space-y-4"
 				>
 					<h1 class="text-3xl font-bold capitalize">
-						We are more than multiple service
+						{{ $t('service.title') }}
 					</h1>
 					<p class="text-gray-600">
-						This restaurant is not just about food; it's about creating an
-						unforgettable experience. From our exquisite menu to our attentive
-						service, we strive to make every visit special. Whether you're here
-						for a casual meal or a celebration, we have something for everyone.
+						{{ $t('service.description') }}
 					</p>
 					<UButton
 						label="About Us"

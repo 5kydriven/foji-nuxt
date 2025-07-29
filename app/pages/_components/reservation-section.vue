@@ -18,10 +18,10 @@ import { motion } from 'motion-v';
 					:inViewOptions="{ once: false }" 
 					class="flex-1 space-y-2">
 					<h1 class="text-3xl font-bold ">
-						Do you have any plan to eat at our restaurant? Reserve your table now!
+						{{ $t('reservation.title') }}
 					</h1>
 					<p class="text-gray-600 dark:text-gray-400">
-						We are excited to welcome you to our restaurant! To ensure a smooth dining experience, we recommend making a reservation in advance.
+						{{ $t('reservation.description') }}
 					</p>
 					<UButton
 					label="Reserve Now"

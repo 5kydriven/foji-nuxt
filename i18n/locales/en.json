@@ -1,5 +1,17 @@
 {
 	"helloWorld": "Hello World",
 	"underConstruction": "Under Construction",
-	"thisPageIsUnderConstruction": "This page is under construction. Thank you for your patience!"
+	"thisPageIsUnderConstruction": "This page is under construction. Thank you for your patience!",
+	"hero": {
+		"title": "Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.",
+		"description": "Experience the taste of Japan with our signature sushi, ramen, and more. Enjoy a unique dining atmosphere at FOJI, where tradition meets innovation."
+	},
+	"service": {
+		"title": "We are more than multiple service",
+		"description": "This restaurant is not just about food; it's about creating an unforgettable experience. From our exquisite menu to our attentive service, we strive to make every visit special. Whether you're here for a casual meal or a celebration, we have something for everyone."
+	},
+	"reservation": {
+		"title": "Do you have any plan to eat at our restaurant? Reserve your table now!",
+		"description": "We are excited to welcome you to our restaurant! To ensure a smooth dining experience, we recommend making a reservation in advance."
+	}
 }
