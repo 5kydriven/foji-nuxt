@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 	import { motion } from 'motion-v';
-	import type { Menu } from '~~/types/menu.type';
+	import type { Menu } from '~~/shared/types/menu.type';
 
 	const props = defineProps<{
 		menus: Menu[];
@@ -12,7 +12,7 @@
 <template>
 	<div class="w-full flex justify-center">
 		<div
-			class="space-y-4 w-full max-w-screen-xl mx-auto  px-2 py-8 sm:px-4 sm:py-10 xl:px-16"
+			class="space-y-4 w-full max-w-screen-xl mx-auto px-2 py-8 sm:px-4 sm:py-10 xl:px-16"
 		>
 			<h1
 				class="font-bold text-center w-full text-xl sm:text-2xl md:text-3xl lg:text-4xl dark:text-white"
@@ -44,8 +44,12 @@
 									class="w-16 sm:w-20"
 								/>
 							</div>
-							<div class="flex flex-col items-center min-w-16 min-h-8 sm:min-w-20 sm:min-h-10">
-								<p class="text-gray-600 dark:text-gray-400 text-center text-sm sm:text-base">
+							<div
+								class="flex flex-col items-center min-w-16 min-h-8 sm:min-w-20 sm:min-h-10"
+							>
+								<p
+									class="text-gray-600 dark:text-gray-400 text-center text-sm sm:text-base"
+								>
 									{{ item.name }}
 								</p>
 							</div>

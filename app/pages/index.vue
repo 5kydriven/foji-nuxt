@@ -6,7 +6,7 @@
 	import ReservationSection from './_components/reservation-section.vue';
 	import MenuSection from './_components/menu-section.vue';
 	import FeedbackSection from './_components/feedback-section.vue';
-	import type { Menu } from '~~/types/menu.type';
+	import type { Menu } from '~~/shared/types/menu.type';
 
 	const menus = ref<Menu[]>([
 		{

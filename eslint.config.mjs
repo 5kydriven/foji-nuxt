@@ -20,6 +20,9 @@ export default withNuxt(
 			'@stylistic/brace-style': 'off',
 			'@stylistic/operator-linebreak': 'off',
 			'@stylistic/indent-binary-ops': 'off',
+			'@stylistic/arrow-parens': 'off',
+			'@stylistic/quote-props': 'off',
+			'@stylistic/quotes': 'off',
 		},
 	},
 );

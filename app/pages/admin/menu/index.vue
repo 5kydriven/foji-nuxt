@@ -5,6 +5,12 @@
 		layout: 'custom',
 		middleware: 'auth',
 	});
+
+	const store = useMenuStore();
+
+	onMounted(async () => {
+		await callOnce(() => store.getMenus());
+	});
 </script>
 
 <template>
@@ -15,6 +21,11 @@
 				Manage your restaurant's menu items here.
 			</p>
 		</div>
-		<MenuTable />
+		<MenuHeader />
+		<MenuTable
+			:menus="store.menus"
+			:isLoading="store.isLoading"
+		/>
+		<MenuPagination />
 	</div>
 </template>

@@ -7,6 +7,9 @@ export default defineNuxtConfig({
 		'@nuxtjs/supabase',
 		'@nuxt/image',
 		'@pinia/nuxt',
+		'@nuxtjs/i18n',
+		'@vueuse/nuxt',
+		'@nuxtjs/device',
 	],
 	pages: {
 		pattern: ['**/*.vue', '!**/_components/**'],
@@ -21,18 +24,17 @@ export default defineNuxtConfig({
 	],
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.css'],
-	ui: {
-		colorMode: false,
-	},
+	ui: {},
 	runtimeConfig: {
 		public: {
 			supabaseUrl: process.env.SUPABASE_URL,
-			supabaseKey: process.env.SUPABASE_KEY,
+			// supabaseKey: process.env.SUPABASE_KEY,
+			supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
 		},
 	},
-	routeRules: {
-		'/': { prerender: true },
-	},
+	// routeRules: {
+	// 	'/': { prerender: true },
+	// },
 	future: {
 		compatibilityVersion: 4,
 	},
@@ -45,6 +47,25 @@ export default defineNuxtConfig({
 		config: {
 			stylistic: true,
 		},
+	},
+	i18n: {
+		defaultLocale: 'en',
+		strategy: 'prefix',
+		bundle: {
+			optimizeTranslationDirective: false,
+		},
+		locales: [
+			{
+				code: 'en',
+				name: 'English',
+				file: 'en.json',
+			},
+			{
+				code: 'ja',
+				name: '日本語',
+				file: 'ja.json',
+			},
+		],
 	},
 	supabase: {
 		redirect: false,

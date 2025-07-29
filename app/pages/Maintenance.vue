@@ -9,13 +9,15 @@
 <template>
 	<UContainer>
 		<div class="min-h-screen flex flex-col items-center justify-center gap-8">
-			<label class="font-semibold text-5xl">Under Construction</label>
+			<label class="font-semibold text-5xl">{{
+				$t('underConstruction')
+			}}</label>
 			<UIcon
 				name="i-heroicons-wrench-screwdriver-solid"
 				class="h-40 w-40"
 			/>
 			<p class="text-2xl text-center">
-				This page is under construction. Thank you for your patience!
+				{{ $t('thisPageIsUnderConstruction') }}
 			</p>
 			<UButton
 				label="Go back"

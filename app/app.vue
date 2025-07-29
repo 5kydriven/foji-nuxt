@@ -1,11 +1,19 @@
 <script setup lang="ts">
+	import * as locales from '@nuxt/ui/locale';
+
+	const { locale } = useI18n();
+
+	const lang = computed(() => locales[locale.value].code);
+	const dir = computed(() => locales[locale.value].dir);
+
 	useHead({
 		meta: [
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 		],
 		link: [{ rel: 'icon', href: '/logo.png' }],
 		htmlAttrs: {
-			lang: 'en',
+			lang,
+			dir,
 		},
 	});
 
@@ -22,16 +30,10 @@
 </script>
 
 <template>
-	<UApp>
+	<UApp :locale="locales[locale]">
 		<NuxtLoadingIndicator />
 		<NuxtLayout>
 			<NuxtPage />
 		</NuxtLayout>
 	</UApp>
 </template>
-
-<!-- <style>
-	.max-w-screen-xl {
-		width: 1280px;
-	}
-</style> -->

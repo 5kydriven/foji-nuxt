@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
-import type { Menu } from '~~/types/menu.type';
+	import { motion } from 'motion-v';
+	import type { Menu } from '~~/shared/types/menu.type';
 
-const menus = ref<Menu[]>([
+	const menus = ref<Menu[]>([
 		{
 			japaneseName: '豚肉のカツ丼の煮卵セット',
 			name: 'Stewed Egg with Pork Chop Rice Set',
@@ -50,84 +50,83 @@ const menus = ref<Menu[]>([
 
 <template>
 	<div
-			class="w-full flex flex-col items-center justify-center gap-8 py-4 xl:px-16"
-		>
-			<h1 class="font-bold text-2xl md:text-3xl">Menu's</h1>
-			<div
-				class="flex flex-wrap items-center justify-center py-4 md:py-8 gap-2"
+		class="w-full flex flex-col items-center justify-center gap-8 py-4 xl:px-16"
+	>
+		<h1 class="font-bold text-2xl md:text-3xl">Menu's</h1>
+		<div class="flex flex-wrap items-center justify-center py-4 md:py-8 gap-2">
+			<button
+				type="button"
+				class="text-red-700 hover:text-white border border-red-600 bg-white hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-500 dark:bg-gray-900 dark:focus:ring-red-800"
 			>
-				<button
-					type="button"
-					class="text-red-700 hover:text-white border border-red-600 bg-white hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-500 dark:bg-gray-900 dark:focus:ring-red-800"
-				>
-					All categories
-				</button>
-				<button
-					type="button"
-					class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-				>
-					Shoes
-				</button>
-				<button
-					type="button"
-					class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-				>
-					Bags
-				</button>
-				<button
-					type="button"
-					class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-				>
-					Electronics
-				</button>
-				<button
-					type="button"
-					class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-				>
-					Gaming
-				</button>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full ">
-				<div
+				All categories
+			</button>
+			<button
+				type="button"
+				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
+			>
+				Shoes
+			</button>
+			<button
+				type="button"
+				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
+			>
+				Bags
+			</button>
+			<button
+				type="button"
+				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
+			>
+				Electronics
+			</button>
+			<button
+				type="button"
+				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
+			>
+				Gaming
+			</button>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+			<div
 				v-for="(menu, index) in menus"
 				:key="menu.name"
+			>
+				<motion.div
+					:initial="{ opacity: 0, scale: 0.5 }"
+					:animate="{ opacity: 1, scale: 1 }"
+					:transition="{
+						duration: 0.8,
+						delay: 0.5 + index * 0.2,
+						ease: [0, 0.71, 0.2, 1.01],
+					}"
 				>
-					<motion.div
-						:initial="{ opacity: 0, scale: 0.5 }"
-							:animate="{ opacity: 1, scale: 1 }"
-							:transition="{
-									duration: 0.8,
-									delay: 0.5 + index * 0.2,
-									ease: [0, 0.71, 0.2, 1.01],
-							}"
-							>
 					<div
-						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg  transition-all duration-300 overflow-hidden  p-2 px-4 h-96 my-2"
+						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg transition-all duration-300 overflow-hidden p-2 px-4 h-96 my-2"
 					>
 						<div
-							class="flex justify-center items-center w-full md:w-auto  rounded-md min-w-40 min-h-40 bg-red-50"
+							class="flex justify-center items-center w-full md:w-auto rounded-md min-w-40 min-h-40 bg-red-50"
 						>
 							<img
 								:src="menu.image"
 								alt=""
-								class="w-40 "
+								class="w-40"
 							/>
 						</div>
 						<div class="flex flex-col items-center">
-							<span class="text-gray-800 dark:text-white font-semibold text-center">{{
-								menu.japaneseName
-							}}</span>
+							<span
+								class="text-gray-800 dark:text-white font-semibold text-center"
+								>{{ menu.japaneseName }}</span
+							>
 							<p class="text-gray-600 dark:text-gray-400 text-center">
 								{{ menu.name }}
 							</p>
 						</div>
-						<div class="flex  items-center justify-between w-full py-4 px-4 md:px-8 bg-red-400 rounded-full">
-							<span class=" font-bold text-white">
-								₱ {{ menu.price }}
-							</span>
+						<div
+							class="flex items-center justify-between w-full py-4 px-4 md:px-8 bg-red-400 rounded-full"
+						>
+							<span class="font-bold text-white"> ₱ {{ menu.price }} </span>
 							<div>
 								<motion.div
-									class="flex items-center justify-center rounded-full h-10 w-10 border border-white  text-white"
+									class="flex items-center justify-center rounded-full h-10 w-10 border border-white text-white"
 									:whileHover="{
 										scale: [null, 1.1, 1.6],
 										transition: {
@@ -149,8 +148,8 @@ const menus = ref<Menu[]>([
 							</div>
 						</div>
 					</div>
-					</motion.div>
-				</div>
+				</motion.div>
 			</div>
 		</div>
+	</div>
 </template>

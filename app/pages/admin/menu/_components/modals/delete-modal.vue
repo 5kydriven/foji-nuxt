@@ -1,29 +1,43 @@
 <script setup lang="ts">
-defineProps<{
-  id: number
-}>()
+	const store = useMenuStore();
+	const toast = useToast();
 
-const emit = defineEmits<{ close: [boolean] }>()
+	async function onConfirm() {
+		const response = await store.deleteMenu(props.id);
+		toast.add(response);
+		emit('close');
+	}
+
+	const props = defineProps<{
+		id: string;
+	}>();
+
+	const emit = defineEmits<{ (e: 'close'): void }>();
 </script>
 
 <template>
-  <UModal
-    :close="{ onClick: () => emit('close', false) }"
-    title="Are you sure you want to delete this menu?"
-  >
-    <template #footer>
-      <div class="flex justify-end gap-2 w-full">
-        <UButton
-color="neutral"
-label="Cancel"
-@click="emit('close', false)"
-/>
-        <UButton
-label="Yes"
-color="error"
-@click="emit('close', true)"
-/>
-      </div>
-    </template>
-  </UModal>
+	<UModal
+		:close="{ onClick: () => emit('close') }"
+		title="Delete Menu"
+	>
+		<template #body>
+			<div>Are you sure you want to delete this menu?</div>
+		</template>
+		<template #footer>
+			<div class="flex justify-end gap-4 w-full">
+				<UButton
+					color="neutral"
+					label="Cancel"
+					variant="outline"
+					@click="emit('close')"
+				/>
+				<UButton
+					:loading="store.isLoading"
+					label="Confirm"
+					color="error"
+					@click="onConfirm"
+				/>
+			</div>
+		</template>
+	</UModal>
 </template>

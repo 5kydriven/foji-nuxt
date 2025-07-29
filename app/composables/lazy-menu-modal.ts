@@ -6,31 +6,31 @@ export function useMenuModal() {
 	const overlay = useOverlay();
 	const toast = useToast();
 
-	async function openViewModal(id: number) {
+	async function openViewModal(menu: any) {
 		const modal = overlay.create(ViewModal, {
-			props: { id },
+			props: { ...menu },
 		});
 		const instance = modal.open();
 	}
 
-	async function openEditModal(id: number) {
+	async function openEditModal(menu: any) {
 		const modal = overlay.create(EditModal, {
-			props: { id },
+			props: { ...menu },
 		});
 		const instance = modal.open();
 		const result = await instance.result;
 
-		handleModalResult(result, 'Edit');
+		// handleModalResult(result, 'Edit');
 	}
 
-	async function openDeleteModal(id: number) {
+	async function openDeleteModal(id: string) {
 		const modal = overlay.create(DeleteModal, {
 			props: { id },
 		});
 		const instance = modal.open();
 		const result = await instance.result;
 
-		handleModalResult(result, 'Delete');
+		// handleModalResult(result, 'Delete');
 	}
 
 	function handleModalResult(result: any, action: string) {

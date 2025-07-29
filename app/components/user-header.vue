@@ -1,22 +1,33 @@
 <script setup lang="ts">
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
-	const isDark = ref(false);
+	const colorMode = useColorMode();
 	const isOpen = ref(false);
-	const router = useRouter()
+	const router = useRouter();
+	const localePath = useLocalePath();
+
 	const items = ref<NavigationMenuItem[][]>([
 		[
-			{ label: 'Home', to: '/' },
-			{ label: 'About', to: '/about' },
-			{ label: 'Menu', to: '/menu' },
-			{ label: 'Faq', to: '/maintenance' },
-			{ label: 'Contact Us', to: '/maintenance' },
+			{ label: 'Home', to: localePath('/') },
+			{ label: 'About', to: localePath('/about') },
+			{ label: 'Menu', to: localePath('/menu') },
+			{ label: 'Faq', to: localePath('/maintenance') },
+			{ label: 'Contact Us', to: localePath('/maintenance') },
 		],
 	]);
+
+	const isDark = computed({
+		get() {
+			return colorMode.value === 'dark';
+		},
+		set(_isDark) {
+			colorMode.preference = _isDark ? 'dark' : 'light';
+		},
+	});
 </script>
 
 <template>
-	<div class="z-10 " :class="router.currentRoute.value.path !== '/' ? 'bg-gray-100' : 'bg-black/30'">
+	<div class="z-10 bg-white dark:bg-gray-900">
 		<div class="max-w-screen-xl mx-auto flex items-center justify-between p-2">
 			<div class="flex items-center justify-center w-full">
 				<img
@@ -26,7 +37,9 @@
 				/>
 				<div class="flex flex-col items-start w-full">
 					<span class="font-bold text-red-400 text-xl">FOJI</span>
-					<span class="text-white text-sm">Japanese Restaurant</span>
+					<span class="text-black text-sm dark:text-white">
+						Japanese Restaurant
+					</span>
 				</div>
 			</div>
 
@@ -37,21 +50,21 @@
 				highlight-color="error"
 				:items="items"
 				class="w-full justify-end hidden md:flex"
-			>
-				<template #default="{ item }: { item: NavigationMenuItem }">
-					<div class="flex items-center space-x-2">
-						<!-- <UIcon :name="item.icon as any" /> -->
-						<span class="text-white">{{ item.label }}</span>
-					</div>
-				</template>
-			</UNavigationMenu>
+			/>
+
 			<div class="flex items-center space-x-2">
-				<UButton
-					:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
-					color="neutral"
-					variant="ghost"
-					@click="isDark = !isDark"
-				/>
+				<ClientOnly v-if="!colorMode?.forced">
+					<UButton
+						:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+						color="neutral"
+						variant="ghost"
+						@click="isDark = !isDark"
+					/>
+
+					<template #fallback>
+						<div class="size-8" />
+					</template>
+				</ClientOnly>
 				<div class="md:hidden">
 					<USlideover title="FOJI">
 						<UButton

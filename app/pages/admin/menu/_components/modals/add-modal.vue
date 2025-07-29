@@ -1,104 +1,146 @@
 <script setup lang="ts">
-import type { FormError, FormSubmitEvent } from '@nuxt/ui'
-import type { Menu } from '~~/types/menu.type'
+	import type { FormSubmitEvent } from '@nuxt/ui';
+	import type z from 'zod';
+	import { toFormData } from '~/utils/toFormData';
+	import { menuSchema } from '~~/shared/schema/menuSchema';
 
-const menu = reactive<Menu>({})
+	type Schema = z.output<typeof menuSchema>;
 
-const validate = (state: Menu): FormError[] => {
-  const errors = []
-  if (!state.name) errors.push({ name: 'name', message: 'Required' })
-  if (!state.japaneseName) errors.push({ name: 'japaneseName', message: 'Required' })
-  if (!state.price) errors.push({ name: 'price', message: 'Required' })
-  return errors
-}
+	const store = useMenuStore();
+	const toast = useToast();
+	const form = useTemplateRef('form');
+	const image = ref(null);
 
-const toast = useToast()
-async function onSubmit(event: FormSubmitEvent<typeof menu>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'success' })
-  console.log(event.data)
-}
+	const menu = reactive<Partial<Schema>>({
+		name: undefined,
+		japaneseName: undefined,
+		price: undefined,
+		description: undefined,
+		image: null,
+	});
+
+	async function onSubmit(event: FormSubmitEvent<typeof menu>) {
+		const formData = toFormData(event.data);
+		if (menu.image) {
+			formData.append('image', menu.image);
+		}
+		const response = await store.addMenu(formData);
+		toast.add(response);
+		emit('close');
+	}
+
+	function handleFileChange(e: Event) {
+		const input = e.target as HTMLInputElement;
+		const file = input.files?.[0];
+		menu.image = file || null;
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = (event) => {
+				image.value = event.target?.result as any;
+			};
+			reader.readAsDataURL(file);
+		} else {
+			image.value = null;
+		}
+	}
+
+	const emit = defineEmits<{
+		(e: 'close'): void;
+	}>();
 </script>
 
 <template>
-	<UModal title="Add Menu">
-		<UButton
-			label="Add Menu"
-			color="error"
-			variant="solid"
-			icon="i-lucide-plus"
-			class="ml-2"
-		/>
-
+	<UModal
+		title="Add Menu"
+		:close="{ onClick: () => emit('close') }"
+	>
 		<template #body>
 			<UForm
-:validate="validate"
-:state="menu"
-class="space-y-4"
-@submit="onSubmit"
->
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				ref="form"
+				:state="menu"
+				:schema="menuSchema"
+				class="space-y-4"
+				@submit="onSubmit"
+			>
+				<div class="grid grid-cols-1 gap-4">
 					<UFormField
-label="Name"
-name="name"
->
+						label="Name"
+						name="name"
+					>
 						<UInput
-v-model="menu.name"
-class="w-full"
-/>
+							v-model="menu.name"
+							class="w-full"
+						/>
 					</UFormField>
-
 					<UFormField
-label="Japanese Name"
-name="japaneseName"
->
+						label="Japanese Name"
+						name="japaneseName"
+					>
 						<UInput
-v-model="menu.japaneseName"
-class="w-full"
-/>
+							v-model="menu.japaneseName"
+							class="w-full"
+						/>
 					</UFormField>
-				</div>
-
-				<UFormField
-label="Price"
-name="price"
->
-					<UInput
-v-model="menu.price"
-icon="lucide:philippine-peso"
-type="number"
-placeholder="00.00"
-/>
-				</UFormField>
-				<UFormField
-label="Description"
-name="description"
->
-					 <UTextarea
-color="neutral"
-highlight
-placeholder="Type something..."
-class="w-full"
-/>
-				</UFormField>
-				<UFormField
-label="Menu Image"
-name="image"
->
-					  <UInput
-type="file"
-class="w-full"
-/>
-				</UFormField>
-
-				<div class="flex justify-end w-full">
-					<UButton
-type="submit"
-color="error"
->
-						Submit
-					</UButton>
+					<UFormField
+						label="Price"
+						name="price"
+					>
+						<UInput
+							v-model="menu.price"
+							class="w-full"
+							icon="lucide:philippine-peso"
+							placeholder="00.00"
+						/>
+					</UFormField>
+					<UFormField
+						label="Description"
+						name="description"
+					>
+						<UTextarea
+							v-model="menu.description"
+							color="neutral"
+							highlight
+							placeholder="Type something..."
+							class="w-full"
+						/>
+					</UFormField>
+					<UFormField
+						label="Menu Image"
+						name="image"
+					>
+						<div class="space-y-2">
+							<div>
+								<img
+									v-if="image"
+									:src="image"
+								/>
+								<img
+									v-else-if="menu.image"
+									:src="menu.image"
+								/>
+							</div>
+							<UInput
+								accept="image/*"
+								type="file"
+								class="w-full"
+								@change="handleFileChange"
+							/>
+						</div>
+					</UFormField>
 				</div>
 			</UForm>
+		</template>
+		<template #footer>
+			<div class="flex justify-end w-full">
+				<UButton
+					type="submit"
+					color="error"
+					:loading="store.isLoading"
+					@click="form?.submit()"
+				>
+					Create
+				</UButton>
+			</div>
 		</template>
 	</UModal>
 </template>

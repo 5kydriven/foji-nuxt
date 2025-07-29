@@ -1,4 +1,5 @@
 import { serverSupabaseClient } from '#supabase/server';
+import { convertKeysToCamelCase } from '~~/server/utils/caseConverters';
 
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
@@ -12,19 +13,25 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
-	const { data, error } = await client.from('menus').delete().eq('id', id);
+	const { data, error } = await client
+		.from('menus')
+		.select('*')
+		.eq('id', id)
+		.single();
+
+	const tranformData = convertKeysToCamelCase(data);
 
 	if (error) {
 		throw createError({
 			statusCode: 500,
 			statusMessage: 'Internal Server Error',
-			message: error.message,
+			message: 'Something went wrong',
+			data: error.message,
 		});
 	}
 
 	return sendResponse({
 		event,
-		message: 'Successfully deleted menu',
-		data,
+		data: tranformData,
 	});
 });

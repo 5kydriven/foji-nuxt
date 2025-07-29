@@ -3,8 +3,8 @@ import { sendResponse } from '~~/server/utils/sendResponse';
 
 export default defineEventHandler(async (event) => {
 	const client = await serverSupabaseClient<Database>(event);
-
 	const query = getQuery(event);
+
 	const search = query.search?.toString().trim() || '';
 	const page = parseInt(query.page as string) || 1;
 	const limit = parseInt(query.limit as string) || 10;
