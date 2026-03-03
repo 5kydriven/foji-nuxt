@@ -1,48 +1,91 @@
 <script setup lang="ts">
-import { motion } from 'motion-v';
+	import { motion } from 'motion-v';
+	import OrderModal from './modals/order-modal.vue';
 
+	const localePath = useLocalePath();
 </script>
+
 <template>
-	<div class="w-full flex justify-center ">
-		<div
-			class="max-w-screen-xl mx-auto min-h-[60vh] flex flex-col items-center justify-center gap-10  px-4 py-10 xl:px-16 "
-		>
-			<div class="flex flex-col md:flex-row items-center justify-between gap-10 p-4 xl:p-8 rounded-md bg-red-50 dark:bg-gray-700">
-				<motion.div
-					:initial="{ x: -250, opacity: 0 }"
-					:whileInView="{
-						x: 0,
-						opacity: 1,
-						transition: { ease: ['easeIn', 'easeOut'], duration: 0.5 },
-					}"
-					:inViewOptions="{ once: false }" 
-					class="flex-1 space-y-2">
-					<h1 class="text-3xl font-bold ">
-						{{ $t('reservation.title') }}
-					</h1>
-					<p class="text-gray-600 dark:text-gray-400">
-						{{ $t('reservation.description') }}
-					</p>
+	<section
+		id="reservation"
+		class="bg-zinc-50"
+	>
+		<div class="mx-auto grid max-w-screen-xl gap-6 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-8 lg:px-8">
+			<motion.div
+				:initial="{ opacity: 0, x: -16 }"
+				:whileInView="{ opacity: 1, x: 0 }"
+				:inViewOptions="{ once: true }"
+				class="space-y-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-zinc-100 sm:p-8"
+			>
+				<p class="text-xs font-semibold uppercase tracking-[0.18em] text-red-500">Book A Table</p>
+				<h2 class="text-3xl font-bold text-zinc-900 sm:text-4xl">
+					Do you have plans to dine at FOJI?
+				</h2>
+				<p class="text-sm text-zinc-600 sm:text-base">
+					Reserve early to secure your preferred schedule and avoid peak-hour waiting times.
+				</p>
+				<ul class="space-y-2 text-sm text-zinc-600">
+					<li class="flex items-center gap-2">
+						<UIcon
+							name="i-heroicons-check-circle-solid"
+							class="size-5 text-red-500"
+						/>
+						Fast confirmation by our staff
+					</li>
+					<li class="flex items-center gap-2">
+						<UIcon
+							name="i-heroicons-check-circle-solid"
+							class="size-5 text-red-500"
+						/>
+						Flexible seating for small to medium groups
+					</li>
+					<li class="flex items-center gap-2">
+						<UIcon
+							name="i-heroicons-check-circle-solid"
+							class="size-5 text-red-500"
+						/>
+						Special requests are accommodated when available
+					</li>
+				</ul>
+
+				<div class="flex flex-wrap gap-3">
+					<OrderModal
+						label="Reserve Now"
+						color="error"
+						size="lg"
+					/>
 					<UButton
-					label="Reserve Now"
-					color="error"
+						label="Browse Full Menu"
+						color="neutral"
+						variant="outline"
+						size="lg"
+						:to="localePath('/menu')"
 					/>
-				</motion.div>
-				<motion.div 
-					:initial="{ x: 250, opacity: 0 }"
-						:whileInView="{
-							x: 0,
-							opacity: 1,
-							transition: { ease: ['easeIn', 'easeOut'], duration: 0.5 },
-						}"
-					:inViewOptions="{ once: false }"
-				class="flex-1 flex justify-center items-center">
-					<img
-						src="/menu.png"
-						class="w-48 h-48 md:w-72 md:h-72 rounded-lg drop-shadow-2xl/50"
-					/>
-				</motion.div>
-			</div>
+				</div>
+			</motion.div>
+
+			<motion.div
+				:initial="{ opacity: 0, x: 16 }"
+				:whileInView="{ opacity: 1, x: 0 }"
+				:inViewOptions="{ once: true }"
+				class="rounded-3xl bg-gradient-to-br from-red-500 to-red-700 p-6 text-white shadow-lg sm:p-8"
+			>
+				<p class="text-sm uppercase tracking-[0.14em] text-red-100">Quick Reservation Flow</p>
+				<div class="mt-4 space-y-4">
+					<div class="rounded-xl bg-white/10 p-4">
+						<p class="text-xs uppercase tracking-wide text-red-100">Step 1</p>
+						<p class="text-lg font-semibold">Share your date and time</p>
+					</div>
+					<div class="rounded-xl bg-white/10 p-4">
+						<p class="text-xs uppercase tracking-wide text-red-100">Step 2</p>
+						<p class="text-lg font-semibold">Tell us your group size</p>
+					</div>
+					<div class="rounded-xl bg-white/10 p-4">
+						<p class="text-xs uppercase tracking-wide text-red-100">Step 3</p>
+						<p class="text-lg font-semibold">Receive confirmation from FOJI</p>
+					</div>
+				</div>
+			</motion.div>
 		</div>
-	</div>
+	</section>
 </template>

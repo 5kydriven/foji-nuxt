@@ -1,116 +1,93 @@
 <script setup lang="ts">
-	import { useAnimationFrame, animate, stagger, motion } from 'motion-v';
+	import { motion } from 'motion-v';
 	import OrderModal from './modals/order-modal.vue';
 
-	const containerRef = ref<HTMLDivElement | null>(null);
-
-	onMounted(() => {
-		document.fonts.ready.then(() => {
-			if (!containerRef.value) return;
-
-			const h1 = containerRef.value.querySelector('.h1');
-			if (!h1) return;
-			containerRef.value.style.visibility = 'visible';
-
-			const text = h1.textContent || '';
-			const words = text.split(' ').map((word, index) => {
-				const span = document.createElement('span');
-				span.textContent = word + ' ';
-				span.classList.add(
-					'inline-block',
-					'whitespace-pre',
-					'will-change-[transform,opacity]',
-				);
-				h1.appendChild(span);
-				return span;
-			});
-
-			h1.textContent = '';
-			words.forEach((span: any) => h1.appendChild(span));
-
-			animate(
-				words,
-				{ opacity: [0, 1], y: [10, 0] },
-				{
-					type: 'spring',
-					duration: 2,
-					bounce: 0,
-					delay: stagger(0.05),
-				},
-			);
-		});
-	});
-	const cubeRef = ref<HTMLElement | null>(null);
-
-	useAnimationFrame((t) => {
-		if (!cubeRef.value) return;
-
-		const rotate = Math.sin(t / 10000) * 200;
-		const y = (1 + Math.sin(t / 1000)) * 10;
-		cubeRef.value.style.transform = `translateY(${y}px) `;
-	});
+	const localePath = useLocalePath();
 </script>
 
 <template>
-	<div
-		class="min-h-screen max-w-screen-xl mx-auto flex items-center justify-center gap-8 p-3"
-	>
-		<video
-			class="absolute top-0 left-0 w-full h-full object-cover"
-			autoplay
-			muted
-			loop
-			playsinline
-		>
-			<source
-				src="/ai-video-bg.mp4"
-				type="video/mp4"
-			/>
-			Your browser does not support the video tag.
-		</video>
+	<section class="relative isolate overflow-hidden bg-zinc-950 text-white">
+		<div class="absolute inset-0 bg-[url('/bg.png')] bg-cover bg-center opacity-15" />
+		<div class="absolute inset-0 bg-gradient-to-b from-zinc-950/30 via-zinc-950/70 to-zinc-950" />
+
 		<div
-			class="relative z-10 flex py-5 max-w-screen-xl mx-auto bg-black/30 rounded-md"
+			class="relative mx-auto grid max-w-screen-xl gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8"
 		>
-			<div class="flex flex-col items-center justify-center">
-				<div
-					ref="containerRef"
-					class="invisible"
-				>
-					<h1
-						class="font-bold text-2xl sm:text-3xl lg:text-5xl text-dark h1 text-white leading-tight break-words drop-shadow-2xl text-center"
-					>
-						{{ $t('hero.title') }}
-					</h1>
-				</div>
-				<br />
-				<motion.div
-					class="text-gray-200 text-lg max-w-96 text-center"
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 1,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
-				>
+			<motion.div
+				:initial="{ opacity: 0, y: 20 }"
+				:whileInView="{ opacity: 1, y: 0 }"
+				:inViewOptions="{ once: true }"
+				class="space-y-6 lg:col-span-6"
+			>
+				<p class="text-xs font-semibold uppercase tracking-[0.22em] text-red-300">
+					Authentic Japanese Dining
+				</p>
+				<h1 class="text-4xl font-bold leading-tight sm:text-5xl">
+					{{ $t('hero.title') }}
+				</h1>
+				<p class="max-w-xl text-sm text-zinc-200 sm:text-base">
 					{{ $t('hero.description') }}
-				</motion.div>
-				<br />
-				<motion.div
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 1,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
-				>
+				</p>
+
+				<div class="flex flex-wrap gap-3">
 					<OrderModal
+						label="Reserve Table"
+						size="lg"
 						color="error"
-						class="hidden lg:block"
 					/>
-				</motion.div>
-			</div>
+					<UButton
+						label="View Menu"
+						size="lg"
+						variant="outline"
+						color="neutral"
+						:to="localePath('/menu')"
+					/>
+				</div>
+
+				<div class="grid max-w-md grid-cols-3 gap-3 pt-2">
+					<div class="rounded-xl border border-white/20 bg-white/5 px-3 py-2">
+						<p class="text-lg font-semibold">4.8</p>
+						<p class="text-xs text-zinc-300">Guest Rating</p>
+					</div>
+					<div class="rounded-xl border border-white/20 bg-white/5 px-3 py-2">
+						<p class="text-lg font-semibold">1.2k+</p>
+						<p class="text-xs text-zinc-300">Reviews</p>
+					</div>
+					<div class="rounded-xl border border-white/20 bg-white/5 px-3 py-2">
+						<p class="text-lg font-semibold">11-22</p>
+						<p class="text-xs text-zinc-300">Open Daily</p>
+					</div>
+				</div>
+			</motion.div>
+
+			<motion.div
+				:initial="{ opacity: 0, scale: 0.95 }"
+				:whileInView="{ opacity: 1, scale: 1 }"
+				:inViewOptions="{ once: true }"
+				class="relative lg:col-span-6"
+			>
+				<div class="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+					<div class="grid grid-cols-2 gap-4">
+						<div class="rounded-2xl bg-gradient-to-b from-red-100 to-red-200 p-4">
+							<img
+								src="/menu.png"
+								alt="FOJI pork cutlet rice set"
+								class="mx-auto w-36 drop-shadow-xl"
+							/>
+						</div>
+						<div class="rounded-2xl bg-gradient-to-b from-zinc-100 to-zinc-200 p-4">
+							<img
+								src="/menu-2.png"
+								alt="FOJI pork ginger rice set"
+								class="mx-auto w-36 drop-shadow-xl"
+							/>
+						</div>
+					</div>
+					<p class="mt-4 text-sm text-zinc-200">
+						Signature rice sets with handcrafted sauces, premium cuts, and balanced side dishes.
+					</p>
+				</div>
+			</motion.div>
 		</div>
-	</div>
+	</section>
 </template>

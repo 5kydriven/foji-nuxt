@@ -1,59 +1,53 @@
 <script setup lang="ts">
 	import { motion } from 'motion-v';
+
+	const localePath = useLocalePath();
 </script>
 
 <template>
-	<div
-		ref="scrollRef"
-		class="flex justify-center"
-	>
-		<div
-			class="min-h-[60vh] max-w-screen-xl mx-auto flex flex-col items-center justify-center gap-10 px-4 py-10"
-		>
-			<div
-				class="flex flex-col md:flex-row items-center justify-between gap-10 p-4 rounded-md overflow-hidden"
-			>
+	<section class="bg-white">
+		<div class="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 lg:px-8">
+			<div class="grid items-center gap-8 rounded-3xl bg-red-50 p-6 lg:grid-cols-2 lg:p-10">
 				<motion.div
-					:initial="{ x: -250, opacity: 0 }"
-					:whileInView="{
-						x: 0,
-						opacity: 1,
-						transition: { ease: ['easeIn', 'easeOut'], duration: 0.5 },
-					}"
-					:inViewOptions="{ once: false }"
-					class="flex-1 flex justify-center items-center"
+					:initial="{ opacity: 0, x: -16 }"
+					:whileInView="{ opacity: 1, x: 0 }"
+					:inViewOptions="{ once: true }"
+					class="space-y-4"
 				>
-					<div class="p-8 rounded-full bg-red-600">
-						<img
-							src="/chef.png"
-							class="w-48 h-48 md:w-72 md:h-72 rounded-lg drop-shadow-2xl/50"
-						/>
+					<p class="text-xs font-semibold uppercase tracking-[0.18em] text-red-500">The FOJI Experience</p>
+					<h2 class="text-3xl font-bold text-zinc-900 sm:text-4xl">More than a meal</h2>
+					<p class="text-sm text-zinc-600 sm:text-base">
+						FOJI blends traditional Japanese flavors with warm hospitality and a modern dining atmosphere.
+					</p>
+					<div class="grid grid-cols-1 gap-3 text-sm text-zinc-700 sm:grid-cols-2">
+						<div class="rounded-xl bg-white p-3 ring-1 ring-red-100">Fresh ingredients daily</div>
+						<div class="rounded-xl bg-white p-3 ring-1 ring-red-100">Balanced set meals</div>
+						<div class="rounded-xl bg-white p-3 ring-1 ring-red-100">Friendly table service</div>
+						<div class="rounded-xl bg-white p-3 ring-1 ring-red-100">Cozy modern ambiance</div>
 					</div>
+					<UButton
+						label="About FOJI"
+						color="error"
+						variant="soft"
+						:to="localePath('/about')"
+					/>
 				</motion.div>
 
 				<motion.div
-					:initial="{ x: 250, opacity: 0 }"
-					:whileInView="{
-						x: 0,
-						opacity: 1,
-						transition: { ease: ['easeIn', 'easeOut'], duration: 0.5 },
-					}"
-					:inViewOptions="{ once: false }"
-					class="flex-1 space-y-4"
+					:initial="{ opacity: 0, x: 16 }"
+					:whileInView="{ opacity: 1, x: 0 }"
+					:inViewOptions="{ once: true }"
+					class="flex items-center justify-center"
 				>
-					<h1 class="text-3xl font-bold capitalize">
-						{{ $t('service.title') }}
-					</h1>
-					<p class="text-gray-600">
-						{{ $t('service.description') }}
-					</p>
-					<UButton
-						label="About Us"
-						color="error"
-						@click="$router.push('/about')"
-					/>
+					<div class="rounded-3xl bg-red-600 p-6 shadow-lg">
+						<img
+							src="/chef.png"
+							alt="FOJI chef"
+							class="h-56 w-56 rounded-2xl object-cover drop-shadow-2xl sm:h-72 sm:w-72"
+						/>
+					</div>
 				</motion.div>
 			</div>
 		</div>
-	</div>
+	</section>
 </template>

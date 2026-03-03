@@ -2,17 +2,16 @@
 	import type { NavigationMenuItem } from '@nuxt/ui';
 
 	const colorMode = useColorMode();
-	const isOpen = ref(false);
-	const router = useRouter();
 	const localePath = useLocalePath();
+	const homePath = localePath('/');
 
 	const items = ref<NavigationMenuItem[][]>([
 		[
-			{ label: 'Home', to: localePath('/') },
+			{ label: 'Home', to: homePath },
 			{ label: 'About', to: localePath('/about') },
-			{ label: 'Menu', to: localePath('/menu') },
-			{ label: 'Faq', to: localePath('/maintenance') },
-			{ label: 'Contact Us', to: localePath('/maintenance') },
+			{ label: 'Menu', to: `${homePath}#menu` },
+			{ label: 'FAQ', to: `${homePath}#faq` },
+			{ label: 'Contact', to: `${homePath}#contact` },
 		],
 	]);
 
@@ -27,21 +26,22 @@
 </script>
 
 <template>
-	<div class="z-10 bg-white dark:bg-gray-900">
-		<div class="max-w-screen-xl mx-auto flex items-center justify-between p-2">
-			<div class="flex items-center justify-center w-full">
+	<header class="sticky top-0 z-50 border-b border-zinc-200/60 bg-white/95 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/95">
+		<div class="mx-auto flex max-w-screen-xl items-center justify-between px-3 py-2 sm:px-6 lg:px-8">
+			<NuxtLink
+				:to="homePath"
+				class="flex items-center gap-2"
+			>
 				<img
 					src="/logo.png"
 					alt="FOJI Logo"
-					class="h-14 w-14"
+					class="h-10 w-10 sm:h-12 sm:w-12"
 				/>
-				<div class="flex flex-col items-start w-full">
-					<span class="font-bold text-red-400 text-xl">FOJI</span>
-					<span class="text-black text-sm dark:text-white">
-						Japanese Restaurant
-					</span>
+				<div class="leading-tight">
+					<p class="text-lg font-bold text-red-500">FOJI</p>
+					<p class="text-xs text-zinc-600 dark:text-zinc-300">Japanese Restaurant</p>
 				</div>
-			</div>
+			</NuxtLink>
 
 			<UNavigationMenu
 				color="error"
@@ -49,10 +49,18 @@
 				highlight
 				highlight-color="error"
 				:items="items"
-				class="w-full justify-end hidden md:flex"
+				class="hidden w-full justify-center md:flex"
 			/>
 
-			<div class="flex items-center space-x-2">
+			<div class="flex items-center gap-2">
+				<UButton
+					label="Reserve"
+					color="error"
+					size="sm"
+					:to="`${homePath}#reservation`"
+					class="hidden lg:inline-flex"
+				/>
+
 				<ClientOnly v-if="!colorMode?.forced">
 					<UButton
 						:icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
@@ -65,8 +73,9 @@
 						<div class="size-8" />
 					</template>
 				</ClientOnly>
+
 				<div class="md:hidden">
-					<USlideover title="FOJI">
+					<USlideover title="FOJI Navigation">
 						<UButton
 							icon="heroicons:bars-3-bottom-right-solid"
 							color="neutral"
@@ -74,12 +83,18 @@
 						/>
 
 						<template #body>
-							<div>
+							<div class="space-y-4">
 								<UNavigationMenu
 									orientation="vertical"
 									color="error"
 									:items="items"
 									class="w-full"
+								/>
+								<UButton
+									label="Reserve"
+									color="error"
+									block
+									:to="`${homePath}#reservation`"
 								/>
 							</div>
 						</template>
@@ -87,5 +102,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</header>
 </template>
