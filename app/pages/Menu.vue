@@ -2,154 +2,125 @@
 	import { motion } from 'motion-v';
 	import type { Menu } from '~~/shared/types/menu.type';
 
-	const menus = ref<Menu[]>([
+	const store = useMenuStore();
+	const localePath = useLocalePath();
+
+	const fallbackMenus = ref<Menu[]>([
 		{
-			japaneseName: '豚肉のカツ丼の煮卵セット',
-			name: 'Stewed Egg with Pork Chop Rice Set',
+			japaneseName: 'Buta Katsu Toji Don Set',
+			name: 'Stewed Egg with Pork Cutlet Rice Set',
 			image: '/menu.png',
 			price: 300,
-			description: 'Delicious menu item 1',
+			description: 'Crisp pork cutlet simmered in house dashi with fluffy Japanese rice.',
 		},
 		{
-			japaneseName: '特製豚生姜ご飯セット',
+			japaneseName: 'Tokusei Buta Shogayaki Set',
 			name: 'Special Pork Ginger Rice Set',
 			image: '/menu-2.png',
 			price: 300,
-			description: 'Tasty menu item 2',
+			description: 'Tender pork and fragrant ginger glaze with balanced savory notes.',
 		},
 		{
-			japaneseName: '豚肉チョップ天心飯セット',
+			japaneseName: 'Pork Chop Tenshinhan Set',
 			name: 'Pork Chop Tenshinhan Set',
 			image: '/menu-3.png',
 			price: 300,
-			description: 'Yummy menu item 3',
+			description: 'Golden omelet rice crowned with pork chop and silky signature sauce.',
 		},
 		{
-			japaneseName: 'チキンライスオムレツセット / 日本の味',
-			name: 'Chicken Rice Omelet Set / Japanes Taste',
+			japaneseName: 'Chicken Rice Omelet Set',
+			name: 'Chicken Rice Omelet Set',
 			image: '/menu-4.png',
 			price: 300,
-			description: 'Scrumptious menu item 4',
+			description: 'Classic comfort with juicy chicken and an umami-rich egg finish.',
 		},
 		{
-			japaneseName: 'スチューズエッグとチキンライスセット',
-			name: 'Stewes Egg with Chicken Rice Set',
+			japaneseName: 'Stewed Egg and Chicken Rice Set',
+			name: 'Stewed Egg with Chicken Rice Set',
 			image: '/menu-5.png',
 			price: 300,
-			description: 'Savory menu item 5',
+			description: 'Braised chicken and egg in delicate broth, served with warm rice.',
 		},
 		{
-			japaneseName: '海鮮チャーハンセット / 日本の味',
-			name: 'Sea Food Fried Rice Set / Japanes Taste',
+			japaneseName: 'Seafood Fried Rice Set',
+			name: 'Seafood Fried Rice Set',
 			image: '/menu-6.png',
 			price: 300,
-			description: 'Appetizing menu item 6',
+			description: 'Wok-fried rice with seafood aroma and layered texture.',
 		},
 	]);
+
+	const displayMenus = computed(() => (store.menus.length ? store.menus : fallbackMenus.value));
+
+	function formatPrice(value?: number) {
+		if (!value && value !== 0) {
+			return 'PHP --';
+		}
+
+		return `PHP ${value.toFixed(2)}`;
+	}
+
+	onMounted(async () => {
+		await callOnce(() => store.getMenus());
+	});
 </script>
 
 <template>
-	<div
-		class="w-full flex flex-col items-center justify-center gap-8 py-4 xl:px-16"
-	>
-		<h1 class="font-bold text-2xl md:text-3xl">Menu's</h1>
-		<div class="flex flex-wrap items-center justify-center py-4 md:py-8 gap-2">
-			<button
-				type="button"
-				class="text-red-700 hover:text-white border border-red-600 bg-white hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-500 dark:bg-gray-900 dark:focus:ring-red-800"
-			>
-				All categories
-			</button>
-			<button
-				type="button"
-				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-			>
-				Shoes
-			</button>
-			<button
-				type="button"
-				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-			>
-				Bags
-			</button>
-			<button
-				type="button"
-				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-			>
-				Electronics
-			</button>
-			<button
-				type="button"
-				class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800"
-			>
-				Gaming
-			</button>
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
-			<div
-				v-for="(menu, index) in menus"
-				:key="menu.name"
-			>
-				<motion.div
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 0.5 + index * 0.2,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
+	<div class="min-h-screen bg-[#f7efdf]">
+		<section class="relative overflow-hidden bg-[#171311] text-[#f8ecd7]">
+			<div class="absolute inset-0 bg-[radial-gradient(circle_at_left_top,_rgba(199,164,106,0.23),_transparent_42%)]" />
+			<div class="section-shell py-14 sm:py-16">
+				<p class="foji-title-eyebrow text-[#c7a46a]">FOJI Full Menu</p>
+				<h1 class="mt-2 max-w-3xl text-5xl leading-tight sm:text-6xl">Premium Japanese Set Meals Crafted for Everyday Luxury</h1>
+				<p class="mt-4 max-w-2xl text-sm leading-relaxed text-[#d7c5a6] sm:text-base">
+					Explore our complete lineup of signature rice sets and guest favorites. Designed for quick lunch comfort
+					and elevated dinner moments.
+				</p>
+				<div class="mt-6 flex flex-wrap gap-2 text-xs uppercase tracking-[0.14em] text-[#bea57f]">
+					<span class="rounded-full border border-[#4f4033] bg-[#241d19] px-4 py-2">Chef-curated sets</span>
+					<span class="rounded-full border border-[#4f4033] bg-[#241d19] px-4 py-2">Premium plating</span>
+					<span class="rounded-full border border-[#4f4033] bg-[#241d19] px-4 py-2">Daily availability</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-shell section-padding">
+			<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+				<motion.article
+					v-for="(menu, index) in displayMenus"
+					:key="menu.id ?? `${menu.name}-${index}`"
+					:initial="{ opacity: 0, y: 18 }"
+					:whileInView="{ opacity: 1, y: 0 }"
+					:inViewOptions="{ once: true }"
+					:transition="{ duration: 0.35, delay: index * 0.04 }"
+					class="group overflow-hidden rounded-[1.6rem] border border-[#dcc9ab] bg-[#fff7ea] shadow-[0_10px_28px_rgba(42,33,24,0.09)]"
 				>
-					<div
-						class="flex flex-col justify-between bg-white shadow gap-4 rounded-lg transition-all duration-300 overflow-hidden p-2 px-4 h-96 my-2"
-					>
-						<div
-							class="flex justify-center items-center w-full md:w-auto rounded-md min-w-40 min-h-40 bg-red-50"
-						>
-							<img
-								:src="menu.image"
-								alt=""
-								class="w-40"
+					<div class="bg-gradient-to-br from-[#efddc3] to-[#d7b993] p-5">
+						<img
+							:src="menu.image || '/menu.png'"
+							:alt="menu.name || 'FOJI menu item'"
+							class="mx-auto h-44 w-44 object-contain transition duration-500 group-hover:scale-110"
+						/>
+					</div>
+					<div class="space-y-3 p-5">
+						<p class="font-japanese text-sm text-[#7d6c54]">{{ menu.japaneseName || 'FOJI Signature Dish' }}</p>
+						<h2 class="text-3xl leading-tight text-[#1d1512]">{{ menu.name || 'Japanese Rice Set' }}</h2>
+						<p class="text-sm leading-relaxed text-[#655743]">
+							{{ menu.description || 'Balanced savory flavor with premium sides and carefully prepared rice.' }}
+						</p>
+						<div class="flex items-center justify-between border-t border-[#e6d7c0] pt-3">
+							<p class="text-lg font-semibold text-[#9a2a24]">{{ formatPrice(menu.price) }}</p>
+							<UButton
+								label="Reserve This Dish"
+								size="xs"
+								color="neutral"
+								:to="`${localePath('/')}#reservation`"
+								class="border border-[#d8c5a6] bg-[#f4e5cf] text-[#3b2f23] hover:bg-[#e8d7bd]"
 							/>
 						</div>
-						<div class="flex flex-col items-center">
-							<span
-								class="text-gray-800 dark:text-white font-semibold text-center"
-								>{{ menu.japaneseName }}</span
-							>
-							<p class="text-gray-600 dark:text-gray-400 text-center">
-								{{ menu.name }}
-							</p>
-						</div>
-						<div
-							class="flex items-center justify-between w-full py-4 px-4 md:px-8 bg-red-400 rounded-full"
-						>
-							<span class="font-bold text-white"> ₱ {{ menu.price }} </span>
-							<div>
-								<motion.div
-									class="flex items-center justify-center rounded-full h-10 w-10 border border-white text-white"
-									:whileHover="{
-										scale: [null, 1.1, 1.6],
-										transition: {
-											duration: 0.5,
-											times: [0, 0.6, 1],
-											ease: ['easeInOut', 'easeOut'],
-										},
-									}"
-									:transition="{
-										duration: 0.3,
-										ease: 'easeOut',
-									}"
-								>
-									<UIcon
-										name="heroicons:arrow-up-right-16-solid"
-										class="size-7"
-									/>
-								</motion.div>
-							</div>
-						</div>
 					</div>
-				</motion.div>
+				</motion.article>
 			</div>
-		</div>
+		</section>
 	</div>
 </template>

@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;600;700&family=Noto+Serif+JP:wght@500;600;700&display=swap');
 
 @theme {
 	--width-screen-sm: var(--breakpoint-sm);
@@ -7,4 +8,97 @@
 	--width-screen-lg: var(--breakpoint-lg);
 	--width-screen-xl: var(--breakpoint-xl);
 	--width-screen-2xl: var(--breakpoint-2xl);
+}
+
+:root {
+	--foji-ink: #161312;
+	--foji-charcoal: #211d1b;
+	--foji-red: #921f1f;
+	--foji-red-bright: #bc2d2a;
+	--foji-beige: #f1e6d2;
+	--foji-paper: #f8f3e7;
+	--foji-gold: #c7a46a;
+	--foji-muted: #8b7b63;
+}
+
+html,
+body,
+#__nuxt {
+	min-height: 100%;
+}
+
+body {
+	background: linear-gradient(180deg, #f8f3e7 0%, #f0e4cf 100%);
+	color: var(--foji-ink);
+	font-family: 'Manrope', 'Segoe UI', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+	letter-spacing: 0.01em;
+}
+
+.font-japanese {
+	font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+}
+
+.section-shell {
+	position: relative;
+	margin-inline: auto;
+	width: 100%;
+	max-width: 80rem;
+	padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+	.section-shell {
+		padding-inline: 1.5rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.section-shell {
+		padding-inline: 2rem;
+	}
+}
+
+.section-padding {
+	padding-block: 3.75rem;
+}
+
+@media (min-width: 768px) {
+	.section-padding {
+		padding-block: 5.5rem;
+	}
+}
+
+.foji-panel {
+	border: 1px solid rgb(255 255 255 / 0.08);
+	background:
+		linear-gradient(140deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.02)),
+		rgba(0, 0, 0, 0.42);
+	backdrop-filter: blur(8px);
+}
+
+.foji-title-eyebrow {
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.23em;
+	text-transform: uppercase;
+}
+
+.foji-grid-overlay::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgb(255 255 255 / 0.03) 1px, transparent 1px),
+		linear-gradient(90deg, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+	background-size: 36px 36px;
+	pointer-events: none;
 }

@@ -1,14 +1,14 @@
 export default defineAppConfig({
 	ui: {
 		button: {
-			slots: { base: 'cursor-pointer' },
+			slots: { base: 'cursor-pointer font-medium tracking-wide' },
 		},
 		navigationMenu: {
 			slots: {},
 			variants: {
 				active: {
 					false: {
-						link: 'text-black dark:text-white hover:text-red-500',
+						link: 'text-[#f7e8d0] hover:text-[#c7a46a]',
 						childLink: [
 							'hover:before:bg-elevated/50 text-default hover:text-highlighted',
 							'transition-colors before:transition-colors',
@@ -16,7 +16,7 @@ export default defineAppConfig({
 					},
 				},
 				highlight: {
-					true: 'text-red-500',
+					true: 'text-[#c7a46a]',
 				},
 			},
 		},

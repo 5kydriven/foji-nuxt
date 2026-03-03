@@ -13,7 +13,7 @@
 			},
 			{
 				label: 'Featured',
-				icon: 'heroicons:building-storefront-solid',
+				icon: 'heroicons:star-solid',
 				to: localePath('/admin/featured'),
 			},
 			{

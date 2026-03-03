@@ -1,118 +1,150 @@
 <script setup lang="ts">
-	import { useAnimationFrame, animate, stagger, motion } from 'motion-v';
-	import OrderModal from './modals/order-modal.vue';
+import { motion } from 'motion-v';
+import OrderModal from './modals/order-modal.vue';
 
-	const containerRef = ref<HTMLDivElement | null>(null);
-
-	onMounted(() => {
-		document.fonts.ready.then(() => {
-			if (!containerRef.value) return;
-
-			const h1 = containerRef.value.querySelector('.h1');
-			if (!h1) return;
-			containerRef.value.style.visibility = 'visible';
-
-			const text = h1.textContent || '';
-			const words = text.split(' ').map((word, index) => {
-				const span = document.createElement('span');
-				span.textContent = word + ' ';
-				span.classList.add(
-					'inline-block',
-					'whitespace-pre',
-					'will-change-[transform,opacity]',
-				);
-				h1.appendChild(span);
-				return span;
-			});
-
-			h1.textContent = '';
-			words.forEach((span: any) => h1.appendChild(span));
-
-			animate(
-				words,
-				{ opacity: [0, 1], y: [10, 0] },
-				{
-					type: 'spring',
-					duration: 2,
-					bounce: 0,
-					delay: stagger(0.05),
-				},
-			);
-		});
-	});
-	const cubeRef = ref<HTMLElement | null>(null);
-
-	useAnimationFrame((t) => {
-		if (!cubeRef.value) return;
-
-		const rotate = Math.sin(t / 10000) * 200;
-		const y = (1 + Math.sin(t / 1000)) * 10;
-		cubeRef.value.style.transform = `translateY(${y}px) `;
-	});
+const localePath = useLocalePath();
 </script>
 
 <template>
-	<div
-		class="min-h-screen max-w-screen-xl mx-auto flex items-center justify-center gap-8 p-3"
-	>
-		<video
-			class="absolute top-0 left-0 w-full h-full object-cover"
-			autoplay
-			muted
-			loop
-			playsinline
-		>
-			<source
-				src="/ai-video-bg.mp4"
-				type="video/mp4"
-			/>
-			Your browser does not support the video tag.
-		</video>
+	<section class="relative isolate overflow-hidden bg-[#120f0e] text-[#f8ecd6]">
 		<div
-			class="relative z-10 flex py-5 max-w-screen-xl mx-auto bg-black/30 rounded-md"
+			class="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,_rgba(199,164,106,0.25),_transparent_34%)]"
+		/>
+		<div
+			class="absolute inset-0 bg-[radial-gradient(circle_at_86%_18%,_rgba(146,31,31,0.35),_transparent_38%)]"
+		/>
+		<div
+			class="absolute inset-0 bg-[url('/bg.png')] bg-cover bg-center opacity-[0.13]"
+		/>
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-transparent via-[#120f0e]/40 to-[#120f0e]"
+		/>
+
+		<div
+			class="section-shell section-padding relative grid items-center gap-10 pt-12 lg:grid-cols-12 lg:gap-8 lg:pt-16"
 		>
-			<div class="flex flex-col items-center justify-center">
-				<div
-					ref="containerRef"
-					class="invisible"
-				>
+			<motion.div
+				:initial="{ opacity: 0, y: 22 }"
+				:whileInView="{ opacity: 1, y: 0 }"
+				:inViewOptions="{ once: true }"
+				class="space-y-7 lg:col-span-7"
+			>
+				<div class="space-y-3">
+					<p class="foji-title-eyebrow text-[#c7a46a]">
+						Authentic Japanese Restaurant in the Philippines
+					</p>
 					<h1
-						class="font-bold text-2xl sm:text-3xl lg:text-5xl text-dark h1 text-white leading-tight break-words drop-shadow-2xl text-center"
+						class="max-w-2xl text-4xl leading-tight text-[#f9efdd] sm:text-5xl xl:text-6xl"
 					>
-						Welcome to FOJI Japanese Restaurant Authentic Flavors, Modern Vibes.
+						Refined Washoku Dining Inspired by Tokyo Craft and Makati
+						Sophistication
 					</h1>
+					<p
+						class="max-w-xl text-sm leading-relaxed text-[#d8c6a7] sm:text-base"
+					>
+						FOJI brings Japanese comfort classics and modern presentation
+						together. Designed for date nights, client dinners, and guests who
+						value premium flavor, ambiance, and seamless service.
+					</p>
 				</div>
-				<br />
-				<motion.div
-					class="text-gray-200 text-lg max-w-96 text-center"
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 1,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
-				>
-					Experience the taste of Japan with our signature sushi, ramen, and
-					more. Enjoy a unique dining atmosphere at FOJI, where tradition meets
-					innovation.
-				</motion.div>
-				<br />
-				<motion.div
-					:initial="{ opacity: 0, scale: 0.5 }"
-					:animate="{ opacity: 1, scale: 1 }"
-					:transition="{
-						duration: 0.8,
-						delay: 1,
-						ease: [0, 0.71, 0.2, 1.01],
-					}"
-				>
+
+				<div class="flex flex-wrap items-center gap-3">
 					<OrderModal
-						color="error"
-						class="hidden lg:block"
+						label="Reserve Now"
+						size="lg"
+						color="neutral"
+						button-class="bg-[#9d2723] text-[#fff7ee] hover:bg-[#b22f2a]"
 					/>
-				</motion.div>
-			</div>
+					<UButton
+						label="View Menu"
+						size="lg"
+						color="neutral"
+						:to="localePath('/menu')"
+						class="border border-[#3f3630] bg-[#1f1916] text-[#f8ecd6] hover:bg-[#2a221e]"
+					/>
+					<UButton
+						label="Order Online"
+						size="lg"
+						color="neutral"
+						variant="outline"
+						to="https://foodpanda.ph/"
+						target="_blank"
+						class="border-[#6a5a4a] text-[#e8d3b0] hover:bg-[#1d1714]"
+					/>
+				</div>
+
+				<div class="grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+					<div class="foji-panel rounded-2xl p-4">
+						<p class="text-xl font-semibold text-[#f5e7ce]">4.8</p>
+						<p class="text-xs uppercase tracking-[0.14em] text-[#c5b296]">
+							Guest Rating
+						</p>
+					</div>
+					<div class="foji-panel rounded-2xl p-4">
+						<p class="text-xl font-semibold text-[#f5e7ce]">1,200+</p>
+						<p class="text-xs uppercase tracking-[0.14em] text-[#c5b296]">
+							Reservations Served
+						</p>
+					</div>
+					<div class="foji-panel rounded-2xl p-4">
+						<p class="text-xl font-semibold text-[#f5e7ce]">11AM-10PM</p>
+						<p class="text-xs uppercase tracking-[0.14em] text-[#c5b296]">
+							Daily Service
+						</p>
+					</div>
+				</div>
+			</motion.div>
+
+			<motion.div
+				:initial="{ opacity: 0, scale: 0.94 }"
+				:whileInView="{ opacity: 1, scale: 1 }"
+				:inViewOptions="{ once: true }"
+				class="relative lg:col-span-5"
+			>
+				<div
+					class="relative mx-auto max-w-md rounded-[2rem] border border-[#3f3630] bg-gradient-to-b from-[#231d19] to-[#181311] p-5 shadow-[0_20px_70px_rgba(0,0,0,0.55)] sm:p-6"
+				>
+					<div
+						class="absolute -right-6 -top-6 rounded-2xl border border-[#5b4732] bg-[#241a15] px-4 py-3 text-right shadow-xl"
+					>
+						<p class="text-xs uppercase tracking-[0.12em] text-[#bda47a]">
+							Chef Choice
+						</p>
+						<p class="font-japanese text-sm text-[#f7ecd8]">Katsu Toji Don</p>
+					</div>
+					<div class="grid grid-cols-2 gap-4">
+						<div
+							class="overflow-hidden rounded-2xl bg-gradient-to-br from-[#f2dbc0] via-[#ead3b5] to-[#dcc09b] p-3"
+						>
+							<img
+								src="/menu.png"
+								alt="FOJI signature pork cutlet"
+								class="mx-auto h-40 w-40 object-contain transition duration-500 hover:scale-110"
+							/>
+						</div>
+						<div
+							class="overflow-hidden rounded-2xl bg-gradient-to-br from-[#dac5a8] via-[#cfb192] to-[#c69d75] p-3"
+						>
+							<img
+								src="/menu-2.png"
+								alt="FOJI pork ginger set"
+								class="mx-auto h-40 w-40 object-contain transition duration-500 hover:scale-110"
+							/>
+						</div>
+					</div>
+					<div
+						class="mt-4 rounded-2xl border border-[#3f3630] bg-[#1a1512] p-4"
+					>
+						<p class="text-xs uppercase tracking-[0.12em] text-[#b8a483]">
+							Signature Promise
+						</p>
+						<p class="mt-2 text-sm text-[#e4d5bc]">
+							Fresh preparation, balanced portions, and warm Japanese
+							hospitality from first bite to last.
+						</p>
+					</div>
+				</div>
+			</motion.div>
 		</div>
-	</div>
+	</section>
 </template>

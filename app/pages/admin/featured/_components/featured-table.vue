@@ -1,149 +1,133 @@
 <script setup lang="ts">
-import type { TableColumn, DropdownMenuItem } from '@nuxt/ui'
-import { useClipboard } from '@vueuse/core'
+	import type { TableColumn, DropdownMenuItem, TableRow } from '@nuxt/ui';
+	import type { Feature } from '~~/shared/types/feature.type';
+	import { LazyFeatureViewModal, LazyFeatureDeleteModal, LazyFeatureEditModal } from '#components';
 
-interface User {
-  id: number
-  name: string
-  position: string
-  email: string
-  role: string
-}
+	const UCheckbox = resolveComponent('UCheckbox');
+	const UDropdownMenu = resolveComponent('UDropdownMenu');
+	const overlay = useOverlay();
 
-const toast = useToast()
-const { copy } = useClipboard()
+  const viewModal = overlay.create(LazyFeatureViewModal);
+	const deleteModal = overlay.create(LazyFeatureDeleteModal);
+	const editModal = overlay.create(LazyFeatureEditModal);
 
-const data = ref<User[]>([
-  {
-    id: 1,
-    name: 'Lindsay Walton',
-    position: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-  },
-  {
-    id: 2,
-    name: 'Courtney Henry',
-    position: 'Designer',
-    email: 'courtney.henry@example.com',
-    role: 'Admin',
-  },
-  {
-    id: 3,
-    name: 'Tom Cook',
-    position: 'Director of Product',
-    email: 'tom.cook@example.com',
-    role: 'Member',
-  },
-  {
-    id: 4,
-    name: 'Whitney Francis',
-    position: 'Copywriter',
-    email: 'whitney.francis@example.com',
-    role: 'Admin',
-  },
-  {
-    id: 5,
-    name: 'Leonard Krasner',
-    position: 'Senior Designer',
-    email: 'leonard.krasner@example.com',
-    role: 'Owner',
-  },
-  {
-    id: 6,
-    name: 'Floyd Miles',
-    position: 'Principal Designer',
-    email: 'floyd.miles@example.com',
-    role: 'Member',
-  },
-])
+	const columns: TableColumn<Menu>[] = [
+		{
+			id: 'select',
+			header: ({ table }) =>
+				h(UCheckbox, {
+					modelValue: table.getIsSomePageRowsSelected()
+						? 'indeterminate'
+						: table.getIsAllPageRowsSelected(),
+					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
+						table.toggleAllPageRowsSelected(!!value),
+					'aria-label': 'Select all',
+				}),
+			cell: ({ row }) =>
+				h(UCheckbox, {
+					modelValue: row.getIsSelected(),
+					'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
+						row.toggleSelected(!!value),
+					'aria-label': 'Select row',
+				}),
+		},
+		{
+			accessorKey: 'id',
+			header: 'ID',
+		},
+		{
+			accessorKey: 'name',
+			header: 'Name',
+		},
+		{
+			accessorKey: 'description',
+			header: 'Description',
+		},
+		{
+			accessorKey: 'price',
+			header: 'Price',
+			cell: ({ row }) => formatPeso(row.getValue('price')),
+		},
+		{
+			id: 'action',
+		},
+	];
 
-const columns: TableColumn<User>[] = [
-  {
-    accessorKey: 'id',
-    header: 'ID',
-  },
-  {
-    accessorKey: 'name',
-    header: 'Name',
-  },
-  {
-    accessorKey: 'email',
-    header: 'Email',
-  },
-  {
-    accessorKey: 'role',
-    header: 'Role',
-  },
-  {
-    id: 'action',
-  },
-]
+	function getDropdownActions(feature: any): DropdownMenuItem[][] {
+		return [
+			[
+				{
+					label: 'View Details',
+					icon: 'i-lucide-eye',
+					onSelect: () => viewModal.open(feature),
+				},
+				{
+					label: 'Edit',
+					color: 'info',
+					icon: 'i-lucide-edit',
+					onSelect: () => editModal.open({ ...feature }),
+				},
+				{
+					label: 'Delete',
+					icon: 'i-lucide-trash',
+					color: 'error',
+					onSelect: () => deleteModal.open({ id: feature.id }),
+				},
+			],
+		];
+	}
 
-function getDropdownActions(user: User): DropdownMenuItem[][] {
-  return [
-    [
-      {
-        label: 'Copy user Id',
-        icon: 'i-lucide-copy',
-        onSelect: () => {
-          copy(user.id.toString())
+	function onSelect(row: TableRow<Menu>, e?: Event) {
+		row.toggleSelected(!row.getIsSelected());
 
-          toast.add({
-            title: 'User ID copied to clipboard!',
-            color: 'success',
-            icon: 'i-lucide-circle-check',
-          })
-        },
-      },
-    ],
-    [
-      {
-        label: 'Edit',
-        icon: 'i-lucide-edit',
-      },
-      {
-        label: 'Delete',
-        icon: 'i-lucide-trash',
-        color: 'error',
-      },
-    ],
-  ]
-}
+		console.log(e);
+	}
+
+	const props = defineProps<{
+		features: Feature[];
+		isLoading: boolean;
+	}>();
 </script>
 
 <template>
-  <UTable
-:data="data"
-:columns="columns"
-class="flex-1"
->
-    <template #name-cell="{ row }">
-      <div class="flex items-center gap-3">
-        <UAvatar
-          :src="`https://i.pravatar.cc/120?img=${row.original.id}`"
-          size="lg"
-          :alt="`${row.original.name} avatar`"
-        />
-        <div>
-          <p class="font-medium text-highlighted">
-            {{ row.original.name }}
-          </p>
-          <p>
-            {{ row.original.position }}
-          </p>
-        </div>
-      </div>
-    </template>
-    <template #action-cell="{ row }">
-      <UDropdownMenu :items="getDropdownActions(row.original)">
-        <UButton
-          icon="i-lucide-ellipsis-vertical"
-          color="neutral"
-          variant="ghost"
-          aria-label="Actions"
-        />
-      </UDropdownMenu>
-    </template>
-  </UTable>
+	<UTable
+		:loading="props.isLoading"
+		loading-animation="carousel"
+		:loading-state="{
+			icon: 'i-heroicons-arrow-path-20-solid',
+			label: 'Loading...',
+		}"
+		:data="props.features"
+		:columns="columns"
+		class="flex-1 capitalize"
+		sticky
+		@select="onSelect"
+	>
+		<template #name-cell="{ row }">
+			<div class="flex items-center gap-3">
+				<UAvatar
+					:src="row.original.image"
+					size="xl"
+				/>
+				<div>
+					<p class="font-medium text-highlighted">
+						{{ row.original.japaneseName }}
+					</p>
+					<p>
+						{{ row.original.name }}
+					</p>
+				</div>
+			</div>
+		</template>
+		<template #action-cell="{ row }">
+			<UDropdownMenu :items="getDropdownActions(row.original)">
+				<UButton
+					icon="i-lucide-ellipsis-vertical"
+					color="neutral"
+					variant="ghost"
+					aria-label="Actions"
+				/>
+			</UDropdownMenu>
+		</template>
+	</UTable>
 </template>

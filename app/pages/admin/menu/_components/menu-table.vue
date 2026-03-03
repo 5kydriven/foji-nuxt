@@ -1,14 +1,14 @@
 <script setup lang="ts">
 	import type { TableColumn, DropdownMenuItem, TableRow } from '@nuxt/ui';
 	import type { Menu } from '~~/shared/types/menu.type';
-	import { useMenuModal } from '~/composables/lazy-menu-modal';
-	import { LazyDeleteModal, LazyEditModal } from '#components';
+	import { LazyViewModal, LazyDeleteModal, LazyEditModal } from '#components';
 
-	const { openViewModal, openEditModal, openDeleteModal } = useMenuModal();
+	// const { openViewModal, openEditModal, openDeleteModal } = useMenuModal();
 	const UCheckbox = resolveComponent('UCheckbox');
 	const UDropdownMenu = resolveComponent('UDropdownMenu');
 	const overlay = useOverlay();
 
+	const viewModal = overlay.create(LazyViewModal);
 	const deleteModal = overlay.create(LazyDeleteModal);
 	const editModal = overlay.create(LazyEditModal);
 
@@ -54,25 +54,25 @@
 		},
 	];
 
-	function getDropdownActions(user: any): DropdownMenuItem[][] {
+	function getDropdownActions(menu: any): DropdownMenuItem[][] {
 		return [
 			[
 				{
 					label: 'View Details',
 					icon: 'i-lucide-eye',
-					onSelect: () => openViewModal(user),
+					onSelect: () => viewModal.open(menu),
 				},
 				{
 					label: 'Edit',
 					color: 'info',
 					icon: 'i-lucide-edit',
-					onSelect: () => editModal.open({ ...user }),
+					onSelect: () => editModal.open({ ...menu }),
 				},
 				{
 					label: 'Delete',
 					icon: 'i-lucide-trash',
 					color: 'error',
-					onSelect: () => deleteModal.open({ id: user.id }),
+					onSelect: () => deleteModal.open({ id: menu.id }),
 				},
 			],
 		];
