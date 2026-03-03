@@ -64,7 +64,7 @@
 
 <template>
 	<div
-		class="bg-gray-100 dark:bg-gray-900 border-b px-4 py-2 flex justify-between items-center"
+		class="bg-gray-100 dark:bg-gray-900  px-4 py-2 flex justify-between items-center"
 	>
 		<div class="flex items-center gap-4">
 			<UButton
