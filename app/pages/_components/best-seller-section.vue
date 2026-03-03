@@ -8,59 +8,73 @@
 		menus: Menu[];
 	}>();
 
-	const featuredMenus = computed(() => props.menus.slice(0, 6));
+	const signatureMenus = computed(() => props.menus.slice(0, 3));
 </script>
 
 <template>
-	<section class="bg-white">
-		<div class="mx-auto max-w-screen-xl px-4 py-14 sm:px-6 lg:px-8">
-			<div class="flex flex-wrap items-end justify-between gap-4">
-				<div class="space-y-2">
-					<p class="text-xs font-semibold uppercase tracking-[0.18em] text-red-500">Signature Picks</p>
-					<h2 class="text-3xl font-bold text-zinc-900 sm:text-4xl">Best Seller Dishes</h2>
-					<p class="max-w-2xl text-sm text-zinc-600 sm:text-base">
-						Crowd favorites with balanced flavors and premium ingredients.
-					</p>
-				</div>
-				<UButton
-					label="See Full Menu"
-					color="error"
-					variant="soft"
-					:to="localePath('/menu')"
-				/>
-			</div>
+	<section class="relative overflow-hidden bg-[#181312] text-[#f5e7cf]">
+		<div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_85%,_rgba(157,39,35,0.38),_transparent_45%)]" />
+		<div class="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,_rgba(199,164,106,0.2),_transparent_40%)]" />
 
-			<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-				<motion.article
-					v-for="(item, index) in featuredMenus"
-					:key="item.name"
-					:initial="{ opacity: 0, y: 16 }"
-					:whileInView="{ opacity: 1, y: 0 }"
-					:inViewOptions="{ once: true }"
-					:transition="{ duration: 0.35, delay: index * 0.06 }"
-					class="group overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-				>
-					<div class="relative bg-zinc-50 p-4">
-						<img
-							:src="item.image"
-							:alt="item.name"
-							class="mx-auto h-36 w-36 object-contain transition duration-300 group-hover:scale-105"
-						/>
-					</div>
-					<div class="space-y-2 p-4">
-						<p class="text-sm font-medium text-zinc-500">{{ item.japaneseName }}</p>
-						<h3 class="text-base font-semibold text-zinc-900">{{ item.name }}</h3>
-						<div class="flex items-center justify-between">
-							<p class="text-lg font-bold text-red-600">PHP {{ item.price }}</p>
-							<UButton
-								label="Details"
-								size="xs"
-								variant="ghost"
-								color="neutral"
-							/>
+		<div class="section-shell section-padding relative">
+			<div class="grid items-start gap-8 lg:grid-cols-12">
+				<div class="space-y-5 lg:col-span-5">
+					<p class="foji-title-eyebrow text-[#c7a46a]">Chef Signatures</p>
+					<h2 class="text-4xl text-[#f8edd8] sm:text-5xl">Crafted to Look Elegant and Taste Comforting</h2>
+					<p class="text-sm leading-relaxed text-[#d6c4a7] sm:text-base">
+						Each signature plate is finished with controlled heat, proper sauce balance, and carefully layered
+						textures to keep every bite rich yet clean.
+					</p>
+
+					<div class="space-y-3 rounded-3xl border border-[#342b27] bg-[#211a17] p-5">
+						<div class="flex items-start gap-3">
+							<span class="mt-1 size-2.5 rounded-full bg-[#c7a46a]" />
+							<p class="text-sm text-[#dfcfae]">Daily ingredient checks for freshness and consistency</p>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="mt-1 size-2.5 rounded-full bg-[#c7a46a]" />
+							<p class="text-sm text-[#dfcfae]">Sauces prepared in-house with Japanese-inspired seasoning</p>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="mt-1 size-2.5 rounded-full bg-[#c7a46a]" />
+							<p class="text-sm text-[#dfcfae]">Plating style designed for premium casual dining</p>
 						</div>
 					</div>
-				</motion.article>
+
+					<UButton
+						label="Explore Complete Selection"
+						size="lg"
+						color="neutral"
+						:to="localePath('/menu')"
+						class="bg-[#9d2723] text-[#fff7ee] hover:bg-[#b22f2a]"
+					/>
+				</div>
+
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
+					<motion.article
+						v-for="(item, index) in signatureMenus"
+						:key="item.name"
+						:initial="{ opacity: 0, y: 18 }"
+						:whileInView="{ opacity: 1, y: 0 }"
+						:inViewOptions="{ once: true }"
+						:transition="{ duration: 0.4, delay: index * 0.08 }"
+						class="group overflow-hidden rounded-3xl border border-[#342b27] bg-[#211a17]"
+					>
+						<div class="border-b border-[#342b27] bg-gradient-to-b from-[#f1ddbe] to-[#d6ba92] p-4">
+							<img
+								:src="item.image"
+								:alt="item.name"
+								class="mx-auto h-36 w-36 object-contain transition duration-500 group-hover:scale-110"
+							/>
+						</div>
+						<div class="space-y-2 p-4">
+							<p class="font-japanese text-xs text-[#b79f78]">{{ item.japaneseName }}</p>
+							<h3 class="text-2xl text-[#f8edd8]">{{ item.name }}</h3>
+							<p class="text-sm text-[#cbb996]">Premium set menu crafted for satisfying lunch and dinner cravings.</p>
+							<p class="text-lg font-semibold text-[#c7a46a]">PHP {{ item.price }}</p>
+						</div>
+					</motion.article>
+				</div>
 			</div>
 		</div>
 	</section>

@@ -17,9 +17,9 @@
 		},
 	});
 
-	const title = 'FOJI JAPANESE RESTAURANT';
+	const title = 'FOJI Japanese Restaurant | Premium Washoku Dining in the Philippines';
 	const description =
-		'Experience the taste of Japan with our signature sushi, ramen, and more. Enjoy a unique dining atmosphere at FOJI, where tradition meets innovation.';
+		'Discover FOJI, a premium Japanese restaurant concept for modern Filipino diners. Explore signature set meals, reserve tables easily, and enjoy elevated hospitality.';
 
 	useSeoMeta({
 		title,

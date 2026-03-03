@@ -1,91 +1,148 @@
 <script setup lang="ts">
-	import { motion } from 'motion-v';
-	import OrderModal from './modals/order-modal.vue';
+import { motion } from 'motion-v';
+import OrderModal from './modals/order-modal.vue';
 
-	const localePath = useLocalePath();
+const localePath = useLocalePath();
 </script>
 
 <template>
-	<section class="relative isolate overflow-hidden bg-zinc-950 text-white">
-		<div class="absolute inset-0 bg-[url('/bg.png')] bg-cover bg-center opacity-15" />
-		<div class="absolute inset-0 bg-gradient-to-b from-zinc-950/30 via-zinc-950/70 to-zinc-950" />
+	<section class="relative isolate overflow-hidden bg-[#120f0e] text-[#f8ecd6]">
+		<div
+			class="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,_rgba(199,164,106,0.25),_transparent_34%)]"
+		/>
+		<div
+			class="absolute inset-0 bg-[radial-gradient(circle_at_86%_18%,_rgba(146,31,31,0.35),_transparent_38%)]"
+		/>
+		<div
+			class="absolute inset-0 bg-[url('/bg.png')] bg-cover bg-center opacity-[0.13]"
+		/>
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-transparent via-[#120f0e]/40 to-[#120f0e]"
+		/>
 
 		<div
-			class="relative mx-auto grid max-w-screen-xl gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-8"
+			class="section-shell section-padding relative grid items-center gap-10 pt-12 lg:grid-cols-12 lg:gap-8 lg:pt-16"
 		>
 			<motion.div
-				:initial="{ opacity: 0, y: 20 }"
+				:initial="{ opacity: 0, y: 22 }"
 				:whileInView="{ opacity: 1, y: 0 }"
 				:inViewOptions="{ once: true }"
-				class="space-y-6 lg:col-span-6"
+				class="space-y-7 lg:col-span-7"
 			>
-				<p class="text-xs font-semibold uppercase tracking-[0.22em] text-red-300">
-					Authentic Japanese Dining
-				</p>
-				<h1 class="text-4xl font-bold leading-tight sm:text-5xl">
-					{{ $t('hero.title') }}
-				</h1>
-				<p class="max-w-xl text-sm text-zinc-200 sm:text-base">
-					{{ $t('hero.description') }}
-				</p>
+				<div class="space-y-3">
+					<p class="foji-title-eyebrow text-[#c7a46a]">
+						Authentic Japanese Restaurant in the Philippines
+					</p>
+					<h1
+						class="max-w-2xl text-4xl leading-tight text-[#f9efdd] sm:text-5xl xl:text-6xl"
+					>
+						Refined Washoku Dining Inspired by Tokyo Craft and Makati
+						Sophistication
+					</h1>
+					<p
+						class="max-w-xl text-sm leading-relaxed text-[#d8c6a7] sm:text-base"
+					>
+						FOJI brings Japanese comfort classics and modern presentation
+						together. Designed for date nights, client dinners, and guests who
+						value premium flavor, ambiance, and seamless service.
+					</p>
+				</div>
 
-				<div class="flex flex-wrap gap-3">
+				<div class="flex flex-wrap items-center gap-3">
 					<OrderModal
-						label="Reserve Table"
+						label="Reserve Now"
 						size="lg"
-						color="error"
+						color="neutral"
+						button-class="bg-[#9d2723] text-[#fff7ee] hover:bg-[#b22f2a]"
 					/>
 					<UButton
 						label="View Menu"
 						size="lg"
-						variant="outline"
 						color="neutral"
 						:to="localePath('/menu')"
+						class="border border-[#3f3630] bg-[#1f1916] text-[#f8ecd6] hover:bg-[#2a221e]"
+					/>
+					<UButton
+						label="Order Online"
+						size="lg"
+						color="neutral"
+						variant="outline"
+						to="https://foodpanda.ph/"
+						target="_blank"
+						class="border-[#6a5a4a] text-[#e8d3b0] hover:bg-[#1d1714]"
 					/>
 				</div>
 
-				<div class="grid max-w-md grid-cols-3 gap-3 pt-2">
-					<div class="rounded-xl border border-white/20 bg-white/5 px-3 py-2">
-						<p class="text-lg font-semibold">4.8</p>
-						<p class="text-xs text-zinc-300">Guest Rating</p>
+				<div class="grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+					<div class="foji-panel rounded-2xl p-4">
+						<p class="text-xl font-semibold text-[#f5e7ce]">4.8</p>
+						<p class="text-xs uppercase tracking-[0.14em] text-[#c5b296]">
+							Guest Rating
+						</p>
 					</div>
-					<div class="rounded-xl border border-white/20 bg-white/5 px-3 py-2">
-						<p class="text-lg font-semibold">1.2k+</p>
-						<p class="text-xs text-zinc-300">Reviews</p>
+					<div class="foji-panel rounded-2xl p-4">
+						<p class="text-xl font-semibold text-[#f5e7ce]">1,200+</p>
+						<p class="text-xs uppercase tracking-[0.14em] text-[#c5b296]">
+							Reservations Served
+						</p>
 					</div>
-					<div class="rounded-xl border border-white/20 bg-white/5 px-3 py-2">
-						<p class="text-lg font-semibold">11-22</p>
-						<p class="text-xs text-zinc-300">Open Daily</p>
+					<div class="foji-panel rounded-2xl p-4">
+						<p class="text-xl font-semibold text-[#f5e7ce]">11AM-10PM</p>
+						<p class="text-xs uppercase tracking-[0.14em] text-[#c5b296]">
+							Daily Service
+						</p>
 					</div>
 				</div>
 			</motion.div>
 
 			<motion.div
-				:initial="{ opacity: 0, scale: 0.95 }"
+				:initial="{ opacity: 0, scale: 0.94 }"
 				:whileInView="{ opacity: 1, scale: 1 }"
 				:inViewOptions="{ once: true }"
-				class="relative lg:col-span-6"
+				class="relative lg:col-span-5"
 			>
-				<div class="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+				<div
+					class="relative mx-auto max-w-md rounded-[2rem] border border-[#3f3630] bg-gradient-to-b from-[#231d19] to-[#181311] p-5 shadow-[0_20px_70px_rgba(0,0,0,0.55)] sm:p-6"
+				>
+					<div
+						class="absolute -right-6 -top-6 rounded-2xl border border-[#5b4732] bg-[#241a15] px-4 py-3 text-right shadow-xl"
+					>
+						<p class="text-xs uppercase tracking-[0.12em] text-[#bda47a]">
+							Chef Choice
+						</p>
+						<p class="font-japanese text-sm text-[#f7ecd8]">Katsu Toji Don</p>
+					</div>
 					<div class="grid grid-cols-2 gap-4">
-						<div class="rounded-2xl bg-gradient-to-b from-red-100 to-red-200 p-4">
+						<div
+							class="overflow-hidden rounded-2xl bg-gradient-to-br from-[#f2dbc0] via-[#ead3b5] to-[#dcc09b] p-3"
+						>
 							<img
 								src="/menu.png"
-								alt="FOJI pork cutlet rice set"
-								class="mx-auto w-36 drop-shadow-xl"
+								alt="FOJI signature pork cutlet"
+								class="mx-auto h-40 w-40 object-contain transition duration-500 hover:scale-110"
 							/>
 						</div>
-						<div class="rounded-2xl bg-gradient-to-b from-zinc-100 to-zinc-200 p-4">
+						<div
+							class="overflow-hidden rounded-2xl bg-gradient-to-br from-[#dac5a8] via-[#cfb192] to-[#c69d75] p-3"
+						>
 							<img
 								src="/menu-2.png"
-								alt="FOJI pork ginger rice set"
-								class="mx-auto w-36 drop-shadow-xl"
+								alt="FOJI pork ginger set"
+								class="mx-auto h-40 w-40 object-contain transition duration-500 hover:scale-110"
 							/>
 						</div>
 					</div>
-					<p class="mt-4 text-sm text-zinc-200">
-						Signature rice sets with handcrafted sauces, premium cuts, and balanced side dishes.
-					</p>
+					<div
+						class="mt-4 rounded-2xl border border-[#3f3630] bg-[#1a1512] p-4"
+					>
+						<p class="text-xs uppercase tracking-[0.12em] text-[#b8a483]">
+							Signature Promise
+						</p>
+						<p class="mt-2 text-sm text-[#e4d5bc]">
+							Fresh preparation, balanced portions, and warm Japanese
+							hospitality from first bite to last.
+						</p>
+					</div>
 				</div>
 			</motion.div>
 		</div>
